@@ -1,4 +1,8 @@
 <p align="center"><img src=https://github.com/senaceet/proyecto-salecold/blob/master/logo.png width="550" height="500">
+  
+## ***Objetivo General*** :mag:
+
+Desarrollar un sistema de informacion que le permita al cliente vender sus productos con mayor facilidad y efectividad.
 
 ## ***Justificación*** :sunglasses:
 
