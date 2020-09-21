@@ -2,7 +2,7 @@
   
   
  # ***SaleCold*** #
- Sistema de Información de venta de repuestos de refrigeración para la empresa frio Nevado Jl Ltda. Barranquilla, Colombia.
+ Sistema de Información de venta de repuestos de refrigeración para la empresa Frio Nevado Jl Ltda. Barranquilla, Colombia.
   
 ## ***Objetivo General*** :mag:
 
@@ -15,7 +15,8 @@ La empresa FRIO NEVADO JL LTDA, presenta problemáticas referentes a la gestión
 
 ## ***Justificación*** :sunglasses:
 
-El  proyecto  se  enfoca  en  la  ciudad  de    Barranquilla  para  la empresa Frío Nevado JL LTDA, principalmente busca suplir dos necesidades, saber:  no hay un aplicativo web en la ciudad de Barranquilla que facilite la venta repuestos para refrigeradores y le ahorre a los clientes desplazamientos largos para encontrar el repuesto, con el aplicativo los usuarios puedan consultar el repuesto que necesiten sin necesidad de ir a la tienda física;  de otro  lado  ,  la  empresa  debe  mejorar  la  organización  de  la información  (clientes,  stock  de  los  repuestos,  ventas,  entre otros), pues no cuenta con un modelo de organización efectiva, por lo cual un aplicativo web es una gran opción tanto para los usuarios y  clientes como para la empresa.
+El proyecto se sitúa en la ciudad de  Barranquilla, concretamente en la empresa Frío Nevado JL LTDA y busca suplir dos necesidades, a saber:  la empresa no tiene  un aplicativo web que facilite la venta de repuestos para  refrigeradores y le ahorre a los clientes desplazamientos largos para encontrar el repuesto que se requiere, en ese sentido con el aplicativo los usuarios podrán consultar, cotizar y comprar sin necesidad de ir al establecimiento físico;  de otro lado , la empresa debe mejorar la organización de la información (clientes, stock de los repuestos, ventas, entre otros), pues no cuenta con un modelo de organización efectiva, por lo cual un aplicativo web es una gran opción tanto para los usuarios y  clientes como para la empresa.
+
 
 ## ***Alcance*** :bulb:
 
