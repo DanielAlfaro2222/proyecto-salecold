@@ -8,6 +8,14 @@
 
 Desarrollar un sistema de informacion que le permita al cliente vender sus productos con mayor facilidad y efectividad.
 
+## ***Objetivos específicos*** :mag:
+
+- Presentar información pertinente acerca de los productos que vende el cliente a las demás empresas a las que esta asociado a través de un front end amigable.
+- Modernizar la metodología de ventas de la empresa, para agilizar el tiempo en la atención y en las ventas.
+- Facilitar el modelo de venta para que sea más asequible, tanto al cliente, como a los usuarios.
+- Cumplir con las necesidades del cliente  en cuanto a los requerimientos de software a la medida.
+
+
 ## ***Plantamiento del problema*** :memo:
 
 La empresa FRIO NEVADO JL LTDA, presenta problemáticas referentes a la gestión de ventas. Dado que no maneja  una organización eficaz  los procesos de venta se llevan a cabo de forma presencial y los tramites son engorrosos, pues la empresa no implementa herramientas informáticas. ¿En qué medida la implementación del aplicativo Web mejorará la gestión automatizada de ventas de la empresa? 
