@@ -1,5 +1,6 @@
-CREATE DATABASE Salecold;
-USE Salecold;
+CREATE DATABASE SaleCold;
+USE SaleCold;
+drop database Salecold;
 
 CREATE TABLE IF NOT EXISTS TipoDocumento (
   IdTipoDocumento INT NOT NULL AUTO_INCREMENT,
@@ -11,7 +12,7 @@ CREATE TABLE IF NOT EXISTS TipoUsuario (
   IdTipoUsuario INT NOT NULL AUTO_INCREMENT,
   Descripcion VARCHAR(45) NOT NULL,
   CONSTRAINT pk_TipoUsuario PRIMARY KEY (IdTipoUsuario)
-  );
+);
 
 CREATE TABLE IF NOT EXISTS Ciudad (
   IdCiudad INT NOT NULL AUTO_INCREMENT,
@@ -124,7 +125,7 @@ CREATE TABLE IF NOT EXISTS Producto (
 
 CREATE TABLE IF NOT EXISTS DetallePedido (
   IdDetallePedido INT NOT NULL AUTO_INCREMENT,
-  Cantidad VARCHAR(45) NOT NULL,
+  Cantidad INT NOT NULL,
   Subtotal DECIMAL NOT NULL,
   Total DECIMAL NOT NULL,
   Producto_IdProducto INT NOT NULL,
