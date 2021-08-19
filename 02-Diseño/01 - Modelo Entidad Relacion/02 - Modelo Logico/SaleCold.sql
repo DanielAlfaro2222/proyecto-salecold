@@ -95,10 +95,10 @@ CREATE TABLE IF NOT EXISTS CabeceraPedido (
 	ON UPDATE CASCADE
 );
 
-CREATE TABLE IF NOT EXISTS Categorias (
-  IdCategorias INT NOT NULL AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS Categoria (
+  IdCategoria INT NOT NULL AUTO_INCREMENT,
   Descripcion VARCHAR(45) NOT NULL,
-  CONSTRAINT pk_Categorias PRIMARY KEY (IdCategorias)
+  CONSTRAINT pk_Categoria PRIMARY KEY (IdCategoria)
 );
 
 CREATE TABLE IF NOT EXISTS UnidadDeMedida (
@@ -111,10 +111,10 @@ CREATE TABLE IF NOT EXISTS Producto (
   IdProducto INT NOT NULL AUTO_INCREMENT,
   Descripcion VARCHAR(45) NOT NULL,
   PrecioUnitario DECIMAL NOT NULL,
-  Categorias_IdCategorias INT NOT NULL,
+  Categoria_IdCategoria INT NOT NULL,
   UnidadDeMedida_IdUnidadDeMedida INT NOT NULL,
   CONSTRAINT pk_Producto PRIMARY KEY (IdProducto),
-  CONSTRAINT fk_Producto_Categorias1 FOREIGN KEY (Categorias_IdCategorias) REFERENCES Categorias (IdCategorias)
+  CONSTRAINT fk_Producto_Categorias1 FOREIGN KEY (Categoria_IdCategoria) REFERENCES Categoria (IdCategoria)
     ON DELETE RESTRICT 
 	ON UPDATE CASCADE,
   CONSTRAINT fk_Producto_UnidadDeMedida1 FOREIGN KEY (UnidadDeMedida_IdUnidadDeMedida) REFERENCES UnidadDeMedida (IdUnidadDeMedida)
@@ -205,10 +205,10 @@ SELECT * FROM CabeceraPedido;
 INSERT INTO CabeceraPedido VALUES (1, '2021-02-01','2021-01-31', '2354jifdsd', '23545653', 1,1,1,1,1);
 INSERT INTO CabeceraPedido VALUES (2, '2020-04-04','2020-04-06', 'dsbh33212', '455456323', 2,2,2,2,2);
 
-SELECT * FROM Categorias;
-INSERT INTO Categorias VALUES (1, 'Nueva');
-INSERT INTO Categorias VALUES (2, 'Repuestos');
-INSERT INTO Categorias VALUES (3, 'Ventiladores');
+SELECT * FROM Categoria;
+INSERT INTO Categoria VALUES (1, 'Nueva');
+INSERT INTO Categoria VALUES (2, 'Repuestos');
+INSERT INTO Categoria VALUES (3, 'Ventiladores');
 
 SELECT * FROM UnidadDeMedida;
 INSERT INTO UnidadDeMedida VALUES (1, 'Kilo');
