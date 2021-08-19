@@ -53,7 +53,7 @@
 <div id="title-sect">
 <h1>mydb<br> Data Dictionay</h1>
 <p>
-<em>2021-03-03</em>
+<em>2021-08-18</em>
 </p>
 <p class="proj-desc">
 <em></em>
@@ -61,25 +61,24 @@
 </div>
 <h2>Alphabetic Index</h2>
 <ul>
-<li><a href='#Cabecera_Documento_Contable'>Cabecera_Documento_Contable</a></li>
-<li><a href='#Cabecera_Pedido'>Cabecera_Pedido</a></li>
+<li><a href='#CabeceraDocumentoContable'>CabeceraDocumentoContable</a></li>
+<li><a href='#CabeceraPedido'>CabeceraPedido</a></li>
 <li><a href='#Categorias'>Categorias</a></li>
 <li><a href='#Ciudad'>Ciudad</a></li>
-<li><a href='#Confirmacion_Pedido'>Confirmacion_Pedido</a></li>
-<li><a href='#Detalle_Documento_Contable'>Detalle_Documento_Contable</a></li>
-<li><a href='#Detalle_Pedido'>Detalle_Pedido</a></li>
-<li><a href='#Entregas'>Entregas</a></li>
+<li><a href='#ConfirmacionPedido'>ConfirmacionPedido</a></li>
+<li><a href='#DetalleDocumentoContable'>DetalleDocumentoContable</a></li>
+<li><a href='#DetallePedido'>DetallePedido</a></li>
 <li><a href='#Producto'>Producto</a></li>
-<li><a href='#Tipo_Documento'>Tipo_Documento</a></li>
-<li><a href='#Tipo_Documento_Contable'>Tipo_Documento_Contable</a></li>
-<li><a href='#Tipo_Usuario'>Tipo_Usuario</a></li>
-<li><a href='#Tipo_de_Entrega'>Tipo_de_Entrega</a></li>
-<li><a href='#Tipo_de_Pago'>Tipo_de_Pago</a></li>
+<li><a href='#TipoDocumento'>TipoDocumento</a></li>
+<li><a href='#TipoDocumentoContable'>TipoDocumentoContable</a></li>
+<li><a href='#TipoUsuario'>TipoUsuario</a></li>
+<li><a href='#TipodeEntrega'>TipodeEntrega</a></li>
+<li><a href='#TipodePago'>TipodePago</a></li>
+<li><a href='#UnidadDeMedida'>UnidadDeMedida</a></li>
 <li><a href='#Usuario'>Usuario</a></li>
-<li><a href='#unidad_de_Medida'>unidad_de_Medida</a></li>
 </ul>
-<table id='Cabecera_Documento_Contable'>
-<caption>Cabecera_Documento_Contable</caption>
+<table id='CabeceraDocumentoContable'>
+<caption>CabeceraDocumentoContable</caption>
 <tr><td colspan='11'></td></tr>
 <tr>
     <th>Column name</th>
@@ -121,7 +120,7 @@
     <td></td>
 </tr>
 <tr>
-    <td>Cabecera_Proceso_IdCabeceraProceso</td>
+    <td>CabeceraPedido_IdCabeceraPedido</td>
     <td>INT</td>
     <td>&nbsp;</td>
     <td>&#10004;</td>
@@ -133,8 +132,8 @@
     <td></td>
     <td></td>
 </tr>
-<table id='Cabecera_Pedido'>
-<caption>Cabecera_Pedido</caption>
+<table id='CabeceraPedido'>
+<caption>CabeceraPedido</caption>
 <tr><td colspan='11'></td></tr>
 <tr>
     <th>Column name</th>
@@ -164,7 +163,7 @@
 </tr>
 <tr>
     <td>FechaPedido</td>
-    <td>DATE</td>
+    <td>VARCHAR(45)</td>
     <td>&nbsp;</td>
     <td>&#10004;</td>
     <td>&nbsp;</td>
@@ -177,7 +176,7 @@
 </tr>
 <tr>
     <td>FechaDePago</td>
-    <td>DATE</td>
+    <td>VARCHAR(45)</td>
     <td>&nbsp;</td>
     <td>&#10004;</td>
     <td>&nbsp;</td>
@@ -215,19 +214,6 @@
     <td></td>
 </tr>
 <tr>
-    <td>Tipo_Documento_Contable_IdTipoDocumentoContable</td>
-    <td>INT</td>
-    <td>&nbsp;</td>
-    <td>&#10004;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td class='attr'>&nbsp;</td>
-    <td></td>
-    <td></td>
-</tr>
-<tr>
     <td>Usuario_IdUsuario</td>
     <td>INT</td>
     <td>&nbsp;</td>
@@ -241,7 +227,7 @@
     <td></td>
 </tr>
 <tr>
-    <td>Tipo_de_Pago_IdTipoPago</td>
+    <td>TipodePago_IdTipoPago</td>
     <td>INT</td>
     <td>&nbsp;</td>
     <td>&#10004;</td>
@@ -254,7 +240,33 @@
     <td></td>
 </tr>
 <tr>
-    <td>Confirmacion_Pedido_idConfirmacion_Pedido</td>
+    <td>ConfirmacionPedido_IdConfirmacionPedido</td>
+    <td>INT</td>
+    <td>&nbsp;</td>
+    <td>&#10004;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td class='attr'>&nbsp;</td>
+    <td></td>
+    <td></td>
+</tr>
+<tr>
+    <td>TipoDocumentoContable_IdTipoDocumentoContable</td>
+    <td>INT</td>
+    <td>&nbsp;</td>
+    <td>&#10004;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td class='attr'>&nbsp;</td>
+    <td></td>
+    <td></td>
+</tr>
+<tr>
+    <td>TipodeEntrega_IdTipoDeEntrega</td>
     <td>INT</td>
     <td>&nbsp;</td>
     <td>&#10004;</td>
@@ -297,7 +309,7 @@
 </tr>
 <tr>
     <td>Descripcion</td>
-    <td>CHAR(45)</td>
+    <td>VARCHAR(45)</td>
     <td>&nbsp;</td>
     <td>&#10004;</td>
     <td>&nbsp;</td>
@@ -339,7 +351,7 @@
 </tr>
 <tr>
     <td>Descripcion</td>
-    <td>CHAR(45)</td>
+    <td>VARCHAR(45)</td>
     <td>&nbsp;</td>
     <td>&#10004;</td>
     <td>&nbsp;</td>
@@ -363,8 +375,8 @@
     <td></td>
     <td></td>
 </tr>
-<table id='Confirmacion_Pedido'>
-<caption>Confirmacion_Pedido</caption>
+<table id='ConfirmacionPedido'>
+<caption>ConfirmacionPedido</caption>
 <tr><td colspan='11'></td></tr>
 <tr>
     <th>Column name</th>
@@ -380,7 +392,7 @@
     <th>Comment</th>
 </tr>
 <tr>
-    <td>IdConfirmacion_Pedido</td>
+    <td>IdConfirmacionPedido</td>
     <td>INT</td>
     <td>&#10004;</td>
     <td>&#10004;</td>
@@ -394,7 +406,7 @@
 </tr>
 <tr>
     <td>Descripcion</td>
-    <td>CHAR(45)</td>
+    <td>VARCHAR(45)</td>
     <td>&nbsp;</td>
     <td>&#10004;</td>
     <td>&nbsp;</td>
@@ -405,8 +417,8 @@
     <td></td>
     <td></td>
 </tr>
-<table id='Detalle_Documento_Contable'>
-<caption>Detalle_Documento_Contable</caption>
+<table id='DetalleDocumentoContable'>
+<caption>DetalleDocumentoContable</caption>
 <tr><td colspan='11'></td></tr>
 <tr>
     <th>Column name</th>
@@ -435,7 +447,7 @@
     <td></td>
 </tr>
 <tr>
-    <td>Cabecera_Documento_Contable_IdCabeceraDocumentoContable</td>
+    <td>CabeceraDocumentoContable_IdCabeceraDocumentoContable</td>
     <td>INT</td>
     <td>&nbsp;</td>
     <td>&#10004;</td>
@@ -448,7 +460,7 @@
     <td></td>
 </tr>
 <tr>
-    <td>Detalle_Pedido_IdDetallePedido</td>
+    <td>DetallePedido_IdDetallePedido</td>
     <td>INT</td>
     <td>&nbsp;</td>
     <td>&#10004;</td>
@@ -460,8 +472,8 @@
     <td></td>
     <td></td>
 </tr>
-<table id='Detalle_Pedido'>
-<caption>Detalle_Pedido</caption>
+<table id='DetallePedido'>
+<caption>DetallePedido</caption>
 <tr><td colspan='11'></td></tr>
 <tr>
     <th>Column name</th>
@@ -529,32 +541,6 @@
     <td></td>
 </tr>
 <tr>
-    <td>Cabecera_Pedido_IdCabeceraPedido</td>
-    <td>INT</td>
-    <td>&nbsp;</td>
-    <td>&#10004;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td class='attr'>&nbsp;</td>
-    <td></td>
-    <td></td>
-</tr>
-<tr>
-    <td>Tipo_de_Entrega_IdTipoDeEntrega</td>
-    <td>INT</td>
-    <td>&nbsp;</td>
-    <td>&#10004;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td class='attr'>&nbsp;</td>
-    <td></td>
-    <td></td>
-</tr>
-<tr>
     <td>Producto_IdProducto</td>
     <td>INT</td>
     <td>&nbsp;</td>
@@ -567,50 +553,8 @@
     <td></td>
     <td></td>
 </tr>
-<table id='Entregas'>
-<caption>Entregas</caption>
-<tr><td colspan='11'></td></tr>
 <tr>
-    <th>Column name</th>
-    <th>DataType</th>
-    <th><abbr title='Primary Key'>PK</abbr></th>
-    <th><abbr title='Not Null'>NN</abbr></th>
-    <th><abbr title='Unique'>UQ</abbr></th>
-    <th><abbr title='Binary'>BIN</abbr></th>
-    <th><abbr title='Unsigned'>UN</abbr></th>
-    <th><abbr title='Zero Fill'>ZF</abbr></th>
-    <th><abbr title='Auto Increment'>AI</abbr></th>
-    <th>Default</th>
-    <th>Comment</th>
-</tr>
-<tr>
-    <td>IdEntrega</td>
-    <td>INT</td>
-    <td>&#10004;</td>
-    <td>&#10004;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&#10004;</td>
-    <td></td>
-    <td></td>
-</tr>
-<tr>
-    <td>Descripcion</td>
-    <td>CHAR(45)</td>
-    <td>&nbsp;</td>
-    <td>&#10004;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td class='attr'>&nbsp;</td>
-    <td></td>
-    <td></td>
-</tr>
-<tr>
-    <td>Detalle_Documento_Contable_IdDetalleDocumentoContable</td>
+    <td>CabeceraPedido_IdCabeceraPedido</td>
     <td>INT</td>
     <td>&nbsp;</td>
     <td>&#10004;</td>
@@ -691,7 +635,7 @@
     <td></td>
 </tr>
 <tr>
-    <td>unidad_de_Medida_IdUnidadDeMedida</td>
+    <td>UnidadDeMedida_IdUnidadDeMedida</td>
     <td>INT</td>
     <td>&nbsp;</td>
     <td>&#10004;</td>
@@ -703,8 +647,8 @@
     <td></td>
     <td></td>
 </tr>
-<table id='Tipo_Documento'>
-<caption>Tipo_Documento</caption>
+<table id='TipoDocumento'>
+<caption>TipoDocumento</caption>
 <tr><td colspan='11'></td></tr>
 <tr>
     <th>Column name</th>
@@ -734,7 +678,7 @@
 </tr>
 <tr>
     <td>Descripcion</td>
-    <td>CHAR(45)</td>
+    <td>VARCHAR(45)</td>
     <td>&nbsp;</td>
     <td>&#10004;</td>
     <td>&nbsp;</td>
@@ -745,8 +689,8 @@
     <td></td>
     <td></td>
 </tr>
-<table id='Tipo_Documento_Contable'>
-<caption>Tipo_Documento_Contable</caption>
+<table id='TipoDocumentoContable'>
+<caption>TipoDocumentoContable</caption>
 <tr><td colspan='11'></td></tr>
 <tr>
     <th>Column name</th>
@@ -776,7 +720,7 @@
 </tr>
 <tr>
     <td>Descripcion</td>
-    <td>CHAR(45)</td>
+    <td>VARCHAR(45)</td>
     <td>&nbsp;</td>
     <td>&#10004;</td>
     <td>&nbsp;</td>
@@ -789,7 +733,7 @@
 </tr>
 <tr>
     <td>Naturaleza</td>
-    <td>CHAR(45)</td>
+    <td>VARCHAR(45)</td>
     <td>&nbsp;</td>
     <td>&#10004;</td>
     <td>&nbsp;</td>
@@ -800,8 +744,8 @@
     <td></td>
     <td></td>
 </tr>
-<table id='Tipo_Usuario'>
-<caption>Tipo_Usuario</caption>
+<table id='TipoUsuario'>
+<caption>TipoUsuario</caption>
 <tr><td colspan='11'></td></tr>
 <tr>
     <th>Column name</th>
@@ -831,7 +775,7 @@
 </tr>
 <tr>
     <td>Descripcion</td>
-    <td>CHAR(45)</td>
+    <td>VARCHAR(45)</td>
     <td>&nbsp;</td>
     <td>&#10004;</td>
     <td>&nbsp;</td>
@@ -842,8 +786,8 @@
     <td></td>
     <td></td>
 </tr>
-<table id='Tipo_de_Entrega'>
-<caption>Tipo_de_Entrega</caption>
+<table id='TipodeEntrega'>
+<caption>TipodeEntrega</caption>
 <tr><td colspan='11'></td></tr>
 <tr>
     <th>Column name</th>
@@ -873,7 +817,7 @@
 </tr>
 <tr>
     <td>Descripcion</td>
-    <td>CHAR(45)</td>
+    <td>VARCHAR(45)</td>
     <td>&nbsp;</td>
     <td>&#10004;</td>
     <td>&nbsp;</td>
@@ -884,8 +828,8 @@
     <td></td>
     <td></td>
 </tr>
-<table id='Tipo_de_Pago'>
-<caption>Tipo_de_Pago</caption>
+<table id='TipodePago'>
+<caption>TipodePago</caption>
 <tr><td colspan='11'></td></tr>
 <tr>
     <th>Column name</th>
@@ -915,7 +859,49 @@
 </tr>
 <tr>
     <td>Descripcion</td>
-    <td>CHAR(45)</td>
+    <td>VARCHAR(45)</td>
+    <td>&nbsp;</td>
+    <td>&#10004;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td class='attr'>&nbsp;</td>
+    <td></td>
+    <td></td>
+</tr>
+<table id='UnidadDeMedida'>
+<caption>UnidadDeMedida</caption>
+<tr><td colspan='11'></td></tr>
+<tr>
+    <th>Column name</th>
+    <th>DataType</th>
+    <th><abbr title='Primary Key'>PK</abbr></th>
+    <th><abbr title='Not Null'>NN</abbr></th>
+    <th><abbr title='Unique'>UQ</abbr></th>
+    <th><abbr title='Binary'>BIN</abbr></th>
+    <th><abbr title='Unsigned'>UN</abbr></th>
+    <th><abbr title='Zero Fill'>ZF</abbr></th>
+    <th><abbr title='Auto Increment'>AI</abbr></th>
+    <th>Default</th>
+    <th>Comment</th>
+</tr>
+<tr>
+    <td>IdUnidadDeMedida</td>
+    <td>INT</td>
+    <td>&#10004;</td>
+    <td>&#10004;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&#10004;</td>
+    <td></td>
+    <td></td>
+</tr>
+<tr>
+    <td>Descripcion</td>
+    <td>VARCHAR(45)</td>
     <td>&nbsp;</td>
     <td>&#10004;</td>
     <td>&nbsp;</td>
@@ -957,7 +943,7 @@
 </tr>
 <tr>
     <td>Nombre</td>
-    <td>CHAR(45)</td>
+    <td>VARCHAR(45)</td>
     <td>&nbsp;</td>
     <td>&#10004;</td>
     <td>&nbsp;</td>
@@ -969,8 +955,8 @@
     <td></td>
 </tr>
 <tr>
-    <td>apellido</td>
-    <td>CHAR(45)</td>
+    <td>Apellido</td>
+    <td>VARCHAR(45)</td>
     <td>&nbsp;</td>
     <td>&#10004;</td>
     <td>&nbsp;</td>
@@ -1008,7 +994,7 @@
     <td></td>
 </tr>
 <tr>
-    <td>contraseña</td>
+    <td>Contrasena</td>
     <td>VARCHAR(45)</td>
     <td>&nbsp;</td>
     <td>&#10004;</td>
@@ -1034,7 +1020,20 @@
     <td></td>
 </tr>
 <tr>
-    <td>Tipo_Usuario_IdTipoUsuario</td>
+    <td>TipoDocumento_IdTipoDocumento</td>
+    <td>INT</td>
+    <td>&nbsp;</td>
+    <td>&#10004;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td class='attr'>&nbsp;</td>
+    <td></td>
+    <td></td>
+</tr>
+<tr>
+    <td>TipoUsuario_IdTipoUsuario</td>
     <td>INT</td>
     <td>&nbsp;</td>
     <td>&#10004;</td>
@@ -1049,61 +1048,6 @@
 <tr>
     <td>Ciudad_IdCiudad</td>
     <td>INT</td>
-    <td>&nbsp;</td>
-    <td>&#10004;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td class='attr'>&nbsp;</td>
-    <td></td>
-    <td></td>
-</tr>
-<tr>
-    <td>Tipo_Documento_IdTipoDocumento</td>
-    <td>INT</td>
-    <td>&nbsp;</td>
-    <td>&#10004;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td class='attr'>&nbsp;</td>
-    <td></td>
-    <td></td>
-</tr>
-<table id='unidad_de_Medida'>
-<caption>unidad_de_Medida</caption>
-<tr><td colspan='11'></td></tr>
-<tr>
-    <th>Column name</th>
-    <th>DataType</th>
-    <th><abbr title='Primary Key'>PK</abbr></th>
-    <th><abbr title='Not Null'>NN</abbr></th>
-    <th><abbr title='Unique'>UQ</abbr></th>
-    <th><abbr title='Binary'>BIN</abbr></th>
-    <th><abbr title='Unsigned'>UN</abbr></th>
-    <th><abbr title='Zero Fill'>ZF</abbr></th>
-    <th><abbr title='Auto Increment'>AI</abbr></th>
-    <th>Default</th>
-    <th>Comment</th>
-</tr>
-<tr>
-    <td>IdUnidadDeMedida</td>
-    <td>INT</td>
-    <td>&#10004;</td>
-    <td>&#10004;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&#10004;</td>
-    <td></td>
-    <td></td>
-</tr>
-<tr>
-    <td>Descripcion</td>
-    <td>VARCHAR(45)</td>
     <td>&nbsp;</td>
     <td>&#10004;</td>
     <td>&nbsp;</td>
