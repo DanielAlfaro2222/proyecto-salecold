@@ -1,6 +1,5 @@
 CREATE DATABASE SaleCold;
 USE SaleCold;
-drop database Salecold;
 
 CREATE TABLE IF NOT EXISTS TipoDocumento (
   IdTipoDocumento INT NOT NULL AUTO_INCREMENT,
@@ -141,7 +140,7 @@ CREATE TABLE IF NOT EXISTS DetallePedido (
 
 CREATE TABLE IF NOT EXISTS CabeceraDocumentoContable (
   IdCabeceraDocumentoContable INT NOT NULL AUTO_INCREMENT,
-  NumeroDocumentoContable VARCHAR(45) NOT NULL,
+  NumeroDocumentoContable VARCHAR(45) NOT NULL UNIQUE,
   CabeceraPedido_IdCabeceraPedido INT NOT NULL,
   CONSTRAINT pk_CabeceraDocumentoContable PRIMARY KEY (IdCabeceraDocumentoContable),
   CONSTRAINT fk_CabeceraDocumentoContable_CabeceraPedido FOREIGN KEY (CabeceraPedido_IdCabeceraPedido) REFERENCES CabeceraPedido(IdCabeceraPedido)
@@ -162,18 +161,7 @@ CREATE TABLE IF NOT EXISTS DetalleDocumentoContable (
    ON UPDATE CASCADE
 );
 
-CREATE TABLE IF NOT EXISTS Entregas (
-  IdEntrega INT NOT NULL AUTO_INCREMENT,
-  Descripcion VARCHAR(45) NOT NULL,
-  DetalleDocumentoContable_IdDetalleDocumentoContable INT NOT NULL,
-  CONSTRAINT pk_Entrega PRIMARY KEY (IdEntrega),
-  CONSTRAINT fk_Entregas_DetalleDocumentoContable FOREIGN KEY (DetalleDocumentoContable_IdDetalleDocumentoContable)
-    REFERENCES DetalleDocumentoContable (IdDetalleDocumentoContable)
-   ON DELETE RESTRICT 
-   ON UPDATE CASCADE
-);
-
-#Insertar y consultar datos de las entidades
+--Insertar y consultar datos de las entidades
 
 SELECT * FROM TipoDocumento;
 INSERT INTO TipoDocumento VALUES(1, 'Tarjeta de identidad');
@@ -243,9 +231,3 @@ INSERT INTO CabeceraDocumentoContable VALUES (2, 'DOC02', 2);
 SELECT * FROM DetalleDocumentoContable;
 INSERT INTO DetalleDocumentoContable VALUES (1, 1, 1);
 INSERT INTO DetalleDocumentoContable VALUES (2, 2, 2);
-
-SELECT * FROM Entregas;
-INSERT INTO Entregas VALUES (1, 'Entregado', 1);
-INSERT INTO Entregas VALUES (2, 'Entregado', 2);
-
-SELECT * FROM Usuario WHERE Correo = 'daniel@gmail.com';
