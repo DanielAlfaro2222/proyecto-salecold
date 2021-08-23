@@ -1,0 +1,88 @@
+.container-confirmar{
+	width: 68vmin;
+	height: 110vmin;
+	margin: 2vmin auto 0 auto;
+	background-color: #0A1931;
+	border: transparent;
+	color: white;
+	box-shadow: 7px 13px 37px rgb(2, 2, 2);
+	padding: 5.5vmin;
+	font-family: 'Open Sans', sans-serif;
+	/* font-weight: bolder; */
+	font-size: 2.2vmin;
+
+
+}
+.container-confirmar__title {
+	position: relative;
+	top: 50px;
+	margin: 0 0 2.8vmin 0;
+	font-weight: 40px;
+	font-size: 3.3vmin;
+	font-weight: bolder;
+	
+}
+.form-confirmar__label {
+	display: block;
+	margin: 18px 0 0 0;
+}
+.form-confirmar__textarea {
+	background-color: rgba(238, 238, 238, 0);
+	padding: 1vmin 6.9vmin;
+	border: 1px solid rgb(40, 135, 194);
+	margin: 16px 0 30px 0;
+	overflow: auto;
+	color:white;
+	
+}
+.form-confirmar__label,
+.form-confirmar__input,
+.form-confirmar__button{
+	display: block;
+	
+	
+}
+.form-foto__input {
+	display: inline;
+	margin: 16px 0 30px 0;
+	/* font-weight:bolder; */
+}
+.form-confirmar__input {
+	border: 0;
+	background-color: rgba(238, 238, 238, 0);
+	border-bottom:1px solid rgb(40, 135, 194);
+	display: block;
+	margin: 20px 0 0 0;
+	width: 100%;
+	height: 38px;
+	color:white;
+
+
+}
+
+.form-confirmar__button {
+	display: inline-block;
+	margin-right: auto;
+	/* width: 120px;
+	height: 45px; */
+	width: 17vmin;
+	height: 5.2vmin;
+	background-color: rgb(0, 81, 255);
+	border: transparent;
+	color:white;
+	/* font-weight: bolder; */
+
+}
+.form-confirmar__button--cancelar{
+	display: inline-block;
+	margin-left: 30%;
+	/* width: 120px;
+	height: 45px; */
+	width: 17vmin;
+	height: 5.2vmin;
+	background-color: rgb(0, 81, 255);
+	border: transparent;
+	/* border-radius: 10px; */
+	color: white;
+	/* font-weight: bolder; */
+}

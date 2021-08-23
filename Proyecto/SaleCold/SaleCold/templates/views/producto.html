@@ -1,0 +1,176 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="stylesheet" href="{% static 'css/normalize.css' %}" />
+	<link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+	<link rel="stylesheet" href="{% static 'css/producto.css' %}" />
+	<link rel="shortcut icon" href="{% static 'assets/favicon/Logo4.webp' %}" type="image/x-icon" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" />
+
+	<link href="https://fonts.googleapis.com/css2?family=News+Cycle&display=swap" rel="stylesheet" />
+	<link href="https://fonts.googleapis.com/css2?family=Poiret+One&display=swap" rel="stylesheet" />
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet" />
+	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet" />
+
+	<link href="https://fonts.googleapis.com/css2?family=Kalam:wght@300&display=swap" rel="stylesheet" />
+
+	<title>SaleCold</title>
+</head>
+
+<body>
+	<header class="main-header">
+		<i class="fas fa-bars fa-2x main-header__menu-icon" id="main-menu-icon">
+			<nav class="
+							main-header__menu-categories
+							main-header__menu-categories--show
+						" id="main-menu">
+				<ul class="List-categories">
+					<li class="List-categories__item">
+						<a class="List-categories__link" href="#">
+							Categoria1
+						</a>
+					</li>
+					<li class="List-categories__item">
+						<a class="List-categories__link" href="#">
+							Categoria2
+						</a>
+					</li>
+					<li class="List-categories__item">
+						<a class="List-categories__link" href="#">
+							Categoria3
+						</a>
+					</li>
+					<li class="List-categories__item">
+						<a class="List-categories__link" href="#">
+							Categoria4
+						</a>
+					</li>
+					<li class="List-categories__item">
+						<a class="List-categories__link" href="#">
+							Categoria5
+						</a>
+					</li>
+					<li class="List-categories__item">
+						<a class="List-categories__link" href="#">
+							Categoria6
+						</a>
+					</li>
+					<li class="List-categories__item">
+						<a class="List-categories__link" href="#">
+							Categoria7
+						</a>
+					</li>
+					<li class="List-categories__item">
+						<a class="List-categories__link" href="#">
+							Categoria8
+						</a>
+					</li>
+					<li class="List-categories__item">
+						<a class="List-categories__link" href="#">
+							Categoria9
+						</a>
+					</li>
+				</ul>
+			</nav>
+		</i>
+
+		<a href="/index.html" class="main-header__home">
+			<img src="{% static 'assets/favicon/Logo4.webp' %}" alt="Logo de la empresa" class="main-header__logo" />
+		</a>
+
+		<form action="#" method="get" class="main-header__form">
+			<input type="search" name="Search" class="main-header__input-search" />
+		</form>
+
+		<a href="#" class="main-header__shop-link">
+			<i class="fas fa-shopping-cart fa-2x main-header__shop-icon"></i>
+		</a>
+
+		<i class="fas fa-user-circle fa-2x main-header__user-icon" aria-hidden="true"></i>
+
+		<a href="/views/login.html" class="main-header__login">
+			Iniciar sesion
+		</a>
+	</header>
+
+	<main class="main-producto">
+		<fieldset class="container-producto">
+			<legend class="container-producto__title"> Registro de producto </legend>
+
+			<form action="#" method="POST" class="form-producto">
+				<label class="form-producto__label">
+					Nombre del producto
+					<input type="text" required name="Nombre" class="form-producto__input" />
+
+				</label>
+				<label class="form-producto__label">
+					Cantidad
+					<input type="number" required name="cantidad" class="form-producto__input" />
+				</label>
+				<label class="form-producto__label">
+					Precio
+					<input type="number" required minlength="3" maxlength="12" name="precio"
+						class="form-producto__input" />
+				</label>
+				<label class="form-producto__label">
+					Categoria
+					<input type="text" required name="cantidad" class="form-producto__input" />
+				</label>
+				<label for="descripcion" class="form-producto__label">
+					Descripción
+				</label>
+				<label>
+					<textarea name="descripcion" id="Comentario" cols="36" rows="8" class="form-producto__textarea"
+						tabindex="6" required></textarea>
+				</label>
+				<label class="form-foto__label">
+					<input type="file" class="form-foto__input" tabindex="6">
+				</label>
+
+				<button class="form-producto__button">
+					Agregar
+				</button>
+				<button class="form-producto__btncancelar">
+					Cancelar
+				</button>
+			</form>
+		</fieldset>
+
+		<aside class="main-icon">
+			<a href="/views/Info.html" class="main-icon__link main-icon__link--position">
+				<i class="fas fa-info-circle fa-2x"></i>
+			</a>
+			<a href="/views/Contacto.html" class="main-icon__link">
+				<i class="fas fa-comment-dots fa-2x"></i>
+			</a>
+		</aside>
+	</main>
+
+	<footer class="main-footer">
+		<address class="info-contact">
+			<i class="fas fa-map-marked-alt" aria-hidden="true"></i> Calle
+			45C # 4-10C-75,Barranquilla <br />
+			<i class="fas fa-phone-square-alt" aria-hidden="true"></i>
+			333333 <br />
+			<a href="#" class="info-contact__link">
+				<i class="fas fa-envelope" aria-hidden="true"></i>
+				frionevadojl@hotmail.com
+			</a>
+		</address>
+
+		<p class="main-footer__paragrahp">
+			&copy; SaleCold 2021 | Todos los derechos reservados
+		</p>
+	</footer>
+
+	<script src="{% static 'js/index.js' %}" defer></script>
+	<script src="https://kit.fontawesome.com/92318589eb.js" crossorigin="anonymous"></script>
+</body>
+
+</html>

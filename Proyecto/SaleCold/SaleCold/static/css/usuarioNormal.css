@@ -1,0 +1,48 @@
+.menu-user-normal{
+    background-color: white;
+    position: absolute;
+    top: 6.4vmin;
+    right:2.5vmin;
+    width: 19.5vmin;
+    height: 11.5vmin;
+    border-radius: 0.5vmin;
+    border: 1.5px solid #4A9FF5;
+}
+.menu-container-user-normal__link{
+    color: black;
+}
+.menu-container-user-normal{
+    list-style: none;
+    margin: 0;
+    padding: 1vmin;
+}
+.menu-container-user-normal__link:hover{
+    color: #4A9FF5;
+}
+.menu-user-normal--show{
+    display: none;
+}
+.menu-user-normal__option{
+    margin: 0.4vmin 0.1vmin 0.5vmin 0;
+}
+.main-header__user-icon{
+    right: 15.7vmin;
+}
+.main-header__shop-icon{
+    right: 22.7vmin;
+}
+.main-header__input-search{
+    right: 29.7vmin;
+}
+.main-header-user-normal__paragraph{
+    font-size: 2.4vmin;
+    position: absolute;
+    top:1.8vmin;
+    right: 6.3vmin;
+    margin: 0; 
+}
+.main-header-user-normal__icon{
+    position: absolute;
+    top: 1.4vmin;
+    right: 2.7vmin;
+}

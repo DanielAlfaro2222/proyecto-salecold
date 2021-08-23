@@ -1,0 +1,33 @@
+.info-proyect {
+	display: inline-block;
+	font-family: var(--font-footer);
+	max-width: 55%;
+	height: 74.8vmin;
+	margin: 1.7vmin auto 0 auto;
+	padding: 50px;
+	font-size: 2.5vmin;
+}
+.info-proyect__title {
+	margin-top: 0;
+	font-size: 5vmin;
+	padding-bottom: 8px;
+	border-bottom: 2px solid black;
+}
+.figure-proyect {
+	display: inline-block;
+	width: 79vmin;
+	position: absolute;
+	top: 3.5vmin;
+	right: 0.1vmin;
+}
+.figure-proyect__img{
+	width: 80vmin;
+	height: 80vmin;
+}
+.info-proyect__link {
+	display: block;
+	padding-top: 12px;
+	border-top: 2px solid black;
+	color: black;
+	font-size: 2.5vmin;
+}

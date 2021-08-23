@@ -1,0 +1,73 @@
+.section-contact {
+	max-width: 75%;
+	height: 72vmin;
+	margin: 4.1vmin auto 4.1vmin auto;
+	position: relative;
+	background-color: var(--color-formularios);
+	font-family: var(--font-footer);
+	box-shadow: 23px 23px 45px black;
+	border-radius: 1.5vmin;
+	overflow: hidden;
+	color: white;
+}
+.container-form-contact,.container-image-contact{
+	width: 48%;
+	display: inline-block;
+	height: 100%;
+	margin: 0;
+}
+.container-form-contact{
+	padding: 6vmin;
+	border: none;
+	position: relative;
+}
+.container-image-contact{
+	width: 52%;
+	float: right;
+	background-image:linear-gradient(
+		hsla(234, 100%, 53%, 0.479),
+		hsla(226, 91%, 57%, 0.479)
+	),
+	url(../assets/images/Contacto2.webp);
+	background-size: cover;
+}
+.container-form-contact__title{
+	font-size: 4vmin;
+	position: absolute;
+	top: 3.4vmin;
+}
+.form-contact{
+	height: 90%;
+	margin: 6vmin 0 0 0;
+	color: white;
+	font-size: 2.5vmin;
+}
+.form-contact__btn{
+	display: block;
+	width: 13vmin;
+	height: 5.7vmin;
+	color: white;
+	background-color: rgb(0, 81, 255);
+	border: none;
+	padding: 1.3vmin;
+	margin: 3.7vmin 0 0 0;
+}
+.label-form-contact__input{
+	display: block;
+	width: 100%;
+	height: 4vmin;
+	background-color: var(--color-formularios);
+	border: none;
+	border-bottom: 1px solid rgb(40, 135, 194);
+	color: white;
+	margin: 2vmin 0 4vmin 0;
+}
+.label-form-contact__textarea{
+	width: 100%;
+	resize: none;
+	margin: 4vmin 0 0 0;
+	background-color: var(--color-formularios);
+	color: white;
+	border: 1px solid rgb(40, 135, 194);
+	padding: 0;
+}

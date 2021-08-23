@@ -1,0 +1,234 @@
+:root {
+	--color-principal: #4A9FF5;
+	--font-header: 'Roboto', sans-serif;
+	--font-main: 'News Cycle', sans-serif;
+	--font-footer: 'Open Sans', sans-serif;
+	--font-color: black;
+	--color-formularios: #0A1931;
+}
+
+/*---------------------------ESTILOS DEL HEADER--------------------- */
+
+.main-header {
+	background-color: var(--color-principal);
+	max-width: 100%;
+	height: 6.5vmin;
+	position: -webkit-sticky;
+	position: sticky;
+	top: 0;
+	z-index: 50;
+	font-family: var(--font-header);
+	font-size: 1.9vmin;
+}
+.main-header__user-icon {
+	display: inline-block;
+	position: absolute;
+	top: 1.3vmin;
+	right: 19.5vmin;
+}
+.main-header__login {
+	display: inline-block;
+	border: 0 solid transparent;
+	width: 13.5vmin;
+	height: 3.5vmin;
+	text-align: center;
+	color: var(--font-color);
+	background-color: beige;
+	border-radius: 8px;
+	position: absolute;
+	top: 1.5vmin;
+	right: 2vmin;
+	padding: 0.7vmin;
+	font-size: 1.9vmin;
+}
+.main-header__logo {
+	display: inline-block;
+	width: 7.9vmin;
+	height: 6.1vmin;
+	position: absolute;
+	top: 0;
+	left: 9vmin;
+}
+.main-header__menu-icon {
+	display: inline-block;
+	position: absolute;
+	top: 1.4vmin;
+	left: 1vmax;
+}
+
+.main-header__input-search {
+	display: inline-block;
+	width: 28vmax;
+	height: 1.8vmax;
+	border-radius: 0.5vmin;
+	position: absolute;
+	top: 1.8vmin;
+	right: 33vmin;
+	border: transparent;
+	background-color: rgba(255, 255, 255, 0.801);
+}
+.main-header__shop-icon {
+	display: inline-block;
+	color: var(--font-color);
+	position: absolute;
+	top: 1.3vmin;
+	right: 26vmin;
+}
+
+.main-header__menu-categories {
+	background-color: white;
+	width: 30vmin;
+	height: 46vmin;
+	z-index: 50;
+	position: absolute;
+	text-align: left;
+	outline: 1px solid black;
+	transform: translateY(2.8%);
+}
+.main-header__menu-categories--show {
+	display: none;
+}
+.List-categories {
+	margin: 0;
+	padding: 0 0 0 0.8vmin;
+}
+.List-categories__item {
+	margin: 0 0 1.3vmin 0;
+	list-style: none;
+	border-top: 1px solid black;
+}
+.List-categories__link {
+	color: black;
+	font-weight: 200;
+	font-size: 2.2vmin;
+}
+.List-categories__link:hover{
+	color: var(--color-principal);
+}
+
+/*---------------------------ESTILOS DEL MAIN--------------------- */
+
+.section-sliders {
+	display: block;
+	max-width: 83%;
+	height: 360px;
+	border: 1px solid var(--font-color);
+	margin: 2.5vmin auto 0 auto;
+}
+
+.section-productos-ofertados {
+	margin: 0 auto;
+	max-width: 83%;
+	font-family: var(--font-main);
+}
+.section-productos-ofertados__title {
+	text-align: end;
+	border-bottom: 2px solid var(--font-color);
+	padding: 15px 0 15px 0;
+	font-size: 1.9vmax;
+}
+.main-icon__link {
+	display: block;
+	position: fixed;
+	bottom: 19.2vmin;
+	right: 2vmax;
+	color: var(--font-color);
+	font-size: 2.4vmin;
+}
+.main-icon__link--position {
+	bottom: 25.5vmin;
+}
+.article-product {
+	display: inline-block;
+	border: 1.5px solid var(--font-color);
+	position: relative;
+	width: 14.9vmax;
+	height: 18vmax;
+	border-radius: 1.5vmax;
+	overflow: hidden;
+	padding: 0.6vmax;
+	margin: 0 0 10px 0.8em;
+}
+.article-product:hover {
+	background-color: rgb(228, 228, 228);
+	border: 1px solid rgb(117, 116, 116);
+}
+.article-product__image {
+	width: 10.2vmax;
+	display: block;
+	margin: 0 auto 0.8vmax auto;
+}
+.article-product__offert {
+	margin: 0.2vmax 0.6vmax 0 0;
+	position: absolute;
+	top: 0;
+	right: 0;
+	z-index: 10;
+	--font-color: rgba(0, 38, 255, 0.842);
+	color: var(--font-color);
+	font-size: 1.5vmax;
+}
+.article-product__price {
+	text-align: end;
+	font-size: 1.3vmax;
+	margin: 1.5vmax 0.3vmax 0 0;
+}
+.article-product__title {
+	font-weight: 300;
+	font-size: 1.5vmax;
+	text-align: center;
+}
+.container-add-product {
+	width: 10vmin;
+	height: 4vmin;
+	position: absolute;
+	left: 2.4vmin;
+	bottom: 1.3vmin;
+	margin: 0;
+	padding: 0;
+	font-size: 3vmin;
+	border: none;
+}
+.add-product,
+.delete-product {
+	position: inherit;
+	top: 0;
+	width: 3.9vmin;
+	height: 4vmin;
+	background-color: rgb(0, 153, 255);
+	border: none;
+	font-weight: 800;
+	margin: 0 0.4vmin 0 0;
+}
+.delete-product {
+	background-color: rgb(0, 153, 255);
+	position: inherit;
+	right: 0;
+}
+.add-product:active {
+	width: 3.5vmin;
+	height: 3.5vmin;
+}
+.delete-product:active {
+	width: 3.7vmin;
+	height: 3.8vmin;
+}
+/*---------------------------ESTILOS DEL FOOTER--------------------- */
+
+.main-footer {
+	background-color: var(--color-principal);
+	max-width: 100%;
+	height: 5%;
+	text-align: center;
+	margin: 25px 0 0 0;
+	padding: 8px;
+	font-family: var(--font-footer);
+	font-weight: 530;
+	font-size: 2.1vmin;
+}
+.main-footer__paragrahp {
+	margin: 30px 0 0 0;
+}
+.info-contact__link {
+	color: var(--font-color);
+}

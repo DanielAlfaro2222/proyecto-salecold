@@ -1,0 +1,80 @@
+.menu-user-normal__option{
+    margin: 0.4vmin 0.1vmin 0.5vmin 0;
+}
+.main-header__user-icon{
+    position: absolute;
+    right: 22vmin;
+}
+.main-header-user-normal__paragraph{
+    font-size: 2.2vmin;
+	font-family: 'Open Sans', sans-serif;
+    position: absolute;
+    top:1.8vmin;
+    right: 6.3vmin;
+    margin: 0; 
+
+}
+.main-header-user-normal__icon{
+    position: absolute;
+    top: 1.5vmin;
+    right: 2.9vmin;
+}
+/* ------------------------------Menu gestiones -------------------------- */
+.nav-main{
+    width: 900px;
+	margin: 0 auto;
+
+}
+.main-gestiones{
+	margin: 0;
+}
+.main-gestiones__item{
+    position: relative;
+    display: inline-table;
+	list-style: none;
+
+}
+.gestiones__link{
+	display:inline-block;
+	padding: 15px 20px;
+	font-family: 'Open Sans', sans-serif;
+    color: white;
+	text-decoration: none;
+}
+.gestiones__link:hover{
+    color: blue;
+	transition: all .3s;
+}
+.main-sub{
+	position: Relative;
+	width: 80%;
+	visibility: hidden;
+	opacity: 0;
+	transition: .5s;
+    background: rgb(138, 189, 255);
+	display: inline-block;
+	padding: 10px;
+	color: white;
+	font-family: 'Open Sans', sans-serif;
+	text-decoration: none;
+	list-style: none;
+
+}
+
+.main-gestiones__item:hover .main-sub{
+    visibility: visible;
+	opacity: 1;
+}
+
+.gestiones__sub{
+    display: block;
+	padding: 1px;
+	color: white;
+	font-family: 'Open Sans', sans-serif;
+
+ 
+}
+.gestiones__sub:hover{
+    color: blue;
+	transition: all .3s;
+}
