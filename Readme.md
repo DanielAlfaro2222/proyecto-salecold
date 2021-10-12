@@ -35,5 +35,4 @@ El sistema de información SaleCold se desarrollará para facilitar el proceso d
 
  * _Andrea Del Carmen Lenes González_
  * _Carlos Alfonso Pirachicán Forero_
- * _Cristian Alejandro Tirano Calderón_
  * _Kevin Daniel Alfaro Alfonso_
