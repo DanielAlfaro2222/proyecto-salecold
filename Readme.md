@@ -34,5 +34,4 @@ El sistema de información SaleCold se desarrollará para facilitar el proceso d
 ## ***Integrantes del proyecto*** :student:
 
  * _Andrea Del Carmen Lenes González_
- * _Carlos Alfonso Pirachicán Forero_
  * _Kevin Daniel Alfaro Alfonso_
