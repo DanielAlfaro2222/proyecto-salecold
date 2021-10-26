@@ -1,0 +1,254 @@
+.main-login{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100vw;
+	height: 78.5vh;
+}
+.container-login {
+	width: 100%;
+	height: 50vh;
+	background-color:  #0A1931;
+	color: white;
+	box-shadow: 7px 13px 37px rgb(2, 2, 2);
+	border: none;
+	position: relative;
+	font-family: 'Open Sans', sans-serif;
+	padding:1.4rem;
+	font-size: .9rem;
+}
+.form-login {
+	width: 100%;
+	height: 100%;
+}
+.container-user {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	position: relative;
+	margin: 0 0 2.5rem 0;
+}
+.container-user__img {
+	position: absolute;
+	width: 35vw;
+	top: -4.4rem;
+}
+.form-login__input {
+	border: 0;
+	background-color: rgba(238, 238, 238, 0);
+	border-bottom: 1px solid rgb(40, 135, 194);
+	display: block;
+	margin: .7rem 0 0 0;
+	width: 100%;
+	height: 2rem;
+	color: white;
+}
+.form-login__input:active{
+	outline: none;
+}
+.form-login__label,
+.form-login__btn {
+	display: block;
+}
+.form-login__label {
+	margin: .7rem 0 0 0;
+}
+.form-login__btn {
+	margin: .9rem auto 0 auto;
+	color: white;
+	width: 7rem;
+	height: 2.1rem;
+	line-height: 2rem;
+	font-size: .8rem;
+	text-align: center;
+	background-color: rgb(0, 81, 255);
+	border: none;
+}
+
+.form-login__link {
+	text-align: end;
+	color: white;
+	font-size: .7rem;
+}
+
+@media screen and (min-width: 320px) {
+	.main-login{
+		height: auto;
+	}
+	.container-login {
+		margin: 14.5vh 0 13vh 0;
+		height: 360px;
+		font-size: 1rem;
+		padding: 1.8rem;
+	}
+	.container-user__img {
+		width: 34vw;
+		top: -5.2rem;
+	}
+	.form-login__link {
+		font-size: .8rem;
+	}
+	.form-login__btn{
+		margin-top: 1.1rem;
+	}
+}
+
+@media screen and (min-width: 360px) {
+	.container-login {
+		margin: 12vh 0 9.6vh 0;
+		font-size: 1.1rem;
+		height: 370px;
+		padding: 2rem;
+	}
+	.container-user__img {
+		top: -5.5rem;
+	}
+	.form-login__input{
+		height: 2.2rem;
+	}
+}
+
+@media screen and (min-width: 375px) and (min-height: 800px) {
+	.container-login {
+		height: 390px;
+		padding: 2.2rem;
+	}
+	.container-user__img {
+		width: 37vw;
+		top: -6.5rem;
+	}
+	.main-login{
+		height: 83.6vh;
+	}
+	.form-login__input{
+		height: 2.4rem;
+	}
+}
+
+@media screen and (min-width: 411px) and (min-height: 700px) {
+	.main-login{
+		height: 81.5vh;
+	}
+	.container-login {
+		height: 395px;
+		padding: 2.4rem;
+	}
+	.form-login__input{
+		height: 2.5rem;
+	}
+	.container-user__img {
+		top: -6.5rem;
+	}
+}
+
+@media screen and (min-width: 500px) {
+	.container-login {
+		width: 80%;
+		font-size: 1.2rem;
+	}
+	.container-user__img {
+		width: 29vw;
+		top: -7rem;
+	}
+	.form-login__btn{
+		height: 2.3rem;
+		font-size: .9rem;
+		line-height: 2.3rem;
+	}
+}
+
+@media screen and (min-width: 700px) {
+	.container-login {
+		width: 70%;
+		height: 460px;
+		padding: 2.7rem;
+	}
+	.container-user__img {
+		width: 24vw;
+		top: -8.5rem;
+	}
+	.container-user {
+		margin: 0 0 4rem 0;
+	}
+	.form-login__input{
+		margin-top: 1rem;
+		margin-bottom: 1rem;
+	}
+	.form-login__btn{
+		width: 8rem;
+		height: 2.6rem;
+		line-height: 2.6rem;
+	}
+	.main-login{
+		height: 83.8vh;
+	}
+}
+@media screen and (min-width: 1024px) {
+	.main-login{
+		height: 86vh;
+	}
+	.container-login {
+		width: 60%;
+		font-size: 1.4rem;
+		height: 520px;
+	}
+	.container-user__img {
+		width: 21vw;
+		top: -9.5rem;
+	}
+	.container-user {
+		margin: 0 0 5rem 0;
+	}
+	.form-login__link {
+		font-size: 1rem;
+	}
+	.form-login__input{
+		margin-top: 1.2rem;
+		margin-bottom: 1.2rem;
+		height: 2.7rem;
+	}
+	.form-login__btn{
+		width: 9rem;
+		height: 2.8rem;
+		line-height: 2.8rem;
+		font-size: 1.1rem;
+	}
+}
+@media screen and (min-width: 1200px) {
+	.main-login{
+		height: 78.7vh;
+	}
+	.container-login {
+		width: 40%;
+		font-size: 1.5rem;
+		height: 520px;
+	}
+	.container-user__img {
+		width: 17vw;
+		top: -9.5rem;
+	}
+	.container-user {
+		margin: 0 0 5rem 0;
+	}
+}
+
+@media screen and (min-width: 1600px) {
+	.main-login{
+		height: 74.94vh;
+	}
+	.container-login {
+		width: 32%;
+		font-size: 1.5rem;
+		height: 530px;
+	}
+	.container-user__img {
+		width: 11.5vw;
+		top: -8.5rem;
+	}
+	.container-user {
+		margin: 0 0 5rem 0;
+	}
+	.form-login__btn{
+		margin-top: 1.4rem;
+	}
+}

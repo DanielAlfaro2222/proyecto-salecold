@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .error,
+        .exito {
+            width: 100%;
+            padding: 1.3em;
+        }
+
+        .error {
+            background-color: rgb(223, 84, 84);
+            color: white;
+        }
+
+        .exito {
+            background-color: rgb(117, 209, 13);
+            color: black;
+        }
+
+        label {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    {% block content %}
+    {% if form.errors %}
+    <div class="error">
+        Error
+    </div>
+    {% endif %}
+
+    <h2>Registro de categorias</h2>
+    <form action="{% url 'saveCategory' %}" method="post">
+        {% csrf_token %}
+
+        {% if mensaje %}
+        <div class="exito">
+            Registro almacenado exitosamente
+        </div>
+        {% endif %}
+
+        {{ form }}
+
+        <button>Almacenar registro</button>
+    </form>
+    {% endblock %}
+</body>
+
+</html>

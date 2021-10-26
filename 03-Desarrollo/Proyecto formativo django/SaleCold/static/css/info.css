@@ -1,0 +1,135 @@
+.main-info{ 
+	max-width: 100vw;
+}
+.info-proyect {
+	font-family: var(--font-footer);
+	padding: 1rem 1.5rem 0 1.5rem;
+	max-width: 100vw;
+	margin-top: 1rem;
+}
+.info-proyect__title, .info-proyect__subtitle {
+	font-size: 1.6rem;
+	margin-top: 0;
+	padding-bottom: .4rem;
+	border-bottom: 1px solid black;
+}
+.info-proyect__paragraph{
+	font-size: 1rem;
+	text-align: justify;
+	line-height: 1.7rem;
+}
+.container-list-members{
+	padding-left: 1.4rem;
+	padding-bottom: 1.4rem;
+	padding-top: 0;
+	font-size: 1rem;
+	margin: 0;
+}
+.container-list-members__item{
+	margin-bottom: .5rem;
+}
+.figure-proyect {
+	max-width: 100%;
+	margin: 0 center 0 center;
+}
+.figure-proyect__img{
+	width: 100%;
+}
+.user-manual {
+	display: flex;
+	align-items: center;
+	font-size: 1rem;
+	color: black;
+}
+.user-manual__icon {
+	display: inline-block;
+	width: 2rem;
+	margin-right: .3rem;
+}
+
+/* Celular */
+@media screen and (min-width: 360px) {
+	.info-proyect{
+		padding: 1rem 2rem 0 2rem;
+	}
+	.info-proyect__paragraph, .container-list-members, .user-manual {
+		font-size: 1.2rem;
+	}
+	.info-proyect__title, .info-proyect__subtitle {
+		font-size: 1.8rem;
+	}
+	.info-proyect__paragraph {
+		line-height: 1.9rem;
+	}
+	.user-manual__icon {
+		width: 2.6rem;
+	}
+}
+
+@media screen and (min-width: 768px){
+	.info-proyect{
+		padding: 1rem 2.3rem 0 2.3rem;
+	}
+	.info-proyect__title, .info-proyect__subtitle {
+		font-size: 1.9rem;
+	}
+	.info-proyect__paragraph, .container-list-members, .user-manual {
+		font-size: 1.3rem;
+	}
+	.info-proyect__paragraph {
+		line-height: 2.1rem;
+	}
+	.user-manual__icon {
+		width: 2.8rem;
+	}
+}
+
+@media screen and (min-width: 1024px){
+	.info-proyect{
+		padding: 1rem 2.5rem 0 2.5rem;
+	}
+	.info-proyect__title, .info-proyect__subtitle {
+		font-size: 2rem;
+	}
+	.info-proyect__paragraph, .container-list-members, .user-manual {
+		font-size: 1.4rem;
+	}
+	.user-manual__icon {
+		width: 3rem;
+	}
+}
+
+/* Portatil */
+@media screen and (min-width: 1200px){
+	.main-info{
+		width: 95%;
+		height: 73.1vh;
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		grid-template-rows: 1fr;
+		margin: 1rem auto 1rem auto;
+	}
+	.info-proyect__title, .info-proyect__subtitle {
+		font-size: 2.4rem;
+		padding-bottom: 1rem;
+		border-bottom: 2px solid black;
+	}
+	.user-manual__icon{
+		width: 3rem;
+	}
+	.info-proyect__paragraph, .container-list-members, .user-manual {
+		font-size: 1.5rem;
+	}
+	.info-proyect__paragraph{
+		line-height: 2.2rem;
+	}
+	.figure-proyect{
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	.figure-proyect__img{
+		width: 100%;
+		height: 95%;
+	}
+}

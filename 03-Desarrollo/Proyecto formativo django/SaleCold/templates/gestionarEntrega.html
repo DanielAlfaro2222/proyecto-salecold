@@ -1,0 +1,302 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{% static 'assets/favicon/Logo4.webp' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'css/normalize.css' %}">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'css/usuarioNormal.css' %}">
+    <link rel="stylesheet" href="{% static 'css/administrador.css' %}">
+    <link rel="stylesheet" href="{% static 'css/gestionarEntrega.css' %}">
+    <title>Gestionar Entregas</title>
+</head>
+
+<body>
+    <header class="main-header">
+        <i class="fas fa-bars fa-2x main-header__menu-icon" id="main-menu-icon">
+            <nav class="
+					main-header__menu-categories
+					main-header__menu-categories--show
+				" id="main-menu">
+                <ul class="List-categories">
+                    <li class="List-categories__item">
+                        <a class="List-categories__link" href="#">
+                            Categoria1
+                        </a>
+                    </li>
+                    <li class="List-categories__item">
+                        <a class="List-categories__link" href="#">
+                            Categoria2
+                        </a>
+                    </li>
+                    <li class="List-categories__item">
+                        <a class="List-categories__link" href="#">
+                            Categoria3
+                        </a>
+                    </li>
+                    <li class="List-categories__item">
+                        <a class="List-categories__link" href="#">
+                            Categoria4
+                        </a>
+                    </li>
+                    <li class="List-categories__item">
+                        <a class="List-categories__link" href="#">
+                            Categoria5
+                        </a>
+                    </li>
+                    <li class="List-categories__item">
+                        <a class="List-categories__link" href="#">
+                            Categoria6
+                        </a>
+                    </li>
+                    <li class="List-categories__item">
+                        <a class="List-categories__link" href="#">
+                            Categoria7
+                        </a>
+                    </li>
+                    <li class="List-categories__item">
+                        <a class="List-categories__link" href="#">
+                            Categoria8
+                        </a>
+                    </li>
+                    <li class="List-categories__item">
+                        <a class="List-categories__link" href="#">
+                            Categoria9
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </i>
+
+        <!-- <nav class="nav-main">
+            <ul class="main-gestiones">
+                <li class="main-gestiones__item">
+                    <a href="#" class="gestiones__link">
+                        Gestionar productos
+                    </a>
+                    <ul class="main-gestiones">
+                        <li class="main-sub">
+                            <a href="#" class="gestiones__sub">
+                                Otros
+                            </a>
+                        </li>
+                        <li class="main-sub">
+                            <a href="#" class="gestiones__sub">
+                                Gestionar mass
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="main-gestiones__item">
+                    <a href="#" class="gestiones__link">
+                        Gestionar ventas
+                    </a>
+                    <ul class="main-gestiones">
+                        <li class="main-sub">
+                            <a href="#" class="gestiones__sub">
+                                Gestionar
+                            </a>
+                        </li>
+                        <li class="main-sub">
+                            <a href="/manage-deliveries/" class="gestiones__sub">
+                                Gestionar Entregas
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="main-gestiones__item">
+                    <a href="#" class="gestiones__link">
+                        Gestionar usuarios
+                    </a>
+                </li>
+            </ul>
+        </nav> -->
+
+        <a href="../" class="main-header__home">
+            <img src="{% static 'assets/favicon/Logo4.webp' %}" alt="Logo de la empresa" class="main-header__logo" />
+        </a>
+        <i class="fas fa-user-circle fa-2x main-header__user-icon" aria-hidden="true"></i>
+
+        <p class="main-header-user-normal__paragraph">Administrador</p>
+
+        <i class="fas fa-angle-down fa-2x main-header-user-normal__icon" id="icon-menu-user-normal"
+            aria-hidden="true"></i>
+
+        <nav class="menu-user-normal menu-user-normal--show" id="menu-user-normal">
+            <ul class="menu-container-user-normal">
+                <li class="menu-container-user-normal__item">
+                    <a href="#" class="menu-container-user-normal__link">
+                        <i class="fas fa-user-cog fa-2x menu-user-normal__option" aria-hidden="true"></i>
+                        Configuracion
+                    </a>
+                </li>
+                <li class="menu-container-user-normal__item">
+                    <a href="#" class="menu-container-user-normal__link">
+                        <i class="fas fa-sign-out-alt fa-2x menu-user-normal__option" aria-hidden="true"></i>
+                        Cerrar sesion
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <article class="container-gestionar-entregas">
+
+            <h2 class="container-gestionar-entregas__subtitle">Gestionar Entregas</h2>
+
+            <form action="" method="GET" class="container-form-search">
+
+                <label class="label-form-search-left">
+                    <img src="{% static 'assets/images/search.webp' %}" alt="Icono de buscar"
+                        class="label-form-search__img">
+                    <input type="search" name="Busqueda-gestion-entregas" class="label-form-search__input">
+                </label>
+
+                <label class="label-form-search-right">
+                    Ordenar por:
+                    <select name="Filtro-gestion-entregas">
+                        <option value=""></option>
+                        <option value="Mas reciente">Mas reciente</option>
+                        <option value="Mas antigua">Mas antigua</option>
+                    </select>
+                </label>
+            </form>
+
+            <table class="container-table">
+
+                <thead class="header-table">
+                    <tr class="row-table">
+                        <th class="row-header__item"></th>
+                        <th class="row-header__item">Cliente</th>
+                        <th class="row-header__item">Ciudad</th>
+                        <th class="row-header__item">Direccion</th>
+                        <th class="row-header__item">Celular</th>
+                        <th class="row-header__item">Fecha del pedido</th>
+                        <th class="row-header__item"></th>
+                        <th class="row-header__item"></th>
+                    </tr>
+                </thead>
+                <tbody class="body-table">
+                    <tr class="row-table">
+                        <td class="column-table">1</td>
+                        <td class="column-table">Luis Ojeda</td>
+                        <td class="column-table">Bogota</td>
+                        <td class="column-table">Calle 80 # 22 23</td>
+                        <td class="column-table">349 043 2922</td>
+                        <td class="column-table">02/03/2020</td>
+                        <td class="column-table">
+                            <a href="ActualizarEntrega.html" class="column-table__link" title="Actualizar">
+                                <img src="{% static 'assets/images/update.webp' %}" alt="Actualizar"
+                                    class="column-table__img">
+                            </a>
+                        </td>
+                        <td class="column-table">
+                            <a href="#" class="column-table__link" title="Eliminar">
+                                <img src="{% static 'assets/images/delete.webp' %}" alt="Eliminar"
+                                    class="column-table__img">
+                            </a>
+                        </td>
+                    </tr>
+                    <tr class="row-table">
+                        <td class="column-table">2</td>
+                        <td class="column-table">Maicol Zapata</td>
+                        <td class="column-table">Medellin</td>
+                        <td class="column-table">Cra. 77 #62i Sur-1 a 62i Sur-99</td>
+                        <td class="column-table">312 435 2193</td>
+                        <td class="column-table">20/05/2021</td>
+                        <td class="column-table">
+                            <a href="ActualizarEntrega.html" class="column-table__link" title="Actualizar">
+                                <img src="{% static 'assets/images/update.webp' %}" alt="Actualizar"
+                                    class="column-table__img">
+                            </a>
+                        </td>
+                        <td class="column-table">
+                            <a href="#" class="column-table__link" title="Eliminar">
+                                <img src="{% static 'assets/images/delete.webp' %}" alt="Eliminar"
+                                    class="column-table__img">
+                            </a>
+                        </td>
+                    </tr>
+                    <tr class="row-table">
+                        <td class="column-table">3</td>
+                        <td class="column-table">Harold Preciado</td>
+                        <td class="column-table">Cali</td>
+                        <td class="column-table">Cra. 43a #73 Sur8</td>
+                        <td class="column-table">314 894 2311</td>
+                        <td class="column-table">01/02/2021</td>
+                        <td class="column-table">
+                            <a href="ActualizarEntrega.html" class="column-table__link" title="Actualizar">
+                                <img src="{% static 'assets/images/update.webp' %}" alt="Actualizar"
+                                    class="column-table__img">
+                            </a>
+                        </td>
+                        <td class="column-table">
+                            <a href="#" class="column-table__link" title="Eliminar">
+                                <img src="{% static 'assets/images/delete.webp' %}" alt="Eliminar"
+                                    class="column-table__img">
+                            </a>
+                        </td>
+                    </tr>
+                    <tr class="row-table">
+                        <td class="column-table">4</td>
+                        <td class="column-table">Maicol Ortega</td>
+                        <td class="column-table">Cali</td>
+                        <td class="column-table">Cra. 19 #52B-15</td>
+                        <td class="column-table">311 428 3521</td>
+                        <td class="column-table">20/06/2021</td>
+                        <td class="column-table">
+                            <a href="ActualizarEntrega.html" class="column-table__link" title="Actualizar">
+                                <img src="{% static 'assets/images/update.webp' %}" alt="Actualizar"
+                                    class="column-table__img">
+                            </a>
+                        </td>
+                        <td class="column-table">
+                            <a href="#" class="column-table__link" title="Eliminar">
+                                <img src="{% static 'assets/images/delete.webp' %}" alt="Eliminar"
+                                    class="column-table__img">
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </article>
+
+
+        <aside class="main-icon">
+            <a href="/info/" class="main-icon__link main-icon__link--position">
+                <i class="fas fa-info-circle fa-2x"></i>
+            </a>
+            <a href="/contact/" class="main-icon__link">
+                <i class="fas fa-comment-dots fa-2x"></i>
+            </a>
+        </aside>
+    </main>
+
+    <footer class="main-footer">
+        <address class="info-contact">
+            <i class="fas fa-map-marked-alt" aria-hidden="true"></i> Calle
+            45C # 4-10C-75, Barranquilla <br />
+            <i class="fas fa-phone-square-alt" aria-hidden="true"></i>
+            333333 <br />
+            <a href="#" class="info-contact__link">
+                <i class="fas fa-envelope" aria-hidden="true"></i>
+                frionevadojl@hotmail.com
+            </a>
+        </address>
+
+        <p class="main-footer__paragrahp">
+            &copy; SaleCold 2021 | Todos los derechos reservados
+        </p>
+    </footer>
+
+    <script src="{% static 'js/index.js' %}" defer></script>
+    <script src="https://kit.fontawesome.com/92318589eb.js" crossorigin="anonymous"></script>
+</body>
+
+</html>
