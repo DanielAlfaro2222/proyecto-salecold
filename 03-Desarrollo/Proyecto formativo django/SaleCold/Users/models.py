@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import User
 from django.core.validators import MaxValueValidator
 from django.core.validators import MinValueValidator 
 
@@ -30,14 +30,20 @@ class TypeOfDocument(models.Model):
         db_table = "type_of_document"
         ordering = ['id_type_of_document']
 
-class User(AbstractUser):
-    email = models.EmailField("Correo electronico", max_length=200)
+class UserModel(models.Model):
+    MALE = 'Hombre'
+    FEMALE = 'Mujer'
+    GENDERS = [(MALE, 'Hombre'), (FEMALE, 'Mujer')]
+
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     type_of_document = models.ForeignKey(TypeOfDocument, verbose_name="Tipo de documento", on_delete=models.CASCADE)
-    number_document = models.CharField("Numero de documento", max_length=20, help_text="Numero de identificacion del usuario")
-    address = models.CharField("Direccion", max_length=50, help_text="Direccion de residencia del usuario")
+    number_document = models.CharField("Numero de documento", max_length=20)
+    address = models.CharField("Direccion", max_length=50)
     city = models.ForeignKey(City, verbose_name="Ciudad", on_delete=models.CASCADE)
-    
+    phone_number = models.CharField("Numero de telefono", max_length=15)
+    gender = models.CharField("Genero", choices=GENDERS, default=FEMALE, max_length=6)
+
     class Meta:
         verbose_name = "Usuario"
         verbose_name_plural = "Usuarios"
-        db_table = "user"
+        db_table = "user_model"

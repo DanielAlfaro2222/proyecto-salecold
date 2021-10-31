@@ -1,20 +1,22 @@
+#Importamos la funcion render de la libreria django.shortcuts
 from django.shortcuts import render
-from django.contrib.auth import login
-from django.contrib.auth import authenticate
-from django.shortcuts import redirect
-from django.contrib import messages
-from django.contrib.auth import logout
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth import login # Libreria para importar la funcion login
+from django.contrib.auth import authenticate # Libreria para importar la funcion authenticate
+from django.shortcuts import redirect # Libreria para importar la funcion redirect
+from django.contrib import messages # Libreria para importar la funcion para mandar mensajes
+from django.contrib.auth import logout # Libreria para importar la funcion logout
+from django.contrib.auth.decorators import login_required # Libreria para importa la funcion login_required
+from Users.models import TypeOfDocument
+from Users.models import UserModel
+from Users.models import City
+from django.contrib.auth.models import User
 
+
+#Creamos la funcion que renderiza cada html de la pagina
 def index(request):
     return render( request, 'index.html', context={} )
 
 def login_view(request):
-    """
-    Funcion para realizar el login
-
-    Acepta como parametro un objeto de tipo request
-    """
 
     if request.method == 'POST': # Verificar que los datos se esten enviando por el metodo POST
 
@@ -22,7 +24,7 @@ def login_view(request):
         password = request.POST.get('password') # Tomar el valor ingresado por el usuario en el input con el name password
 
         user = authenticate(username=username, password=password) # Llama a la funcion authenticate para verificar que el usuario este creado, si el usuario esta creado en el sistema la funcion retornara un objeto con toda la informacion del usuario y si el usuario no esta creado o no existe en el sistema la funcion retornara un None.
-        
+
         if user != None: # Condicional para verificar que el valor que esta almacenado en la variable user sea distinto de none
 
             login(request, user) # Esta funcion recibe un objeto de tipo request y otro de tipo user, toma el id del usuario y lo guarda en la sesion.
@@ -53,7 +55,34 @@ def contact(request):
     return render(request, 'contacto.html', context={})
 
 def register(request):
-    return render(request, 'register.html', context={})
+    tiposDeDocumento = TypeOfDocument.objects.all()
+    city = City.objects.all()
+    mensaje = ""
+
+    if request.POST:
+        try:
+            user = User.objects.create_user(username = request.POST.get('correo'),
+                                            password = request.POST.get('contraseña'),
+                                            email = request.POST.get('correo')
+            )
+            users = UserModel.objects.create(user_id = user.id,
+                                        type_of_document = request.POST.get('Tipo de documento'),
+                                        number_document = request.POST.get('Numero documento'),
+                                        address = request.POST.get('direccion'),
+                                        city = request.POST.get('Ciudad'),
+                                        phone_number = request.POST.get('number phone'),
+                                        gender = request.POST.get('Genero')
+            )
+            users.save()
+
+            mensaje = "Registro almacenado correctamente"
+        except:
+            mensaje = "Error no se pudo almacenar el usuario en la base de datos"
+
+    return render(request, 'register.html', context={'TipoDeDocumento': tiposDeDocumento,
+        'City': city,
+        'mensaje': mensaje
+    })
 
 @login_required(login_url= '/login/')
 def recuperation(request):

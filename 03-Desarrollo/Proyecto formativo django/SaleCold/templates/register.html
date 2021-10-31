@@ -98,29 +98,19 @@
 	</header>
 
 	<main>
-
-		{% block content %}
-		{% if form.errors %}
-		<div class="error">
-			Error
+		{% if mensaje %}
+		<div class="exito">
+			Registro almacenado exitosamente
 		</div>
 		{% endif %}
+
 		<fieldset class="container-register">
 			<legend class="container-register__title"> Registro </legend>
 
-			<form action="{% url 'saveUser' %}" method="POST" class="form-register">
-
+			<form method="POST" class="form-register">
 				{% csrf_token %}
 
-				{% if mensaje %}
-				<div class="exito">
-					Registro almacenado exitosamente
-				</div>
-				{% endif %}
-
-				{{ form.as_p }}
-
-				<!-- <label class="form-register__label">
+				<label class="form-register__label">
 					Nombre
 					<input type="text" minlength="4" maxlength="15" required name="Nombre"
 						class="form-register__input" />
@@ -135,50 +125,64 @@
 					Tipo de documento
 					<select name="Tipo de documento" class="form-register__input form-register__input--background"
 						required>
-						<option></option>
-						<option value="Cedula">Cedula</option>
-						<option value="Cedula extranjera">
-							Cedula extranjera
-						</option>
+						<option disabled selected></option>
+						{% for elemento in TipoDeDocumento %}
+						{{elemento}}
+						<option value="{{elemento.id}}">{{elemento}}</option>
+						{% endfor %}
 					</select>
 				</label>
 
 				<label class="form-register__label">
 					Numero de documento
 					<input type="text" required minlength="6" maxlength="12" name="Numero documento"
-						class="form-register__input" />
+						class="form-register__input" id="Numero documento" />
+				</label>
+
+				<label class="form-register__label">
+					Genero
+					<select name="Genero" id="Genero" class="form-register__input form-register__input--background"
+						required>
+						<option disabled selected class="form-datalist__option"></option>
+						<option value="Hombre" class="form-datalist__option">Hombre</option>
+						<option value="Mujer" class="form-datalist__option">Mujer</option>
+					</select>
 				</label>
 
 				<label class="form-register__label">
 					Ciudad
-					<input type="list" list="Ciudades" class="form-register__input" required />
-					<datalist id="Ciudades" name="Ciudad" class="form-datalist">
-						<option value="Arauca" class="form-datalist__option"></option>
-						<option value="Armenia" class="form-datalist__option"></option>
-						<option value="Barranquilla" class="form-datalist__option"></option>
-						<option value="Bogota" class="form-datalist__option"></option>
-						<option value="Bucaramanga" class="form-datalist__option"></option>
-						<option value="Cartagena" class="form-datalist__option"></option>
-						<option value="Cali" class="form-datalist__option"></option>
-						<option value="Cucuta" class="form-datalist__option"></option>
-						<option value="Monteria" class="form-datalist__option"></option>
-						<option value="Montoa" class="form-datalist__option"></option>
-						<option value="Pasto" class="form-datalist__option"></option>
-						<option value="Pereira" class="form-datalist__option"></option>
-					</datalist>
+					<select id="Ciudad" name="Ciudad" class="form-register__input form-register__input--background"
+						required>
+						<option disabled selected class="form-datalist__option"></option>
+						{% for ciudad in City %}
+						<option value="{{ciudad.id}}" class="form-datalist__option">{{ciudad}}</option>
+						{% endfor %}
+					</select>
+				</label>
+
+				<label class="form-register__label">
+					Direccion de residencia
+					<input type="text" minlength="4" maxlength="50" required name="direccion" id="direccion"
+						class="form-register__input" />
+				</label>
+
+				<label class="form-register__label">
+					Numero telefonico
+					<input type="text" minlength="4" maxlength="50" required name="number phone" id="number phone"
+						class="form-register__input" />
 				</label>
 
 				<label class="form-register__label">
 					Correo
-					<input type="email" minlength="4" maxlength="15" required name="correo"
+					<input type="email" minlength="4" maxlength="50" required name="correo" id="correo"
 						class="form-register__input" />
 				</label>
 
 				<label class="form-register__label">
 					Contraseña
-					<input type="password" minlength="4" maxlength="15" required name="contraseña"
+					<input type="password" minlength="4" maxlength="15" required name="contraseña" id="contraseña"
 						class="form-register__input" />
-				</label> -->
+				</label>
 
 				<p class="form-register__conditions">
 					<input type="checkbox" name="condiciones" required />
@@ -195,7 +199,6 @@
 				<button class="form-register__btn">Crear cuenta</button>
 			</form>
 		</fieldset>
-		{% endblock %}
 
 		<aside class="main-icon">
 			<a href="/info/" class="main-icon__link main-icon__link--position">

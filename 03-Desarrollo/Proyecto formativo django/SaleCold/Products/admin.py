@@ -24,7 +24,7 @@ class ProductAdmin(admin.ModelAdmin):
     list_per_page = 12
 
 @admin.register(Category) 
-class CategoryAdmin(admin.ModelAdmin):
+class ProductAdmin(admin.ModelAdmin):
     # Se usa para especificar que campos se pintaran en el panel de administracion de django
     list_display = ["name"]
 
@@ -38,7 +38,7 @@ class CategoryAdmin(admin.ModelAdmin):
     list_per_page = 12
 
 @admin.register(UnitOfMeasure) 
-class UnitOfMeasureAdmin(admin.ModelAdmin):
+class ProductAdmin(admin.ModelAdmin):
     # Se usa para especificar que campos se pintaran en el panel de administracion de django
     list_display = ["name"]
 

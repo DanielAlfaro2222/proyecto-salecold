@@ -16,8 +16,6 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from . import views
-from Products.views import FormularioCategoriaView
-from Users.views import FormularioRegistroUsuarioView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -35,9 +33,5 @@ urlpatterns = [
     path('manage-deliveries/', views.manageDeliveries, name = "manage-deliveries"),
     path('user/', views.userNormal, name = "user-normal"),
     path('add-product/', views.addProduct, name = "add-product"),
-    path('update-data-user/', views.updateDataUser, name = "update-data-user"),
-    path('registerCategory/', FormularioCategoriaView.index, name = "registerCategory"),
-    path('saveCategory/', FormularioCategoriaView.metodoProcesarFormulario, name = "saveCategory"),
-    path('registerUser/', FormularioRegistroUsuarioView.index, name = "registerUser"),
-    path('saveUser/', FormularioRegistroUsuarioView.metodoProcesarFormulario, name = "saveUser")
+    path('update-data-user/', views.updateDataUser, name = "update-data-user")
 ]

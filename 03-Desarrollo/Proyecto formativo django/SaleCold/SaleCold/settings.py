@@ -125,12 +125,10 @@ STATIC_URL = '/static/'
 # Especificar en una constante la direccion de la carpeta en donde estan almacenados los archivos estaticos
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
-    'admin-interface'
+    os.path.join(BASE_DIR, 'SaleCold/admin-interface/logo')
 )
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-AUTH_USER_MODEL = 'Users.User'

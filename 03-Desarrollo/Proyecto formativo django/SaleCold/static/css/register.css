@@ -1,6 +1,6 @@
 .container-register {
 	width: 40.1vmax;
-	height: 124vmin;
+	height: 1600px;
 	margin: 2vmin auto 0 auto;
 	background-color: #0A1931;
 	padding: 6vmin;
@@ -18,7 +18,7 @@
 	margin: 0 0 3.5vmin 0;
 }
 .form-register{
-	height: 80vmin;
+	height: 100%;
 	font-size: 2.6vmin;
 }
 .form-register__label {
