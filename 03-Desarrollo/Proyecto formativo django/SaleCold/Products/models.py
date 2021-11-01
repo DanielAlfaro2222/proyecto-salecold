@@ -38,6 +38,7 @@ class Product(models.Model):
     id_product = models.AutoField("Id producto", primary_key = True)
     name = models.CharField("Nombre producto", max_length = 55)
     description = models.CharField("Descripcion", null = True, blank = True, max_length = 255)
+    image = models.ImageField("Imagen del producto", upload_to = "products/images")
     unit_price = models.PositiveIntegerField("Precio unitario")
     stock = models.PositiveSmallIntegerField("Stock", null = True, blank = True, default = 0)
     discount = models.PositiveSmallIntegerField("Descuento", null = True, blank = True, default = 0, validators=[MinValueValidator(0), MaxValueValidator(100)])

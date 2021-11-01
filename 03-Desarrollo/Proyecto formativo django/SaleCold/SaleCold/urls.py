@@ -16,11 +16,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from . import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name = "index"),
     path('login/', views.login_view, name = "login"),
+    path('logout/', views.logout_view, name = "logout"),
     path('administrator/', views.administrator, name = "administrator"),
     path('info/', views.info, name = "info"),
     path('contact/', views.contact, name = "contact"),
@@ -34,4 +37,4 @@ urlpatterns = [
     path('user/', views.userNormal, name = "user-normal"),
     path('add-product/', views.addProduct, name = "add-product"),
     path('update-data-user/', views.updateDataUser, name = "update-data-user")
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

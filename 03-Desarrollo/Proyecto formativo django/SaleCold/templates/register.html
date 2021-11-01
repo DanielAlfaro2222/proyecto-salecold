@@ -22,7 +22,7 @@
 </head>
 
 <body>
-	<header class="main-header">
+	<header class="main-normal">
 		<i class="fas fa-bars fa-2x main-header__menu-icon" id="main-menu-icon">
 			<nav class="
 								main-header__menu-categories
@@ -100,7 +100,7 @@
 	<main>
 		{% if mensaje %}
 		<div class="exito">
-			Registro almacenado exitosamente
+			{{mensaje}}
 		</div>
 		{% endif %}
 
@@ -112,37 +112,35 @@
 
 				<label class="form-register__label">
 					Nombre
-					<input type="text" minlength="4" maxlength="15" required name="Nombre"
+					<input type="text" minlength="4" maxlength="15" required name="nombre"
 						class="form-register__input" />
 				</label>
 				<label class="form-register__label">
 					Apellido
-					<input type="text" minlength="4" maxlength="15" required name="Apellido"
+					<input type="text" minlength="4" maxlength="15" required name="apellido"
 						class="form-register__input" />
 				</label>
 
 				<label class="form-register__label">
 					Tipo de documento
-					<select name="Tipo de documento" class="form-register__input form-register__input--background"
+					<select name="tipo_documento" class="form-register__input form-register__input--background"
 						required>
 						<option disabled selected></option>
 						{% for elemento in TipoDeDocumento %}
-						{{elemento}}
-						<option value="{{elemento.id}}">{{elemento}}</option>
+						<option value="{{elemento.id_type_of_document}}">{{elemento}}</option>
 						{% endfor %}
 					</select>
 				</label>
 
 				<label class="form-register__label">
 					Numero de documento
-					<input type="text" required minlength="6" maxlength="12" name="Numero documento"
-						class="form-register__input" id="Numero documento" />
+					<input type="text" required minlength="6" maxlength="12" name="numero_documento"
+						class="form-register__input" />
 				</label>
 
 				<label class="form-register__label">
 					Genero
-					<select name="Genero" id="Genero" class="form-register__input form-register__input--background"
-						required>
+					<select name="genero" class="form-register__input form-register__input--background" required>
 						<option disabled selected class="form-datalist__option"></option>
 						<option value="Hombre" class="form-datalist__option">Hombre</option>
 						<option value="Mujer" class="form-datalist__option">Mujer</option>
@@ -151,24 +149,23 @@
 
 				<label class="form-register__label">
 					Ciudad
-					<select id="Ciudad" name="Ciudad" class="form-register__input form-register__input--background"
-						required>
+					<select name="ciudad" class="form-register__input form-register__input--background" required>
 						<option disabled selected class="form-datalist__option"></option>
 						{% for ciudad in City %}
-						<option value="{{ciudad.id}}" class="form-datalist__option">{{ciudad}}</option>
+						<option value="{{ciudad.id_city}}" class="form-datalist__option">{{ciudad}}</option>
 						{% endfor %}
 					</select>
 				</label>
 
 				<label class="form-register__label">
 					Direccion de residencia
-					<input type="text" minlength="4" maxlength="50" required name="direccion" id="direccion"
+					<input type="text" minlength="4" maxlength="50" required name="direccion"
 						class="form-register__input" />
 				</label>
 
 				<label class="form-register__label">
 					Numero telefonico
-					<input type="text" minlength="4" maxlength="50" required name="number phone" id="number phone"
+					<input type="text" minlength="4" maxlength="50" required name="number_phone"
 						class="form-register__input" />
 				</label>
 
@@ -180,7 +177,7 @@
 
 				<label class="form-register__label">
 					Contraseña
-					<input type="password" minlength="4" maxlength="15" required name="contraseña" id="contraseña"
+					<input type="password" minlength="4" maxlength="15" required name="contrasena"
 						class="form-register__input" />
 				</label>
 

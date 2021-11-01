@@ -28,10 +28,10 @@ body{
 .main-header{
     background-image: linear-gradient(rgba(1, 103, 236, 0.938),
 	rgba(29, 29, 245, 0)),
-	url(/SaleCold/static/assets/images/header.webp);
+	url('/static/assets/images/header.webp');
     width: 100%;
     height: 580px;
-    background-size: cover;
+    background-size: contain;
     background-repeat: no-repeat;
     background-attachment: fixed;
     font-family: var(--font-header);

@@ -23,8 +23,17 @@ class ProductAdmin(admin.ModelAdmin):
     # Se usa para especificar cuantos registros se tendran por pagina, si los registros superan este numero django creara una nueva pagina.
     list_per_page = 12
 
+    fieldsets = (
+        ("Informacion del producto", {
+            'fields': ('name', 'description', 'image', 'unit_price', 'stock', 'discount', 'unit_of_measure',)
+        }),
+        ("Categoria", {
+            'fields': ('category',)
+        }),
+    )
+
 @admin.register(Category) 
-class ProductAdmin(admin.ModelAdmin):
+class CategoryAdmin(admin.ModelAdmin):
     # Se usa para especificar que campos se pintaran en el panel de administracion de django
     list_display = ["name"]
 
@@ -38,7 +47,7 @@ class ProductAdmin(admin.ModelAdmin):
     list_per_page = 12
 
 @admin.register(UnitOfMeasure) 
-class ProductAdmin(admin.ModelAdmin):
+class UnitOfMeasureAdmin(admin.ModelAdmin):
     # Se usa para especificar que campos se pintaran en el panel de administracion de django
     list_display = ["name"]
 
@@ -50,3 +59,9 @@ class ProductAdmin(admin.ModelAdmin):
 
     # Se usa para especificar cuantos registros se tendran por pagina, si los registros superan este numero django creara una nueva pagina.
     list_per_page = 12
+
+    fieldsets = (
+        ("Descripcion",{
+            'fields': ('name',)
+        }),
+    )

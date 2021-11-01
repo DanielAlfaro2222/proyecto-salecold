@@ -97,6 +97,11 @@
 	</header>
 
 	<main class="main-login">
+
+		{% if error %}
+		<p>{{error}}</p>
+		{% endif %}
+
 		<fieldset class="container-login">
 			<figure class="container-user">
 				<img src="{% static 'assets/images/user.webp' %}" alt="" class="container-user__img" />

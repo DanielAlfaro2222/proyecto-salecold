@@ -1,9 +1,8 @@
 from django.db import models
-from datetime import datetime
 from Products.models import Product
 
 class TypeOfDelivery(models.Model):
-    id_type_of_delivery = models.IntegerField('Id tipo de entrega', primary_key = True)
+    id_type_of_delivery = models.AutoField('Id tipo de entrega', primary_key = True)
     description = models.CharField('Descripcion', max_length=45)
 
     def __str__(self):
@@ -16,7 +15,7 @@ class TypeOfDelivery(models.Model):
         ordering = ['id_type_of_delivery']
 
 class TypeAccountingDocument(models.Model):
-    id_type_accounting_document = models.IntegerField('Id tipo documento contable', primary_key = True)
+    id_type_accounting_document = models.AutoField('Id tipo documento contable', primary_key = True)
     nature = models.CharField('Naturaleza', max_length=45)
 
     def __str__(self):
@@ -29,7 +28,7 @@ class TypeAccountingDocument(models.Model):
         ordering = ['id_type_accounting_document']
 
 class PaymentType (models.Model):
-    id_payment_type = models.IntegerField('Id tipo de pago', primary_key= True)
+    id_payment_type = models.AutoField('Id tipo de pago', primary_key= True)
     description = models.CharField('Descripcion', max_length=45)
 
     def __str__(self):
@@ -43,7 +42,7 @@ class PaymentType (models.Model):
 
 
 class HeaderOrdered(models.Model):
-    id_header_ordered = models.IntegerField('Id cabecera pedido', primary_key = True)
+    id_header_ordered = models.AutoField('Id cabecera pedido', primary_key = True)
     order_date = models.DateTimeField(auto_now_add=True, verbose_name='Fecha pedido')
     state = models.BooleanField('Disponible', default=True)
     payment_reference = models.CharField('Referencia de pago', max_length=45)
@@ -61,7 +60,7 @@ class HeaderOrdered(models.Model):
         ordering = ['id_header_ordered']
 
 class OrderDetail(models.Model):
-    id_order_detail = models.IntegerField('Id detalle pedido', primary_key=True)
+    id_order_detail = models.AutoField('Id detalle pedido', primary_key=True)
     quantity = models.IntegerField('Cantidad')
     subtotal = models.IntegerField('Subtotal')
     total = models.IntegerField('Total')

@@ -9,7 +9,6 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
-import os
 from pathlib import Path
 import SaleCold.db as db
 
@@ -124,9 +123,17 @@ STATIC_URL = '/static/'
 
 # Especificar en una constante la direccion de la carpeta en donde estan almacenados los archivos estaticos
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
-    os.path.join(BASE_DIR, 'SaleCold/admin-interface/logo')
+    BASE_DIR / 'static',
 )
+
+# Especificar la carpeta donde se almacenaran los archivos
+MEDIA_ROOT = (BASE_DIR / 'media')
+
+# Especificar la ruta que servira los archivos almacenados en la carpeta media
+MEDIA_URL = '/media/'
+
+# Especificar cual es la url del login
+LOGIN_URL = '/login/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field

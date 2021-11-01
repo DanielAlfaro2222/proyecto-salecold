@@ -35,13 +35,16 @@ class UserModel(models.Model):
     FEMALE = 'Mujer'
     GENDERS = [(MALE, 'Hombre'), (FEMALE, 'Mujer')]
 
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, verbose_name="Usuario")
     type_of_document = models.ForeignKey(TypeOfDocument, verbose_name="Tipo de documento", on_delete=models.CASCADE)
     number_document = models.CharField("Numero de documento", max_length=20)
     address = models.CharField("Direccion", max_length=50)
     city = models.ForeignKey(City, verbose_name="Ciudad", on_delete=models.CASCADE)
     phone_number = models.CharField("Numero de telefono", max_length=15)
     gender = models.CharField("Genero", choices=GENDERS, default=FEMALE, max_length=6)
+
+    def __str__(self):
+        return self.user.username
 
     class Meta:
         verbose_name = "Usuario"

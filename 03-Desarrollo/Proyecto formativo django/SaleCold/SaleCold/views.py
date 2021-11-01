@@ -10,41 +10,35 @@ from Users.models import TypeOfDocument
 from Users.models import UserModel
 from Users.models import City
 from django.contrib.auth.models import User
+from django.db.utils import IntegrityError
 
-
-#Creamos la funcion que renderiza cada html de la pagina
 def index(request):
     return render( request, 'index.html', context={} )
 
 def login_view(request):
 
-    if request.method == 'POST': # Verificar que los datos se esten enviando por el metodo POST
+    if request.method == 'POST':
 
-        username = request.POST.get('username') # Tomar el valor ingresado por el usuario en el input con el name username
-        password = request.POST.get('password') # Tomar el valor ingresado por el usuario en el input con el name password
+        username = request.POST.get('username')
+        password = request.POST.get('password')
 
-        user = authenticate(username=username, password=password) # Llama a la funcion authenticate para verificar que el usuario este creado, si el usuario esta creado en el sistema la funcion retornara un objeto con toda la informacion del usuario y si el usuario no esta creado o no existe en el sistema la funcion retornara un None.
+        user = authenticate(username=username, password=password) 
 
-        if user != None: # Condicional para verificar que el valor que esta almacenado en la variable user sea distinto de none
+        if user != None:
 
-            login(request, user) # Esta funcion recibe un objeto de tipo request y otro de tipo user, toma el id del usuario y lo guarda en la sesion.
-
-            messages.success(request, f'Bienvenido {user.username}') # Enviar un mensaje para indicar que el inicio de sesion se realizo de manera correcta.
-
-            return redirect('index') # Si el inicio de sesion fue correcto, la funcion redireccionara al usuario al index del aplicativo
+            login(request, user)
+            return redirect('index')
         else: 
-            messages.error(request, 'Usuario o contraseña incorrecta') # Mandar un mensaje de error en caso de que el inicio de sesion fuera incorrecto.
 
-    return render(request, 'login.html', context= { # Renderiza el template del login
-    })
+            return render(request, 'login.html', context={'error': "Usuario o contraseña incorrectos"})
+    return render(request, 'login.html', context= {})
 
+@login_required
 def logout_view(request):
+    logout(request)
+    return redirect('login')
 
-    logout(request) # Esta funcion recibe un objeto de tipo request y eliminar el id del usuario de la sesion
-    messages.success(request, 'Sesión finalizada') # Mandar un mensaje de confirmacion
-    return redirect('login') # Redireccionar al usuario al login
-
-@login_required(login_url= '/login/')
+@login_required
 def administrator(request):
     return render(request, 'administrador.html', context={} )
 
@@ -60,62 +54,74 @@ def register(request):
     mensaje = ""
 
     if request.POST:
+
         try:
-            user = User.objects.create_user(username = request.POST.get('correo'),
-                                            password = request.POST.get('contraseña'),
+            user_required = User.objects.create_user(username = request.POST.get('correo'),
+                                            password = request.POST.get('contrasena'),
                                             email = request.POST.get('correo')
             )
-            users = UserModel.objects.create(user_id = user.id,
-                                        type_of_document = request.POST.get('Tipo de documento'),
-                                        number_document = request.POST.get('Numero documento'),
-                                        address = request.POST.get('direccion'),
-                                        city = request.POST.get('Ciudad'),
-                                        phone_number = request.POST.get('number phone'),
-                                        gender = request.POST.get('Genero')
+            user_required.first_name = request.POST.get('nombre')
+            user_required.last_name = request.POST.get('apellido')
+            user_required.save()
+
+            tipo_documento = TypeOfDocument()
+            tipo_documento.id_type_of_document = request.POST.get('tipo_documento')
+            ciudad = City()
+            ciudad.id_city = request.POST.get('ciudad')
+
+            users = UserModel.objects.create(user = user_required, 
+                                            type_of_document = tipo_documento,
+                                            number_document = request.POST.get('numero_documento'),
+                                            address = request.POST.get('direccion'),
+                                            city = ciudad,
+                                            phone_number = request.POST.get('number_phone'),
+                                            gender = request.POST.get('genero')
             )
+
             users.save()
 
             mensaje = "Registro almacenado correctamente"
-        except:
-            mensaje = "Error no se pudo almacenar el usuario en la base de datos"
+        except IntegrityError:
+            mensaje = "Error el usuario ya existe en el sistema"
+
 
     return render(request, 'register.html', context={'TipoDeDocumento': tiposDeDocumento,
         'City': city,
         'mensaje': mensaje
     })
 
-@login_required(login_url= '/login/')
+@login_required
 def recuperation(request):
     return render(request, 'recuperacion.html', context={})
 
-@login_required(login_url= '/login/')
+@login_required
 def recuperationPhone(request):
     return render(request, 'recuperacionViaCelular.html', context={})
 
-@login_required(login_url= '/login/')
+@login_required
 def recuperationEmail(request):
     return render(request, 'recuperacionViaCorreo.html', context={})
 
-@login_required(login_url= '/login/')
+@login_required
 def changePassword(request):
     return render(request, 'cambiarContrasena.html', context={})
 
-@login_required(login_url= '/login/')
+@login_required
 def confirmPurchase(request):
     return render(request, 'confirmarCompra.html', context={})
 
-@login_required(login_url= '/login/')
+@login_required
 def manageDeliveries(request):
     return render(request, 'gestionarEntrega.html', context={})
 
-@login_required(login_url= '/login/')
+@login_required
 def userNormal(request):
     return render(request, 'usuarioNormal.html', context={})
 
-@login_required(login_url= '/login/')
+@login_required
 def addProduct(request):
     return render(request, 'agregarProducto.html', context={})
 
-@login_required(login_url= '/login/')
+@login_required
 def updateDataUser(request):
     return render(request, 'actualizarDatos.html', context={})
