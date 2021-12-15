@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block head %}
+	<link rel="stylesheet" href="{% static 'css/info.css' %}" />
+	<title>SaleCold</title>
+{% endblock %}
+
+{% block content %}
+
+	{% include 'plantillas/header.html' %}
+
+	<main class="main-info">
+		<section class="info-proyect">
+			<h1 class="info-proyect__title">¿Qué es SaleCold?</h1>
+
+			<p class="info-proyect__paragraph">
+				SaleCold es un proyecto formativo, realizado por estudiantes
+				del Tecnologo en Analisis y Desarrollo de Sistemas de
+				Informacion de la ficha 2141042.
+			</p>
+
+			<h2 class="info-proyect__subtitle">Integrantes</h2>
+
+			<ul class="container-list-members">
+				<li class="container-list-members__item">Andrea Del Carmen Lenes</li>
+				<li class="container-list-members__item">Kevin Daniel Alfaro Alfonso</li>
+			</ul>
+
+			<a href="#" target="_blank" class="user-manual">
+				<img src="{% static 'assets/images/guide.webp' %}" alt="Icono para descargar manual de usuario"
+					class="user-manual__icon" aria-hidden="true" loading="lazy">
+				Descargar manual del usuario
+			</a>
+		</section>
+
+		<figure class="figure-proyect">
+			<img src="{% static 'assets/images/integrantes.webp' %}" alt="png de una persona programando"
+				class="figure-proyect__img" loading="lazy" />
+		</figure>
+
+		{% include 'plantillas/aside.html' %}
+	</main>
+
+	{% include 'plantillas/footer.html' %}
+{% endblock %}

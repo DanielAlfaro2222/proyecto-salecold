@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block head %}
+	<link rel="stylesheet" href="{% static 'css/recuperacionViaCelular.css' %}" />
+	<title>SaleCold</title>
+{% endblock %}
+
+{% block content %}
+
+	{% include 'plantillas/header.html' %}
+
+	<main>
+		<fieldset class="container-recuperarcel">
+			<legend class="container-recuperarcel__title">
+				Recuperar contraseña via celular</legend>
+
+			<form action="#" method="POST" class="form-recuperarcel">
+				<p class="form-recuperarcel__parrafo">Por favor digite su numero de celular</p>
+				<label class="form-recuperarcel__label">
+					Numero de celular
+					<input type="text" minlength="4" maxlength="15" required name="Contraseña Actual"
+						class="form-recuperarcel__input" />
+				</label>
+
+				<button class="form-recuperarcel__btn">Enviar Codigo</button>
+			</form>
+		</fieldset>
+
+		{% include 'plantillas/aside.html' %}
+	</main>
+
+	{% include 'plantillas/footer.html' %}
+{% endblock %}

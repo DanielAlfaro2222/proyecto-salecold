@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block head %}
+	<link rel="stylesheet" href="{% static 'css/recuperacionViaCorreo.css' %}" />
+	<title>SaleCold</title>
+{% endblock %}
+
+{% block content %}
+
+	{% include 'plantillas/header.html' %}
+
+	<main>
+		<fieldset class="container-remail">
+			<legend class="container-remail__title">
+				Recuperar contraseña vía correo</legend>
+
+			<form action="#" method="POST" class="form-remail">
+				<p class="form-remail__parrafo">Por favor digite su correo electroníco</p>
+				<label class="form-remail__label">
+					E-mail
+					<input type="email" minlength="4" maxlength="15" required name="Contraseña Actual"
+						class="form-remail__input" />
+				</label>
+
+				<button class="form-remail__btn">Enviar Codigo</button>
+			</form>
+		</fieldset>
+
+		{% include 'plantillas/aside.html' %}
+	</main>
+
+	{% include 'plantillas/footer.html' %}
+{% endblock %}

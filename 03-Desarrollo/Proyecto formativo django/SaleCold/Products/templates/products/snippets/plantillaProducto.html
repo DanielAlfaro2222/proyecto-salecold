@@ -1,0 +1,36 @@
+{% load static %}
+{% load product_extras %}
+
+<article class="article-product">
+    {% if producto.discount != 0 %}
+        <p class="article-product__offert">{{producto.discount}}%</p>
+    {% endif %}
+    <a href="{% url 'product' producto.slug %}">
+        <img src="{{producto.image.url}}" alt="{{producto.name}}"
+            class="article-product__image" loading="lazy" />
+    </a>
+    <h3 class="article-product__title">{{producto.name}}</h3>
+    {% if producto.discount == 0 %}
+        <p class="article-product__price">$ {{producto.unit_price}}</p>
+    {% else %}
+        <p class="article-product__price">
+            {{ producto.id_product | discount_price }}
+            <span class="article-product__discount">${{producto.unit_price}}</span>
+        </p>
+    {% endif %}
+    <form action="#" method="POST" class="container-add-product">
+        {% csrf_token %}
+
+        {% if producto.stock == 0 %}
+            <button class="add-product" disabled>
+                <i class="fas fa-shopping-cart container-add-product__icon" aria-hidden="true"></i> 
+                No disponible
+            </button>
+        {% else %}
+            <button class="add-product">
+                <i class="fas fa-shopping-cart container-add-product__icon" aria-hidden="true"></i> 
+                Agregar al carrito
+            </button>
+        {% endif %}
+    </form>
+</article>

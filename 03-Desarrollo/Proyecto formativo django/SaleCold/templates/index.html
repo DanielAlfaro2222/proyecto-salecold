@@ -1,0 +1,529 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block head %}
+	<meta name="description" content="Consigue respuestos para refrigeradores al mejor precio" />
+	<meta name="keywords" content="Repuestos, Refrigeradores, Repuestos para refrigeradores">
+	<title>SaleCold</title>
+{% endblock %}
+
+{% block content %}
+	<header class="main-header">
+		<figure class="container-figure-header">
+			<img src="{% static 'assets/images/header.webp' %}" alt="" class="container-figure-header__img" loading="lazy">
+		</figure>
+
+		<div class="container-info-header">
+			<h2 class="container-info-header__title">Servicio y tecnología</h2>
+
+			{% include 'products/snippets/formularioBusquedaProducto.html' %}
+
+			<a href="{% url 'contact' %}" class="container-info-header__btn">Conócenos</a>
+		</div>
+
+		<nav class="main-menu">
+			<i class="fas fa-bars fa-2x main-header__menu-icon" id="main-menu-icon">
+				<nav class="main-header__menu-categories main-header__menu-categories--show" id="main-menu">
+					<ul class="List-categories">
+						{% for categoria in categorias %}
+							<li class="List-categories__item">
+								<a class="List-categories__link" href="{% url 'category' categoria.slug %}">
+									{% if categoria.name == 'Ofertas' %}
+										<i class="fas fa-tag List-categories__icon" aria-hidden="true"></i>
+									{% elif categoria.name == 'Elementos de refrigeración' %}
+										<i class="fas fa-snowflake List-categories__icon" aria-hidden="true"></i>
+									{% elif categoria.name == 'Tuberías' %}
+										<img src="{% static 'assets/images/pipe.webp' %}" alt="icono tuberia" class="List-categories__img-icon" loading="lazy" >
+									{% elif categoria.name == 'Compresores' %}
+										<img src="{% static 'assets/images/compressor.webp' %}" alt="icono compresor" class="List-categories__img-icon" loading="lazy">
+									{% elif categoria.name == 'Condensadoras' %}
+										<img src="{% static 'assets/images/condensador.webp' %}" alt="icono condensador" class="List-categories__img-icon" loading="lazy">
+									{% elif categoria.name == 'Aire acondicionado' %}
+										<img src="{% static 'assets/images/aire-acondicionado.webp' %}" alt="icono aire acondicionado" class="List-categories__img-icon" loading="lazy">
+									{% endif %}
+									{{categoria}}
+								</a>
+								<i class="fas fa-chevron-right List-categories__icon List-categories__icon--position" aria-hidden="true"></i>
+							</li>
+						{% endfor %}
+					</ul>
+				</nav>
+			</i>
+			<a href="{% url 'index' %}" class="main-header__home">
+				<img src="{% static 'assets/favicon/Logo4.webp' %}" alt="Logo de la empresa" class="main-header__logo"
+					loading="lazy" />
+			</a>
+
+			<a href="#" class="main-header__shop-link">
+				<i class="fas fa-shopping-cart fa-2x main-header__shop-icon" aria-hidden="true"></i>
+			</a>
+
+			{% if request.user.is_authenticated %}
+
+					<div class = "container-user-authenticate">
+						<p class="container-user-authenticate__paragraph">{{user.first_name.split | first}} {{user.last_name.split | first}}</p>
+
+						<i class="fas fa-angle-down fa-2x container-user-authenticate__icon" id="icon-menu-user-normal"
+						aria-hidden="true"></i>
+					</div>
+					
+					<nav class="menu-user-normal menu-user-normal--show" id="menu-user-normal">
+						<ul class="menu-container-user-normal">
+							<li class="menu-container-user-normal__item">
+								<a href="{% url 'panel-user' %}" class="menu-container-user-normal__link">
+									<i class="fas fa-user-cog fa-2x menu-user-normal__option" aria-hidden="true"></i>
+									Configuracion
+								</a>
+							</li>
+							<li class="menu-container-user-normal__item">
+								<a href="{% url 'logout' %}" class="menu-container-user-normal__link">
+									<i class="fas fa-sign-out-alt fa-2x menu-user-normal__option" aria-hidden="true"></i>
+									Cerrar sesion
+								</a>
+							</li>
+						</ul>
+					</nav>
+				{% else %}
+					<a href="{% url 'login' %}" class="main-header__login">
+						Iniciar sesion
+					</a>
+			{% endif %}
+		</nav>
+
+	</header>
+
+	<main class="main">
+
+		<section class="section-productos-ofertados">
+			<h2 class="section-productos-ofertados__title">
+				Ofertas de la semana
+			</h2>
+
+			<div class="container-products">
+				{% for producto in productos %}
+					{% include 'products/snippets/plantillaProducto.html' %}
+				{% endfor %}
+			</div>
+		</section>
+
+		<section class="section-productos-ofertados">
+			<h2 class="section-productos-ofertados__title">
+				Categoria 1
+			</h2>
+
+			<div class="container-products">
+				<article class="article-product">
+					<a href="#">
+						<img src="{% static 'assets/images/producto.webp' %}" alt="Producto1"
+							class="article-product__image" loading="lazy" />
+					</a>
+					<h3 class="article-product__title">Nombre del producto</h3>
+					<p class="article-product__price">Precio</p>
+					<form action="#" method="POST" class="container-add-product">
+						<button class="add-product" disabled>
+							<i class="fas fa-shopping-cart container-add-product__icon" aria-hidden="true"></i> 
+							Agregar al carrito
+						</button>
+					</form>
+				</article>
+
+				<article class="article-product">
+					<a href="#">
+						<img src="{% static 'assets/images/producto.webp' %}" alt="Producto1"
+							class="article-product__image" loading="lazy" />
+					</a>
+					<h3 class="article-product__title">Nombre del producto</h3>
+					<p class="article-product__price">Precio</p>
+					<form action="#" method="POST" class="container-add-product">
+						<button class="add-product" disabled>
+							<i class="fas fa-shopping-cart container-add-product__icon" aria-hidden="true"></i> 
+							Agregar al carrito
+						</button>
+					</form>
+				</article>
+
+				<article class="article-product">
+					<a href="#">
+						<img src="{% static 'assets/images/producto.webp' %}" alt="Producto1"
+							class="article-product__image" loading="lazy" />
+					</a>
+					<h3 class="article-product__title">Nombre del producto</h3>
+					<p class="article-product__price">Precio</p>
+					<form action="#" method="POST" class="container-add-product">
+						<button class="add-product" disabled>
+							<i class="fas fa-shopping-cart container-add-product__icon" aria-hidden="true"></i> 
+							Agregar al carrito
+						</button>
+					</form>
+				</article>
+
+				<article class="article-product">
+					<a href="#">
+						<img src="{% static 'assets/images/producto.webp' %}" alt="Producto1"
+							class="article-product__image" loading="lazy" />
+					</a>
+					<h3 class="article-product__title">Nombre del producto</h3>
+					<p class="article-product__price">Precio</p>
+					<form action="#" method="POST" class="container-add-product">
+						<button class="add-product" disabled>
+							<i class="fas fa-shopping-cart container-add-product__icon" aria-hidden="true"></i> 
+							Agregar al carrito
+						</button>
+					</form>
+				</article>
+
+				<article class="article-product">
+					<a href="#">
+						<img src="{% static 'assets/images/producto.webp' %}" alt="Producto1"
+							class="article-product__image" loading="lazy" />
+					</a>
+					<h3 class="article-product__title">Nombre del producto</h3>
+					<p class="article-product__price">Precio</p>
+					<form action="#" method="POST" class="container-add-product">
+						<button class="add-product" disabled>
+							<i class="fas fa-shopping-cart container-add-product__icon" aria-hidden="true"></i> 
+							Agregar al carrito
+						</button>
+					</form>
+				</article>
+			</div>
+		</section>
+
+		<section class="section-productos-ofertados">
+			<h2 class="section-productos-ofertados__title">
+				Categoria 2
+			</h2>
+
+			<div class="container-products">
+				<article class="article-product">
+					<a href="#">
+						<img src="{% static 'assets/images/producto.webp' %}" alt="Producto1"
+							class="article-product__image" loading="lazy" />
+					</a>
+					<h3 class="article-product__title">Nombre del producto</h3>
+					<p class="article-product__price">Precio</p>
+					<form action="#" method="POST" class="container-add-product">
+						<button class="add-product" disabled>
+							<i class="fas fa-shopping-cart container-add-product__icon" aria-hidden="true"></i> 
+							Agregar al carrito
+						</button>
+					</form>
+				</article>
+
+				<article class="article-product">
+					<a href="#">
+						<img src="{% static 'assets/images/producto.webp' %}" alt="Producto1"
+							class="article-product__image" loading="lazy" />
+					</a>
+					<h3 class="article-product__title">Nombre del producto</h3>
+					<p class="article-product__price">Precio</p>
+					<form action="#" method="POST" class="container-add-product">
+						<button class="add-product" disabled>
+							<i class="fas fa-shopping-cart container-add-product__icon" aria-hidden="true"></i> 
+							Agregar al carrito
+						</button>
+					</form>
+				</article>
+
+				<article class="article-product">
+					<a href="#">
+						<img src="{% static 'assets/images/producto.webp' %}" alt="Producto1"
+							class="article-product__image" loading="lazy" />
+					</a>
+					<h3 class="article-product__title">Nombre del producto</h3>
+					<p class="article-product__price">Precio</p>
+					<form action="#" method="POST" class="container-add-product">
+						<button class="add-product" disabled>
+							<i class="fas fa-shopping-cart container-add-product__icon" aria-hidden="true"></i> 
+							Agregar al carrito
+						</button>
+					</form>
+				</article>
+
+				<article class="article-product">
+					<a href="#">
+						<img src="{% static 'assets/images/producto.webp' %}" alt="Producto1"
+							class="article-product__image" loading="lazy" />
+					</a>
+					<h3 class="article-product__title">Nombre del producto</h3>
+					<p class="article-product__price">Precio</p>
+					<form action="#" method="POST" class="container-add-product">
+						<button class="add-product" disabled>
+							<i class="fas fa-shopping-cart container-add-product__icon" aria-hidden="true"></i> 
+							Agregar al carrito
+						</button>
+					</form>
+				</article>
+
+				<article class="article-product">
+					<a href="#">
+						<img src="{% static 'assets/images/producto.webp' %}" alt="Producto1"
+							class="article-product__image" loading="lazy" />
+					</a>
+					<h3 class="article-product__title">Nombre del producto</h3>
+					<p class="article-product__price">Precio</p>
+					<form action="#" method="POST" class="container-add-product">
+						<button class="add-product" disabled>
+							<i class="fas fa-shopping-cart container-add-product__icon" aria-hidden="true"></i> 
+							Agregar al carrito
+						</button>
+					</form>
+				</article>
+			</div>
+		</section>
+
+		<section class="section-productos-ofertados">
+			<h2 class="section-productos-ofertados__title">
+				Categoria 3
+			</h2>
+
+			<div class="container-products">
+				<article class="article-product">
+					<a href="#">
+						<img src="{% static 'assets/images/producto.webp' %}" alt="Producto1"
+							class="article-product__image" loading="lazy" />
+					</a>
+					<h3 class="article-product__title">Nombre del producto</h3>
+					<p class="article-product__price">Precio</p>
+					<form action="#" method="POST" class="container-add-product">
+						<button class="add-product" disabled>
+							<i class="fas fa-shopping-cart container-add-product__icon" aria-hidden="true"></i> 
+							Agregar al carrito
+						</button>
+					</form>
+				</article>
+
+				<article class="article-product">
+					<a href="#">
+						<img src="{% static 'assets/images/producto.webp' %}" alt="Producto1"
+							class="article-product__image" loading="lazy" />
+					</a>
+					<h3 class="article-product__title">Nombre del producto</h3>
+					<p class="article-product__price">Precio</p>
+					<form action="#" method="POST" class="container-add-product">
+						<button class="add-product" disabled>
+							<i class="fas fa-shopping-cart container-add-product__icon" aria-hidden="true"></i> 
+							Agregar al carrito
+						</button>
+					</form>
+				</article>
+
+				<article class="article-product">
+					<a href="#">
+						<img src="{% static 'assets/images/producto.webp' %}" alt="Producto1"
+							class="article-product__image" loading="lazy" />
+					</a>
+					<h3 class="article-product__title">Nombre del producto</h3>
+					<p class="article-product__price">Precio</p>
+					<form action="#" method="POST" class="container-add-product">
+						<button class="add-product" disabled>
+							<i class="fas fa-shopping-cart container-add-product__icon" aria-hidden="true"></i> 
+							Agregar al carrito
+						</button>
+					</form>
+				</article>
+
+				<article class="article-product">
+					<a href="#">
+						<img src="{% static 'assets/images/producto.webp' %}" alt="Producto1"
+							class="article-product__image" loading="lazy" />
+					</a>
+					<h3 class="article-product__title">Nombre del producto</h3>
+					<p class="article-product__price">Precio</p>
+					<form action="#" method="POST" class="container-add-product">
+						<button class="add-product" disabled>
+							<i class="fas fa-shopping-cart container-add-product__icon" aria-hidden="true"></i> 
+							Agregar al carrito
+						</button>
+					</form>
+				</article>
+
+				<article class="article-product">
+					<a href="#">
+						<img src="{% static 'assets/images/producto.webp' %}" alt="Producto1"
+							class="article-product__image" loading="lazy" />
+					</a>
+					<h3 class="article-product__title">Nombre del producto</h3>
+					<p class="article-product__price">Precio</p>
+					<form action="#" method="POST" class="container-add-product">
+						<button class="add-product" disabled>
+							<i class="fas fa-shopping-cart container-add-product__icon" aria-hidden="true"></i> 
+							Agregar al carrito
+						</button>
+					</form>
+				</article>
+			</div>
+		</section>
+
+		<section class="section-productos-ofertados">
+			<h2 class="section-productos-ofertados__title">
+				Categoria 4
+			</h2>
+
+			<div class="container-products">
+				<article class="article-product">
+					<a href="#">
+						<img src="{% static 'assets/images/producto.webp' %}" alt="Producto1"
+							class="article-product__image" loading="lazy" />
+					</a>
+					<h3 class="article-product__title">Nombre del producto</h3>
+					<p class="article-product__price">Precio</p>
+					<form action="#" method="POST" class="container-add-product">
+						<button class="add-product" disabled>
+							<i class="fas fa-shopping-cart container-add-product__icon" aria-hidden="true"></i> 
+							Agregar al carrito
+						</button>
+					</form>
+				</article>
+
+				<article class="article-product">
+					<a href="#">
+						<img src="{% static 'assets/images/producto.webp' %}" alt="Producto1"
+							class="article-product__image" loading="lazy" />
+					</a>
+					<h3 class="article-product__title">Nombre del producto</h3>
+					<p class="article-product__price">Precio</p>
+					<form action="#" method="POST" class="container-add-product">
+						<button class="add-product" disabled>
+							<i class="fas fa-shopping-cart container-add-product__icon" aria-hidden="true"></i> 
+							Agregar al carrito
+						</button>
+					</form>
+				</article>
+
+				<article class="article-product">
+					<a href="#">
+						<img src="{% static 'assets/images/producto.webp' %}" alt="Producto1"
+							class="article-product__image" loading="lazy" />
+					</a>
+					<h3 class="article-product__title">Nombre del producto</h3>
+					<p class="article-product__price">Precio</p>
+					<form action="#" method="POST" class="container-add-product">
+						<button class="add-product" disabled>
+							<i class="fas fa-shopping-cart container-add-product__icon" aria-hidden="true"></i> 
+							Agregar al carrito
+						</button>
+					</form>
+				</article>
+
+				<article class="article-product">
+					<a href="#">
+						<img src="{% static 'assets/images/producto.webp' %}" alt="Producto1"
+							class="article-product__image" loading="lazy" />
+					</a>
+					<h3 class="article-product__title">Nombre del producto</h3>
+					<p class="article-product__price">Precio</p>
+					<form action="#" method="POST" class="container-add-product">
+						<button class="add-product" disabled>
+							<i class="fas fa-shopping-cart container-add-product__icon" aria-hidden="true"></i> 
+							Agregar al carrito
+						</button>
+					</form>
+				</article>
+
+				<article class="article-product">
+					<a href="#">
+						<img src="{% static 'assets/images/producto.webp' %}" alt="Producto1"
+							class="article-product__image" loading="lazy" />
+					</a>
+					<h3 class="article-product__title">Nombre del producto</h3>
+					<p class="article-product__price">Precio</p>
+					<form action="#" method="POST" class="container-add-product">
+						<button class="add-product" disabled>
+							<i class="fas fa-shopping-cart container-add-product__icon" aria-hidden="true"></i> 
+							Agregar al carrito
+						</button>
+					</form>
+				</article>
+			</div>
+		</section>
+
+		<section class="section-productos-ofertados">
+			<h2 class="section-productos-ofertados__title">
+				Categoria 5
+			</h2>
+
+			<div class="container-products">
+				<article class="article-product">
+					<a href="#">
+						<img src="{% static 'assets/images/producto.webp' %}" alt="Producto1"
+							class="article-product__image" loading="lazy" />
+					</a>
+					<h3 class="article-product__title">Nombre del producto</h3>
+					<p class="article-product__price">Precio</p>
+					<form action="#" method="POST" class="container-add-product">
+						<button class="add-product" disabled>
+							<i class="fas fa-shopping-cart container-add-product__icon" aria-hidden="true"></i> 
+							Agregar al carrito
+						</button>
+					</form>
+				</article>
+
+				<article class="article-product">
+					<a href="#">
+						<img src="{% static 'assets/images/producto.webp' %}" alt="Producto1"
+							class="article-product__image" loading="lazy" />
+					</a>
+					<h3 class="article-product__title">Nombre del producto</h3>
+					<p class="article-product__price">Precio</p>
+					<form action="#" method="POST" class="container-add-product">
+						<button class="add-product" disabled>
+							<i class="fas fa-shopping-cart container-add-product__icon" aria-hidden="true"></i> 
+							Agregar al carrito
+						</button>
+					</form>
+				</article>
+
+				<article class="article-product">
+					<a href="#">
+						<img src="{% static 'assets/images/producto.webp' %}" alt="Producto1"
+							class="article-product__image" loading="lazy" />
+					</a>
+					<h3 class="article-product__title">Nombre del producto</h3>
+					<p class="article-product__price">Precio</p>
+					<form action="#" method="POST" class="container-add-product">
+						<button class="add-product" disabled>
+							<i class="fas fa-shopping-cart container-add-product__icon" aria-hidden="true"></i> 
+							Agregar al carrito
+						</button>
+					</form>
+				</article>
+
+				<article class="article-product">
+					<a href="#">
+						<img src="{% static 'assets/images/producto.webp' %}" alt="Producto1"
+							class="article-product__image" loading="lazy" />
+					</a>
+					<h3 class="article-product__title">Nombre del producto</h3>
+					<p class="article-product__price">Precio</p>
+					<form action="#" method="POST" class="container-add-product">
+						<button class="add-product" disabled>
+							<i class="fas fa-shopping-cart container-add-product__icon" aria-hidden="true"></i> 
+							Agregar al carrito
+						</button>
+					</form>
+				</article>
+
+				<article class="article-product">
+					<a href="#">
+						<img src="{% static 'assets/images/producto.webp' %}" alt="Producto1"
+							class="article-product__image" loading="lazy" />
+					</a>
+					<h3 class="article-product__title">Nombre del producto</h3>
+					<p class="article-product__price">Precio</p>
+					<form action="#" method="POST" class="container-add-product">
+						<button class="add-product" disabled>
+							<i class="fas fa-shopping-cart container-add-product__icon" aria-hidden="true"></i> 
+							Agregar al carrito
+						</button>
+					</form>
+				</article>
+			</div>
+		</section>
+
+		{% include 'plantillas/aside.html' %}
+	</main>
+
+	{% include 'plantillas/footer.html' %}
+{% endblock %}

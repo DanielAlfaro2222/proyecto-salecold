@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block head %}
+	<link rel="stylesheet" href="{% static 'css/contacto.css' %}" />
+	<title>Contacto</title>
+{% endblock %}
+
+{% block content %}
+	{% include 'plantillas/header.html' %}
+
+	<main class="main-contact">
+		{% if messages %}
+				{% for mensaje in messages %}
+					{% if mensaje.tags == 'success' %}
+						<div class = "exito">
+							<i class="fas fa-check-square" aria-hidden="true"></i> 
+							{{mensaje}}
+						</div>
+					{% else %}
+						<div class="error">
+							<i class="fas fa-exclamation-triangle" aria-hidden="true"></i> 
+							{{mensaje}}
+						</div>
+					{% endif %}
+				{% endfor %}
+		{% endif %}
+		<section class="section-contact">
+
+			<fieldset class="container-form-contact">
+				<h2 class="container-form-contact__title">Contactenos</h2>
+
+				<form action="{% url 'contact' %}" method="POST" class="form-contact">
+
+					{% csrf_token %}
+
+					<input type="text" class="form-contact__input" required minlength="4" maxlength="45"
+								autofocus tabindex="1" placeholder="Nombre" name="nombre">
+
+					<input type="text" class="form-contact__input" required minlength="4" maxlength="45" tabindex="2" placeholder="Apellido" name="apellido">
+
+					<input type="text" class="form-contact__input" required minlength="4" maxlength="45" tabindex="3" placeholder="Telefono" name="telefono">
+
+					<input type="email" class="form-contact__input" required minlength="8" tabindex="4" placeholder="Correo Electronico" name="email">
+					
+					<input type="text" class="form-contact__input" required maxlength="50" tabindex="5" placeholder="Asunto" name="asunto">
+
+					<textarea class="form-contact__textarea" required placeholder="Mensaje" tabindex="5" name="mensaje"></textarea>
+
+					<button class="form-contact__btn" tabindex="6">Enviar</button>
+				</form>
+			</fieldset>
+
+			<picture class="container-figure-contact">
+				<source media = "(min-width: 1000px)" srcset = "{% static 'assets/images/Contacto-desktop.webp' %}"  class ="container-figure-contact__img" loading = "lazy"/>
+
+				<img src="{% static 'assets/images/Contacto-mobile.webp' %}" alt="Imagen de contacto" class ="container-figure-contact__img"  loading = "lazy">
+			</picture>
+		</section>
+
+		{% include 'plantillas/aside.html' %}
+	</main>
+
+	{% include 'plantillas/footer.html' %}
+{% endblock %}

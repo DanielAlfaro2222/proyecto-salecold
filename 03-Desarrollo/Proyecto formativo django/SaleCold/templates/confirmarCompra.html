@@ -1,0 +1,80 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="stylesheet" href="{% static 'css/normalize.css' %}" />
+	<link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+	<link rel="stylesheet" href="{% static 'css/confirmarCompra.css' %}" />
+	<link rel="shortcut icon" href="{% static 'assets/favicon/Logo4.webp' %}" type="image/x-icon" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" />
+
+	<link href="https://fonts.googleapis.com/css2?family=News+Cycle&display=swap" rel="stylesheet" />
+	<link href="https://fonts.googleapis.com/css2?family=Poiret+One&display=swap" rel="stylesheet" />
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet" />
+	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet" />
+
+	<link href="https://fonts.googleapis.com/css2?family=Kalam:wght@300&display=swap" rel="stylesheet" />
+
+	<title>SaleCold</title>
+</head>
+
+<body>
+
+	{% include 'plantillas/header.html' %}
+
+	<main class="main-confirmar">
+		<fieldset class="container-confirmar">
+			<legend class="container-confirmar__title"> Confirmación de compra </legend>
+
+			<form action="#" method="POST" class="form-confirmar">
+				<label class="form-confirmar__label">
+					Nombres
+					<input type="text" required name="Nombre" class="form-confirmar__input" />
+
+				</label>
+				<label class="form-confirmar__label">
+					Correo
+					<input type="email" required name="correo" class="form-confirmar__input" />
+				</label>
+				<label class="form-confirmar__label">
+					Direccion
+					<input type="text" required name="direccion" class="form-confirmar__input" />
+				</label>
+				<label class="form-confirmar__label">
+					Tipo de entrega
+					<select name="Tipo de entrega" id="" class="form-confirmar__input form-confirmar__input--background"
+						required>
+						<option></option>
+						<option value="Domicilio">Domicilio</option>
+						<option value="Punto de venta">Punto de venta</option>
+					</select>
+				</label>
+				<label for="descripcion" class="form-confirmar__label">
+					Comentario
+				</label>
+				<label>
+					<textarea name="descripcion" id="Comentario" cols="36" rows="8" class="form-confirmar__textarea"
+						tabindex="6" required></textarea>
+				</label>
+				<button class="form-confirmar__button">
+					Agregar
+				</button>
+				<button class="form-confirmar__button form-confirmar__button--cancelar">
+					Cancelar
+				</button>
+
+			</form>
+		</fieldset>
+
+		{% include 'plantillas/aside.html' %}
+	</main>
+
+	{% include 'plantillas/footer.html' %}
+</body>
+
+</html>

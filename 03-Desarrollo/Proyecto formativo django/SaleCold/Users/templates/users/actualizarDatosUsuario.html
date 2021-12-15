@@ -1,0 +1,127 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="stylesheet" href="{% static 'css/normalize.css' %}" />
+	<link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+	<link rel="stylesheet" href="{% static 'css/actualizarDatos.css' %}" />
+	<link rel="shortcut icon" href="{% static 'assets/favicon/Logo4.webp' %}" type="image/x-icon" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" />
+
+	<link href="https://fonts.googleapis.com/css2?family=News+Cycle&display=swap" rel="stylesheet" />
+	<link href="https://fonts.googleapis.com/css2?family=Poiret+One&display=swap" rel="stylesheet" />
+
+	<link href="https://fonts.googleapis.com/css2?family=Kalam:wght@300&display=swap" rel="stylesheet" />
+
+	<title>SaleCold</title>
+</head>
+
+<body>
+
+	{% include 'plantillas/header.html' %}
+
+	<main>
+
+		{% if messages %}
+				{% for mensaje in messages %}
+					{% if mensaje.tags == 'success' %}
+						<div class = "exito">
+							<i class="fas fa-check-square" aria-hidden="true"></i> 
+							{{mensaje}}
+						</div>
+					{% else %}
+						<div class="error">
+							<i class="fas fa-exclamation-triangle" aria-hidden="true"></i> 
+							{{mensaje}}
+						</div>
+					{% endif %}
+				{% endfor %}
+		{% endif %}
+
+		<fieldset class="container-update-user">
+			<h2 class="container-update-user__title">Actualizar Datos</h2>
+
+			<form method="POST" class="container-form-uptade-user">
+
+				{% csrf_token %}
+
+				<label class="container-label-form">
+					Nombres
+					<input type="text" required name="nombre" value="{{user.first_name}}"
+					class="container-label-form__input"/>
+				</label>
+
+				<label class="container-label-form">
+					Apellidos
+					<input type="text" minlength="4" maxlength="15" required name="apellido" value="{{user.last_name}}" class="container-label-form__input"/>
+				</label>
+
+				<label class="container-label-form">
+					Tipo de documento
+					<select name="tipo de documento" class="container-select-update-user">
+						{% for tipodocumento in tipos_de_documento %}
+							{% if tipodocumento == informacion_adicional.type_of_document %}
+								<option value="{{tipodocumento.id_type_of_document}}" selected>
+									{{tipodocumento}}
+								</option>
+							{% else %}
+								<option value="{{tipodocumento.id_type_of_document}}">{{tipodocumento}}</option>
+							{% endif %}
+						{% endfor %}
+					</select>
+				</label>
+
+				<label class="container-label-form">
+					Numero de documento
+					<input type="text" value="{{informacion_adicional.number_document}}" name = "numero de documento" class="container-label-form__input">
+				</label>
+
+				<label class="container-label-form">
+					Ciudad
+					<select name="ciudad" class="container-select-update-user">
+						{% for ciudad in ciudades %}
+							{% if ciudad == informacion_adicional.city %}
+								<option value="{{ciudad.id_city}}" selected>
+									{{ciudad}}
+								</option>
+							{% else %}
+								<option value="{{ciudad.id_city}}">{{ciudad}}</option>
+							{% endif %}
+						{% endfor %}
+					</select>
+				</label>
+
+				<label class="container-label-form">
+					Direccion
+					<input type="text" value="{{informacion_adicional.address}}" name="direccion" class="container-label-form__input">
+				</label>
+
+				<label class="container-label-form">
+					Correo
+					<input type="email" required name="correo" value="{{user.email}}"
+					class="container-label-form__input" />
+				</label>
+
+				<label class="container-label-form">
+					Numero telefonico
+					<input type="text" required name="telefono" value="{{informacion_adicional.phone_number}}" class="container-label-form__input"/>
+				</label>
+
+				<button class="container-form-uptade-user__btn">
+					Actualizar informacion
+				</button>
+			</form>
+		</fieldset>
+
+		{% include 'plantillas/aside.html' %}
+	</main>
+
+	{% include 'plantillas/footer.html' %}
+</body>
+
+</html>

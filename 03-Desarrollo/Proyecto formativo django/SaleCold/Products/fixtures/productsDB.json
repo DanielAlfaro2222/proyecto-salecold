@@ -1,0 +1,317 @@
+[
+{
+    "model": "Products.product",
+    "pk": 1,
+    "fields": {
+        "name": "MANOMETRO COMPLETO R22,134A,410A,404 UNIWELD QS8N5SMEZ",
+        "description": "CARACTERÍSTICAS \r\n\r\nUn manómetro, se encarga de medir las presiones de el refrigerante un sistema de refrigeración,\r\ncon este juego de manómetros usted podrá medir tanto la presión de succión, como la de\r\ndescarga.\r\n\r\nESPECIFICACIONES \r\n\r\nEste juego de manómetros UNIWELD QS8N, incluye manguera de 5\" y 2 Acoples R410A. \\n \\n\r\n\r\nAPLICACIONES \r\n\r\nEl manómetro sirve para leer las presiones de el R-134a, R-404A, R-22, y R-410A.",
+        "image": "products/images/imagen1.webp",
+        "unit_price": 123345,
+        "reference": "8c58b083-3",
+        "stock": 12,
+        "discount": 5,
+        "unit_of_measure": 1,
+        "slug": "manometro-completo-r22134a410a404-uniweld-qs8n5smez"
+    }
+},
+{
+    "model": "Products.product",
+    "pk": 2,
+    "fields": {
+        "name": "Bomba condensado 230V REF. SI-1800",
+        "description": "Bomba condensado 230V REF. SI-1800\r\nBomba monobloque centrífuga (500 l/h), recomendada para la absorción de condensados\r\ncargados, a alta temperatura (65°) y ácidos (ph > 2,5) de las calderas de condensación de gas.\r\nTambién resulta idónea para las instalaciones de climatización y de frío industrial.\r\nBENEFICIOS:\r\n-Cuatro orejetas para una fijación enganchada directamente al muro o suspendida del techo\r\n(utilizando tornillos aterrajados M8 o más pequeños)\r\n-Cuatro entradas de condensados 30 mm\r\n-Válvula anti retorno de un cuarto de vuelta, fácilmente desmontable a mano para tubo de PVC de\r\n10 mm\r\n-Bajo nivel sonoro\r\n-Cubierta fácilmente desmontable ñ bomba reversible\r\n-Flotador resistente a los ácidos y a los aceites\r\n-Concepción reforzada para una mejor resistencia a los golpes\r\n-Gran altura de descarga\r\n-Alto caudal, que permite tiempos de funcionamiento reducidos\r\n-Protección térmica 105º",
+        "image": "products/images/imagen2.webp",
+        "unit_price": 12387,
+        "reference": "bc78f69f-4",
+        "stock": 3,
+        "discount": 10,
+        "unit_of_measure": 1,
+        "slug": "bomba-condensado-230v-ref-si-1800"
+    }
+},
+{
+    "model": "Products.product",
+    "pk": 3,
+    "fields": {
+        "name": "ANEMOMETRO QUALITY",
+        "description": "QE QUALITY digital anemómetro mide la velocidad del viento y temperatura con una precisión sin\r\nigual y una entrega rápida.\r\nLa unidad le permite elegir entre ° C o ° F con el toque de un botón. Es ideal para aplicaciones\r\nHVAC / R, tubos de escape, ventiladores, y muchos otros. Las especificaciones de QE QUALITY\r\nanemómetros dígitos incluyen: velocidad del viento y temperatura medición opciones de\r\nretención de datos, Max / Min / Prom / Cu.... mediciones, gran pantalla LCD, retroiluminación azul,\r\nincluye batería de 9 voltios, automático ON / OFF, funda de transporte incluida, y en caja\r\nindividual.",
+        "image": "products/images/imagen3.webp",
+        "unit_price": 453435,
+        "reference": "6e25e542-d",
+        "stock": 14,
+        "discount": 23,
+        "unit_of_measure": 1,
+        "slug": "anemometro-quality"
+    }
+},
+{
+    "model": "Products.product",
+    "pk": 4,
+    "fields": {
+        "name": "Bomba de Vacio Quality para refrigerante R22-R134a-R410",
+        "description": "Serie de la bomba de vacío QE QUALITY incluyen nuevos 3 puertos de entrada de conexión (1/4”\r\nSAE, 3/8” SAE, y 1/2” ACME), son de doble etapa, circulación de aceite, bombas de vacío de espiral\r\nrebanada con componentes técnicos básicos. Son aplicables para equipos de aire acondicionado y\r\nrefrigeración (R-12, refrigerantes R-22, R-134A y R-410), dispositivos de impresión, aparatos\r\nmédicos, envasado al vacío, análisis de gases, termoplástico moldeado y otras industrias.\r\nLas características incluyen: diseño de arco circular en el cabezal de la bomba de montaje doble,\r\nmejora los niveles de vacío y el rendimiento laboral; diseño del producto puede reducir la niebla\r\ndel aceite, y un separador de petróleo y de gas en la salida de escape de aire efectivamente trata y\r\npreviene la contaminación por hidrocarburos en la atmósfera; diseño del perno doble ubicación\r\ndel cabezal de la bomba montada, mejora la vida de servicio y es de fácil mantenimiento; el motor\r\ny la bomba están integrados para hacer producto compacto, simple y racional; el diseño especial\r\nde las bombas de vacío QE QUALITY grandes par de arranque garantiza un arranque normal en\r\ntemperatura baja (≥ 5 ° C) y condición de bajo voltaje (con tensión nominal ± 10%); el diseño\r\nunibody de la manija, caja de condensador y escape filtro hace más eficiente con diseño conciso",
+        "image": "products/images/imagen4.webp",
+        "unit_price": 875647,
+        "reference": "21b7bbfb-5",
+        "stock": 10,
+        "discount": 4,
+        "unit_of_measure": 1,
+        "slug": "bomba-de-vacio-quality-para-refrigerante-r22-r134a-r410"
+    }
+},
+{
+    "model": "Products.product",
+    "pk": 5,
+    "fields": {
+        "name": "Absorvedores de Vibración",
+        "description": "Los Absorvedores de vibración como su nombre lo indica, cumplen la función de absorber la\r\nvibración y los ruidos generados por el compresor y así reducir la tensión que se produce frente a\r\nla tubería por la expansión térmica con el equipo de refrigeración.\r\nPuede ser usado en sistemas de Aire Acondicionado y refrigeración.\r\nAbsorbe la vibración y los ruidos generados por el compresor. Reduce la tensión que se produce\r\nfrente a la tubería por la expansión térmica con el equipo de refrigeración y de aire acondicionado.\r\nPuede ser usado en sistemas de aire acondicionado y refrigeración.\r\nBeneficios\r\n\r\nDiseño para resistir los cambios extremos de temperatura\r\n\r\nCertificado UL\r\nCertificado CE",
+        "image": "products/images/imagen5.webp",
+        "unit_price": 456765,
+        "reference": "0039cbe4-b",
+        "stock": 34,
+        "discount": 20,
+        "unit_of_measure": 1,
+        "slug": "absorvedores-de-vibracion"
+    }
+},
+{
+    "model": "Products.product",
+    "pk": 6,
+    "fields": {
+        "name": "Cortatubos",
+        "description": "En TRS encuentras gran variedad de herramientas para desarrollar mantenimientos y garantizar el\r\ncorrecto funcionamiento de diversos Equipo de Aire Acondicionado y refrigeración.\r\nEl cortatubo es una herramienta utilizada para cortar tubos de cobre redondos en ángulo recto,\r\nproduce un corte limpio, esta herramienta es a menudo rápida, siendo la forma más conveniente\r\nde cortar tubería.",
+        "image": "products/images/imagen6.webp",
+        "unit_price": 354654,
+        "reference": "b32dd69d-c",
+        "stock": 0,
+        "discount": 5,
+        "unit_of_measure": 1,
+        "slug": "cortatubos"
+    }
+},
+{
+    "model": "Products.product",
+    "pk": 7,
+    "fields": {
+        "name": "Codo de cobre",
+        "description": "Codo de Cobre: Accesorio de instalación utilizado en uniones de tubos\r\nLos codos de Cobre son un accesorio de forma curva que se instalan entre las dos longitudes de un\r\ntubo para permitir un cambio de dirección del fluido, y son utilizados en la instalación de Aire\r\nAcondicionado y refrigeración\r\nLas reducciones de Cobre se utilizan para unir la tubería de un diámetro con la tubería de cobre de\r\notro diámetro inferior, y este debe ser un cobre soldable, también nos permite acoplarle una pieza\r\ncon otra de menor diámetro, esto con el fin de evitar que dicha unión presente fugas.",
+        "image": "products/images/imagen7.webp",
+        "unit_price": 65476,
+        "reference": "690b0f03-1",
+        "stock": 10,
+        "discount": 0,
+        "unit_of_measure": 1,
+        "slug": "codo-de-cobre"
+    }
+},
+{
+    "model": "Products.product",
+    "pk": 8,
+    "fields": {
+        "name": "Conector Branch",
+        "description": "El conector Branch está especialmente diseñado para realizar interconexiones entre tuberías.\r\nLos conectores Branch, son derivaciones en paralelo en material de cobre muy resistentes, para\r\nunir los diferentes tipos de tubería del sistema hacia la unidad interior correspondiente, utilizados\r\nen los sistemas VRF.",
+        "image": "products/images/imagen8.webp",
+        "unit_price": 54453,
+        "reference": "35f71378-0",
+        "stock": 7,
+        "discount": 0,
+        "unit_of_measure": 1,
+        "slug": "conector-branch"
+    }
+},
+{
+    "model": "Products.product",
+    "pk": 9,
+    "fields": {
+        "name": "Compresores Reciprocantes COPELAND",
+        "description": "El compresor reciprocante TRS Partes, tiene diferentes aplicaciones para sistemas de Aire\r\nAcondicionado, bombas de calor y refrigeración. Con la línea comercializada por TRS Partes, los\r\nclientes disponen dediversas opciones de tecnología para satisfacer sus necesidades continuas.\r\nCompresores Reciprocantes TRS Partes, son compresores de desplazamiento positivo, en el que la\r\ncompresión se obtiene por desplazamiento de un pistón moviéndose lineal y secuencialmente de\r\natrás hacia adelante dentro de un cilindro, reduciendo de esta forma, el volumen de la cámara\r\n(cilindro) donde se deposita el gas refrigerante.",
+        "image": "products/images/imagen9.webp",
+        "unit_price": 87656,
+        "reference": "6196b779-7",
+        "stock": 0,
+        "discount": 10,
+        "unit_of_measure": 1,
+        "slug": "compresores-reciprocantes-copeland"
+    }
+},
+{
+    "model": "Products.product",
+    "pk": 10,
+    "fields": {
+        "name": "Compresores Reciprocantes DANFOSS",
+        "description": "El compresor reciprocante TRS Partes, tiene diferentes aplicaciones para sistemas de Aire\r\nAcondicionado, bombas de calor y refrigeración. Con la línea comercializada por TRS Partes, los\r\nclientes disponen de diversas opciones de tecnología para satisfacer sus necesidades continuas.\r\nCompresores Reciprocantes TRS Partes, son compresores de desplazamiento positivo, en el que la\r\ncompresión se obtiene por desplazamiento de un pistón moviéndose lineal y secuencialmente de\r\natrás hacia adelante dentro de un cilindro, reduciendo de esta forma, el volumen de la cámara\r\n(cilindro) donde se deposita el gas refrigerante.",
+        "image": "products/images/imagen10.webp",
+        "unit_price": 674532,
+        "reference": "0b77c1bd-b",
+        "stock": 10,
+        "discount": 0,
+        "unit_of_measure": 1,
+        "slug": "compresores-reciprocantes-danfoss"
+    }
+},
+{
+    "model": "Products.product",
+    "pk": 11,
+    "fields": {
+        "name": "Compresores Reciprocantes de refrigeración COPELAND",
+        "description": "El compresor reciprocante TRS Partes, tiene diferentes aplicaciones para sistemas de Aire\r\nAcondicionado, bombas de calor y refrigeración. Con la línea comercializada por TRS Partes, los\r\nclientes disponen de diversas opciones de tecnología para satisfacer sus necesidades continuas.\r\nCompresores Reciprocantes TRS Partes, son compresores de desplazamiento positivo, en el que la\r\ncompresión se obtiene por desplazamiento de un pistón moviéndose lineal y secuencialmente de\r\natrás hacia adelante dentro de un cilindro, reduciendo de esta forma, el volumen de la cámara\r\n(cilindro) donde se deposita el gas refrigerante.",
+        "image": "products/images/imagen11.webp",
+        "unit_price": 34254,
+        "reference": "940d4bad-9",
+        "stock": 4,
+        "discount": 5,
+        "unit_of_measure": 1,
+        "slug": "compresores-reciprocantes-de-refrigeracion-copeland"
+    }
+},
+{
+    "model": "Products.product",
+    "pk": 12,
+    "fields": {
+        "name": "Compresores Scroll DANFOSS",
+        "description": "El compresor Scroll TRS Partes, es aliado del ahorro energético. Ofrece un mayor\r\nperfeccionamiento técnico sobre los compresores convencionales.\r\nEl compresor scroll TRS es un compresor de desplazamiento positivo, y permite operar con niveles\r\nmuy bajos de ruido y vibración esto se debe a que se conforman de un menor número de partes\r\nmóviles, lo que los hace más compactos y ligeros en su peso.",
+        "image": "products/images/imagen12.webp",
+        "unit_price": 8765564,
+        "reference": "45bd5c04-1",
+        "stock": 0,
+        "discount": 0,
+        "unit_of_measure": 1,
+        "slug": "compresores-scroll-danfoss"
+    }
+},
+{
+    "model": "Products.product",
+    "pk": 13,
+    "fields": {
+        "name": "Condensadoras de refrigeración Blueline",
+        "description": "Las condensadoras de Refrigeración BLUELINE, están diseñadas especialmente para ambientes de\r\nalta temperatura.\r\nNuestras condensadoras de refrigeración BLUELINE, cuentan rápida y fácil instalación y\r\nmantenimiento, equipadas con compresores scroll y bajo nivel de ruido gracias a su diseño\r\naerodinámico.",
+        "image": "products/images/imagen13.webp",
+        "unit_price": 234435,
+        "reference": "06940007-b",
+        "stock": 0,
+        "discount": 10,
+        "unit_of_measure": 1,
+        "slug": "condensadoras-de-refrigeracion-blueline"
+    }
+},
+{
+    "model": "Products.product",
+    "pk": 14,
+    "fields": {
+        "name": "Condensadoras de refrigeración DANFOSS",
+        "description": "La gama de unidades condensadoras DANFOSS, comercializadas por TRS Partes, es una de las más\r\namplias del mercado. El diseño de las unidades condensadoras estándar y carrozadas proporciona\r\nlos máximos niveles de calidad, fiabilidad y eficiencia energética.Las condensadoras de Refrigeracón DANFOSS, están disponibles con compresores de diferentes\r\ntipos (scroll herméticos, alternativos y alternativos semiherméticos), son compatibles con diversos\r\nrefrigerantes.",
+        "image": "products/images/imagen14.webp",
+        "unit_price": 321435,
+        "reference": "41a827f8-5",
+        "stock": 40,
+        "discount": 0,
+        "unit_of_measure": 1,
+        "slug": "condensadoras-de-refrigeracion-danfoss"
+    }
+},
+{
+    "model": "Products.product",
+    "pk": 15,
+    "fields": {
+        "name": "Condensadoras de Refrigeración Tecumseh",
+        "description": "La amplia gama de unidades condensadoras distribuida por TRS cuenta con el respaldo de más de\r\n75 años de experiencia de Tecumseh. Desde pequeñas unidades condensadoras evaporadoras,\r\nhasta grandes unidades condensadoras para exteriores. Un producto para cada necesidad.\r\nEstas condensadoras cuenta con el respaldo de más de 75 años de experiencia de Tecumseh, Su\r\nfunción es la de un intercambiador de calor para enfriar y condensar el vapor refrigerante entrante\r\nen líquido y la de un ventilador para soplar aire del exterior a través de la sección del\r\nintercambiador de calor para enfriar el refrigerante en el interior.",
+        "image": "products/images/imagen15.webp",
+        "unit_price": 98432,
+        "reference": "12931270-2",
+        "stock": 10,
+        "discount": 2,
+        "unit_of_measure": 1,
+        "slug": "condensadoras-de-refrigeracion-tecumseh"
+    }
+},
+{
+    "model": "Products.product",
+    "pk": 16,
+    "fields": {
+        "name": "Evaporadores de Refrigeración",
+        "description": "Los evaporadores comerciales BLUELINE son ideales para ser usados en industrias farmacéuticas,\r\nquímicas, petroquímicas y alimenticias.\r\nLos evaporadores comerciales Blueline son ideales para ser usados en industrias farmacéuticas,\r\nquímicas, petroquímicas y alimenticias. Ofrecen procesos de refrigeración confiables en bajas\r\ntemperaturas de evaporación y un alto desempeño en cuanto ahorro de energía refiere, cuenta\r\ncon módulos independientes para cada ventilador, evita interferencias de funcionamiento entre\r\nventiladores, soldadura especial de alta resistencia, garantizando estanqueidad durante toda la\r\nvida útil del serpentín.",
+        "image": "products/images/imagen16.webp",
+        "unit_price": 123425,
+        "reference": "8eabf509-f",
+        "stock": 10,
+        "discount": 0,
+        "unit_of_measure": 1,
+        "slug": "evaporadores-de-refrigeracion"
+    }
+},
+{
+    "model": "Products.product",
+    "pk": 17,
+    "fields": {
+        "name": "Aire Acondicionado Mini Split Blueline 12.000 BTU 220V",
+        "description": "Los Aires Acondicionados Mini Split BLUELINE 12.000 BTU son de alta eficiencia y climatizan el\r\nlugar en el que te encuentres, con un gran funcionamiento silencioso, poseen un amplio flujo de\r\naire y se adapta a cualquier espacio.",
+        "image": "products/images/imagen17.webp",
+        "unit_price": 56456,
+        "reference": "cdef147f-c",
+        "stock": 0,
+        "discount": 0,
+        "unit_of_measure": 1,
+        "slug": "aire-acondicionado-mini-split-blueline-12000-btu-220v"
+    }
+},
+{
+    "model": "Products.product",
+    "pk": 18,
+    "fields": {
+        "name": "Equipo Piso Techo BLUELINE",
+        "description": "Los sistemas Fancoil Pisotecho BLUELINE, ofrecidos por TRS cuentan con un diseño innovador y\r\ndiversas herramientas que proporcionan diferentes niveles de potencia en enfriamiento y confort.\r\nEl equipo Piso Techo BLUELINE, es adaptable a todos los ambientes, ya sea ubicándolos de forma\r\nhorizontal en el techo o en posición vertical o en el suelo contra la pared, alcanzan a cubrir\r\ngrandes superficies, garantizando eficiencia energética en todos sus productos.",
+        "image": "products/images/imagen18.webp",
+        "unit_price": 324567,
+        "reference": "f7a72701-a",
+        "stock": 10,
+        "discount": 34,
+        "unit_of_measure": 1,
+        "slug": "equipo-piso-techo-blueline"
+    }
+},
+{
+    "model": "Products.product",
+    "pk": 19,
+    "fields": {
+        "name": "BLUELINE Equipo VRF",
+        "description": "Equilibrio perfecto: máxima eficiencia en el ciclo de transición, rápida reacción en los días más\r\ncalurosos. Alta potencia y eficiente con tecnología de vanguardia para el compresor rotativo doble\r\nDC que garantiza mayor precisión de temperatura y un uso de energía altamente eficiente.\r\nLimitación de salida durante las restricciones de suministro de electricidad.\r\nEl VC Pro VRF puede operar en un amplio rango de temperatura ambiente : desde -5oC hasta 55oC\r\n.\r\nLa unidad exterior VC Pro utiliza una válvula de expansión múltiples de alta precisión para lograr\r\nun ambiente interior confortable.\r\nLa precisión de control de la EXV es de hasta 3000 pasos, por lo que puede controlar con precisión\r\nel flujo del refrigerante y garantizar una temperatura interior estable, de esta manera, la\r\nconfiguración de temperatura se puede ajustar en pasos hasta de 0,5 C, lo que permite un control\r\nmas preciso\r\nModo silencioso nocturnos, modo silencioso y modo de super silencioso, brindan más libertad y\r\nconveniencia para satisfacer las necesidades del cliente.",
+        "image": "products/images/imagen19.webp",
+        "unit_price": 234564,
+        "reference": "c2a4367b-d",
+        "stock": 10,
+        "discount": 0,
+        "unit_of_measure": 1,
+        "slug": "blueline-equipo-vrf"
+    }
+},
+{
+    "model": "Products.product",
+    "pk": 20,
+    "fields": {
+        "name": "Equipo Paquete por Aire BLUELINE",
+        "description": "Las unidades comercializadas en TRS tienen baja emisión de dióxido de carbono, prestaciones\r\nindoor y outdoor, diferentes capacidades para facilitar su instalación y además poseen un diseño\r\nelegante.\r\nInstalaciones en proyectos a la intemperie requieren equipos especializados que resistan los\r\nambientes exteriores y tecnología con amplia gama de capacidades para obtener una mayor\r\nflexibilidad en su instalación.\r\n\r\n* Ahorro energético\r\n* Equipo técnico desde la compra del equipo\r\n* Resistencia a la intemperie\r\n* Diseño elegante\r\n* Funcionamiento silencioso.",
+        "image": "products/images/imagen20.webp",
+        "unit_price": 234546,
+        "reference": "3c09c02d-2",
+        "stock": 10,
+        "discount": 0,
+        "unit_of_measure": 1,
+        "slug": "equipo-paquete-por-aire-blueline"
+    }
+},
+{
+    "model": "Products.product",
+    "pk": 21,
+    "fields": {
+        "name": "BLUELINE Equipo VRF",
+        "description": "Equilibrio perfecto: máxima eficiencia en el ciclo de transición, rápida reacción en los días más\r\ncalurosos. Alta potencia y eficiente con tecnología de vanguardia para el compresor rotativo doble\r\nDC que garantiza mayor precisión de temperatura y un uso de energía altamente eficiente.\r\nLimitación de salida durante las restricciones de suministro de electricidad.\r\nEl VC Pro VRF puede operar en un amplio rango de temperatura ambiente : desde -5oC hasta\r\n55oC.\r\nLa unidad exterior VC Pro utiliza una válvula de expansión múltiples de alta precisión para lograr\r\nun ambiente interior confortable.\r\n\r\nLa precisión de control de la EXV es de hasta 3000 pasos, por lo que puede controlar con precisión\r\nel flujo del refrigerante y garantizar una temperatura interior estable, de esta manera, la\r\nconfiguración de temperatura se puede ajustar en pasos hasta de 0,5 C, lo que permite un control\r\nmas preciso\r\nModo silencioso nocturnos, modo silencioso y modo de super silencioso, brindan más libertad y\r\nconveniencia para satisfacer las necesidades del cliente.",
+        "image": "products/images/imagen21.webp",
+        "unit_price": 1324432,
+        "reference": "ea57f7a5-1",
+        "stock": 10,
+        "discount": 34,
+        "unit_of_measure": 1,
+        "slug": "blueline-equipo-vrf-c71f37e0"
+    }
+}
+]

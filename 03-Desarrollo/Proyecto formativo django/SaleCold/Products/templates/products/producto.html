@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% load product_extras %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/producto.css' %}">
+    <title>{{producto.name}}</title>
+{% endblock %}
+
+{% block content %}
+    {% include 'plantillas/header.html' %}
+
+    <main class="main-product">
+
+        <section class="section-view-product">
+            <article class="container-images-product">
+                <figure class="container-figure-product container-figure-product--position">
+                    <img src="{{producto.image.url}}" alt="{{producto.name}}"
+                        class="container-figure-product__img" loading="lazy">
+                </figure>
+                <figure class="container-figure-product container-figure-product--bottom">
+                    <img src="{{producto.image.url}}" alt="{{producto.name}}"
+                        class="container-figure-product__img" loading="lazy">
+                </figure>
+                <figure class="container-figure-product container-figure-product--bottom">
+                    <img src="{{producto.image.url}}" alt="{{producto.name}}"
+                        class="container-figure-product__img" loading="lazy">
+                </figure>
+                <figure class="container-figure-product container-figure-product--bottom">
+                    <img src="{{producto.image.url}}" alt="{{producto.name}}"
+                        class="container-figure-product__img" loading="lazy">
+                </figure>
+            </article>
+
+            <article class="container-info-product">
+                <h2 class="container-info-product__title">{{producto.name}}</h2>
+                <p class="container-info-product__code">Codigo: {{producto.reference}}</p>
+                {% if producto.discount == 0 %}
+                    <p class="container-info-product__price">$ {{producto.unit_price}}</p>
+                {% else %}
+                    <p class="container-info-product__price">
+                        {{producto.id_product | discount_price}}
+                    </p>
+                    <p class="container-info-product__discount">
+                        Antes ${{producto.unit_price}}
+                    </p>
+                {% endif %}
+
+                <p>{{producto.description}}</p>
+
+                <p>{{productos}}</p>
+                
+
+                <form action="#" method="POST" class="container-form-product">
+                    {% csrf_token %}
+                    <label class="container-count-order">
+                        <input type="button" title="Eliminar" value="-" id="remove" class="container-count-order__add" />
+                        <input type="number" readonly value="1" id="quantity" name="quantity" class="container-count-order__quantity">
+                        <input type="button" title="Adicionar" value="+" id="add" class="container-count-order__remove" />
+                    </label>
+
+                    <button class="container-form-product__btn">
+                        <i class="fas fa-shopping-cart container-add-product__icon"></i> 
+                        Agregar al carrito
+                    </button>
+                </form>
+            </article>
+        </section>
+
+        <section class="container-others-products">
+            <h2 class="container-others-products__title">Otros productos relacionados</h2>
+
+            <div class="container-more-products">
+                {% for producto in productos_aleatorios %}
+                    {% include 'products/snippets/plantillaProducto.html' %}
+                {% endfor %}
+            </div>
+        </section>
+
+        {% include 'plantillas/aside.html' %}
+    </main>
+
+    {% include 'plantillas/footer.html' %}
+    <script src="{% static 'js/carrito.js' %}" defer></script>
+{% endblock %}

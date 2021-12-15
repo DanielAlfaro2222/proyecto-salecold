@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block head %}
+	<link rel="stylesheet" href="{% static 'css/cambiarcontraseña.css' %}" />
+	<title>Cambiar contraseña</title>
+{% endblock %}
+
+{% block content %}
+
+	{% include 'plantillas/header.html' %}
+
+	<main>
+		<fieldset class="container-contraseña">
+			<legend class="container-contraseña__title">
+				Cambiar Contraseña
+			</legend>
+
+			<form action="#" method="POST" class="form-contraseña">
+				<label class="form-contraseña__label">
+					Contraseña Actual
+					<input type="password" minlength="4" maxlength="15" required name="Contraseña Actual"
+						class="form-contraseña__input" />
+				</label>
+				<label class="form-contraseña__label">
+					Contraseña Nueva
+					<input type="password" minlength="4" maxlength="15" required name="Contraseña Nueva"
+						class="form-contraseña__input" />
+				</label>
+
+				<button class="form-contraseña__btn">Guardar</button>
+			</form>
+		</fieldset>
+
+		{% include 'plantillas/aside.html' %}
+	</main>
+	{% include 'plantillas/footer.html' %}
+{% endblock %}

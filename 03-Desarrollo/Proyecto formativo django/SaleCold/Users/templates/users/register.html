@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block head %}
+	<link rel="stylesheet" href="{% static 'css/register.css' %}" />
+	<title>Registro</title>
+{% endblock %}
+
+{% block content %}
+
+	{% include 'plantillas/header.html' %}
+
+	<main>
+		{% if mensaje %}
+			<div class="error">
+				<i class="fas fa-exclamation-triangle" aria-hidden="true"></i> 
+				{{mensaje}}
+			</div>
+		{% endif %}
+
+		<fieldset class="container-register">
+			<h2 class="container-register__title"> Registro </h2>
+
+			<form action = "{% url 'register' %}" method="POST" class="form-register">
+				{% csrf_token %}
+
+				{{formulario.name}}
+				{% if formulario.name.errors %}
+					{{formulario.name.errors}}
+                {% endif %}
+
+				{{formulario.apellido}}
+				{% if formulario.apellido.errors %}
+					{{formulario.apellido.errors}}
+                {% endif %}
+
+				<select name="tipo_documento" class="container-select-register" required>
+					<option disabled selected>Tipo de documento</option>
+					{% for elemento in TipoDeDocumento %}
+						<option value="{{elemento.id_type_of_document}}">{{elemento}}</option>
+					{% endfor %}
+				</select>
+
+				{{formulario.number_document}}
+
+				<select name="genero" class="container-select-register" required>
+					<option disabled selected class="form-datalist__option">Genero</option>
+					<option value="Hombre" class="form-datalist__option">Hombre</option>
+					<option value="Mujer" class="form-datalist__option">Mujer</option>
+				</select>
+
+				<select name="ciudad" class="container-select-register" required>
+					<option disabled selected class="form-datalist__option">Ciudad</option>
+					{% for ciudad in City %}
+						<option value="{{ciudad.id_city}}" class="form-datalist__option">{{ciudad}}</option>
+					{% endfor %}
+				</select>
+
+				{{formulario.address}}
+				{% if formulario.address.errors %}
+					{{formulario.address.errors}}
+                {% endif %}
+
+				{{formulario.phone_number}}
+
+				{{formulario.email}}
+
+				{% if formulario.email.errors %}
+					{{formulario.email.errors}}
+                {% endif %}
+
+				{{formulario.password}}
+				{% if formulario.password.errors %}
+					{{formulario.password.errors}}
+                {% endif %}
+
+				<p class="container-conditions-register">
+					<input type="checkbox" name="condiciones" required class="container-conditions-register__input" />
+					Acepto los
+					<a href="#" class="container-conditions-register__link"> terminos </a> y 
+					<a href="#" class="container-conditions-register__link"> condiciones del servicio</a>
+				</p>
+
+				<button class="form-register__btn">Crear cuenta</button>
+			</form>
+		</fieldset>
+
+		{% include 'plantillas/aside.html' %}
+	</main>
+
+	{% include 'plantillas/footer.html' %}
+{% endblock %}
