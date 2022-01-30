@@ -1,4 +1,4 @@
-<p align="center"><img src=https://github.com/senaceet/proyecto-salecold/blob/master/Logo4.png width="550" height="500">
+<p align="center"><img src=https://github.com/senaceet/proyecto-salecold/blob/master/Logo4.png width="450" height="400">
   
   
  # ***SaleCold*** #
