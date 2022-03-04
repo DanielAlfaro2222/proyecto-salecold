@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/panelConfiguracionUsuario.css' %}">
+    <title>SaleCold</title>
+{% endblock %}
+
+{% block content %}
+	{% include 'snippets/header.html' %}
+
+    <main>
+        <section class="container-panel-user">
+            <h2 class="container-panel-user__title">
+                Bienvenido {{user.first_name.split | first}} {{user.last_name.split | first}}!
+            </h2>
+            <div class="container-options-user">
+                <article class="container-option-panel">
+                    <a href="{% url 'Users:update-data-user' %}" class="container-link-option">
+                        <img src="https://res.cloudinary.com/dpxek6oka/image/upload/v1641338516/images/profile_xtr51j.webp" alt="icono de perfil" loading="lazy" class="container-link-option__img">
+                        <p class="container-link-option__paragraph">Actualizar datos personales</p>
+                    </a>
+                </article>
+                <article class="container-option-panel">
+                    <a href="#" class="container-link-option">
+                        <img src="https://res.cloudinary.com/dpxek6oka/image/upload/v1641338514/images/shop_un15bi.webp" alt="icono de compras" loading="lazy" class="container-link-option__img">
+                        <p class="container-link-option__paragraph">Mis compras</p>
+                    </a>
+                </article>
+                <article class="container-option-panel">
+                    <a href="{% url 'Users:change-password' %}" class="container-link-option">
+                        <img src="https://res.cloudinary.com/dpxek6oka/image/upload/v1641338514/images/password_ad2vqm.webp" alt="icono de contraseña" loading="lazy" class="container-link-option__img"> 
+                        <p class="container-link-option__paragraph">Cambiar contraseña</p>
+                    </a>
+                </article>
+                <article class="container-option-panel">
+                    <a href="#" class="container-link-option">
+                        <img src="https://res.cloudinary.com/dpxek6oka/image/upload/v1641338514/images/Configuracion_gxn1i8.webp" alt="icono de configuracion de la cuenta" loading="lazy" class="container-link-option__img">
+                        <p class="container-link-option__paragraph">Configuracion de la cuenta</p>
+                    </a>
+                </article>
+                <article class="container-option-panel">
+                    <a href="#" class="container-link-option">
+                        <img src="https://res.cloudinary.com/dpxek6oka/image/upload/v1641338514/images/payment_k0iel9.webp" alt="icono de metodos de pago" loading="lazy" class="container-link-option__img">
+                        <p class="container-link-option__paragraph">Metodos de pago</p>
+                    </a>
+                </article>
+            </div>
+        </section>
+
+		{% include 'snippets/aside.html' %}
+    </main>
+	{% include 'snippets/footer.html' %}
+{% endblock %}

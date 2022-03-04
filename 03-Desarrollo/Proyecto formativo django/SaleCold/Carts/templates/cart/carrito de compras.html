@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load humanize %}
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/carritoDeCompras.css' %}">
+    <title>Carrito de compras</title>
+{% endblock %}
+
+{% block content %}
+    {% include 'snippets/header.html' %}
+
+    <h2>Carrito de compras</h2>
+    <section>
+        {% if carrito.product.exists %}
+            {% for producto in carrito.product.all %}
+                <ul>
+                    <li>
+                        {{forloop.counter}}. {{producto}}
+                        {% include 'cart/snippets/formularioEliminarProducto.html' %}
+                    </li>
+                </ul>
+            {% endfor %}
+        {% else %}
+            <p>El carrito de compras esta vacio.</p>
+        {% endif %}
+    </section>
+
+    <section>
+        <p>Subtotal: $ {{ carrito.subtotal|intcomma }}</p>
+        <p>Total: $ {{ carrito.total|intcomma }}</p>
+    </section>
+
+    <a href="{% url 'index' %}">Seguir comprando</a>
+
+    {% include 'snippets/footer.html' %}
+{% endblock %}

@@ -1,0 +1,30 @@
+<article class="container-filter">
+    <h3>Ordenar por</h3>
+    <ul>
+        <li>
+            <a href="?ordenar=1{% if request.GET.q %}&q={{request.GET.q}}{% endif %}">
+                Precio: menor a mayor
+            </a>
+        </li>
+        <li>
+            <a href="?ordenar=2{% if request.GET.q %}&q={{request.GET.q}}{% endif %}">
+                Precio: mayor a menor
+            </a>
+        </li>
+        <li>
+            <a href="?ordenar=3{% if request.GET.q %}&q={{request.GET.q}}{% endif %}">
+                Nombre: (A-Z)
+            </a>
+        </li>
+        <li>
+            <a href="?ordenar=4{% if request.GET.q %}&q={{request.GET.q}}{% endif %}">
+                Nombre: (Z-A)
+            </a>
+        </li>
+        <li>
+            <a href="?ordenar=5{% if request.GET.q %}&q={{request.GET.q}}{% endif %}">
+                Descuento
+            </a>
+        </li>
+    </ul>
+</article>

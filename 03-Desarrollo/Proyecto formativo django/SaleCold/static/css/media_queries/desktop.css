@@ -1,0 +1,37 @@
+@media screen and (min-width: 1200px) {
+    .main-header {
+        max-width: 100%;
+        height: 670px;
+    }
+    .container-info-header__title {
+        font-size: 3.3rem;
+    }
+    .container-figure-header {
+        max-width: 100%;
+    }
+    .container-info-header__btn {
+        padding: 0.9em;
+        font-size: 1.1rem;
+    }
+    .container-search-form__input {
+        font-size: 1.1rem;
+    }
+    .main-icon {
+        width: 10vw;
+    }
+    .container-figure-header__img {
+        height: 100%;
+    }
+    .container-products {
+        margin-bottom: 2.5em;
+    }
+    .container-pagination-products {
+        margin-bottom: 2em;
+    }
+    .container-element-list-pagination-products {
+        width: 30px;
+    }
+    .container-element-list-pagination-products--width {
+        width: 82px;
+    }
+}

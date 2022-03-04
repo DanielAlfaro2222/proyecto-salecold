@@ -1,0 +1,40 @@
+{% load static %}
+{% load humanize %}
+
+<article class="article-product">
+    {% if producto.discount != 0 %}
+        <p class="article-product__offert">{{producto.discount}}%</p>
+    {% endif %}
+    <a href="{% url 'Products:product' producto.slug %}">
+        <img src="{{producto.image}}" alt="{{producto.name}}"
+            class="article-product__image" loading="lazy" />
+    </a>
+    <h3 class="article-product__title">{{producto.name}}</h3>
+    {% if producto.discount == 0 %}
+        <p class="article-product__price">$ {{ producto.unit_price|intcomma }}</p>
+    {% else %}
+        <p class="article-product__price">
+            $ {{ producto.final_price|intcomma }}
+            <span class="article-product__discount">
+                $ {{ producto.unit_price|intcomma }}
+            </span>
+        </p>
+    {% endif %}
+    <form method="POST" class="container-add-product" action = "{% url 'Carts:add_product' %}">
+        {% csrf_token %}
+
+        <input type="hidden" name="product_id" value="{{producto.id_product}}">
+
+        {% if producto.stock == 0 %}
+            <button class="add-product" disabled>
+                <i class="fas fa-shopping-cart container-add-product__icon" aria-hidden="true"></i> 
+                No disponible
+            </button>
+        {% else %}
+            <button class="add-product" id="add-product">
+                <i class="fas fa-shopping-cart container-add-product__icon" aria-hidden="true"></i> 
+                Agregar al carrito
+            </button>
+        {% endif %}
+    </form>
+</article>

@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block head %}
+	<title>Cambiar contraseña</title>
+	<style>
+		body {
+			padding-top: 4em;
+		}
+	</style>
+{% endblock %}
+
+{% block content %}
+
+	{% include 'snippets/header.html' %}
+
+	<main>
+
+		{% include 'snippets/mensajes.html' %}
+
+		<h2>Cambiar contraseña</h2>
+
+		<form method="POST" class="form-contraseña">
+			{% csrf_token %}
+
+			<label class="form-contraseña__label">
+				Nueva contraseña
+				{{formulario.contrasena}}
+				{% if formulario.contrasena.errors %}
+					{{formulario.contrasena.errors}}
+				{% endif %}
+			</label>
+
+			<label class="form-contraseña__label">
+				Repetir nueva contraseña
+				{{formulario.contrasena2}}
+				{% if formulario.contrasena2.errors %}
+					{{formulario.contrasena2.errors}}
+				{% endif %}
+			</label>
+
+			<button>Cambiar contraseña</button>
+		</form>
+
+		{% include 'snippets/aside.html' %}
+	</main>
+	{% include 'snippets/footer.html' %}
+{% endblock %}

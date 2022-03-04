@@ -1,0 +1,15 @@
+{% if messages %}
+    {% for mensaje in messages %}
+        {% if mensaje.tags == 'success' %}
+            <div class = "exito">
+                <i class="fas fa-check-square" aria-hidden="true"></i> 
+                {{mensaje}}
+            </div>
+        {% else %}
+            <div class="error">
+                <i class="fas fa-exclamation-triangle" aria-hidden="true"></i> 
+                {{mensaje}}
+            </div>
+        {% endif %}
+    {% endfor %}
+{% endif %}
