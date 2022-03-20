@@ -9,10 +9,14 @@ from .utils import order_search_products
 from django.db.models import Q
 from django.core.paginator import Paginator
 from django.views.decorators.http import require_GET
+from django.shortcuts import get_object_or_404
 
 class ProductDetailView(DetailView):
     model = Product
     template_name = 'products/producto.html'
+
+    def get_queryset(self):
+        return Product.objects.filter(state = True)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -22,7 +26,7 @@ class ProductDetailView(DetailView):
 
 @require_GET
 def category_detail(request, slug):
-    categoria = Category.objects.get(slug = slug)
+    categoria = get_object_or_404(Category, slug = slug)
     productos = categoria.products.all()
     parametro_busqueda = ''
     cantidad_productos = 0
@@ -47,7 +51,7 @@ def category_detail(request, slug):
 
     # Paginacion
     paginacion = Paginator(productos, 10)
-    num_pagina = request.GET.get('page')
+    num_pagina = request.GET.get('page', 1)
     productos = paginacion.get_page(num_pagina)
 
     return render(request, 'products/categoria.html', context = {
@@ -71,7 +75,7 @@ def search_in_all_product(request):
 
         # Paginacion
         paginacion = Paginator(productos, 7)
-        num_pagina = request.GET.get('page')
+        num_pagina = request.GET.get('page', 1)
         productos = paginacion.get_page(num_pagina)
 
         contexto = {

@@ -8,14 +8,15 @@
 {% endblock %}
 
 {% block content %}
+	<header>
+		{% include 'snippets/main_nav.html' %}
+	</header>
 
-	{% include 'snippets/header.html' %}
-
-	<main>
+	<main class="main-register">
 		{% include 'snippets/mensajes.html' %}
 
-		<fieldset class="container-register">
-			<legend class="container-register__title"> Registro </legend>
+		<article class="container-form-register">
+			<h2 class="container-form-register__title"> Registro </h2>
 
 			<form action = "{% url 'Users:register' %}" method="POST" class="form-register">
 				{% csrf_token %}
@@ -72,7 +73,7 @@
 
 				<button class="form-register__btn">Crear cuenta</button>
 			</form>
-		</fieldset>
+		</article>
 
 		{% include 'snippets/aside.html' %}
 	</main>

@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/pedido.css' %}">
+    <title>Orden de compra</title>
+{% endblock %}
+
+{% block content %}
+    <header>
+        {% include 'snippets/main_nav.html' %}
+    </header>
+
+    <main class="main-order">
+
+        {% include 'orders/snippets/breadcrumb.html' %}
+
+        <h2 class="main-order__title">Revisa tu orden de compra</h2>
+
+        <section>
+            <ul>
+                {% for object in carrito.products_related %}
+                    {% with producto=object.product %}
+                        <li>
+                            <img src="{{producto.image}}" alt="{{producto}}" loading="lazy" decoding="async">
+                            <a href="{% url 'Products:product' producto.slug %}">{{producto}}</a>
+                            <p>Cantidad: {{object.quantity}}</p>
+                            <p>Precio: $ {{producto.final_price|intcomma}}</p>
+                        </li>
+                    {% endwith %}
+                {% endfor %}
+            </ul>
+        </section>
+
+        <section>
+            <h2>Resumen orden de compra</h2>
+            <p>
+                <strong>Total:</strong> $ {{ orden.get_total|intcomma }}
+            </p>
+            <p>
+                <i class="fa-solid fa-truck-fast" aria-hidden="true"></i>
+                El costo del envío no está incluido en el precio
+            </p>
+            <a href="#">Confirmar pedido</a>
+        </section>
+
+        {% include 'snippets/aside.html' %}
+    </main>
+
+    {% include 'snippets/footer.html' %}
+{% endblock %}

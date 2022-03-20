@@ -76,7 +76,7 @@
 {% block content %}
     <section class="container-email">
         <article class="container-email-header">
-            <a href="{{dominio}}{{url}}" class="container-image-email-header" target = "_blank" rel="noopener">    
+            <a href="{% if request.is_secure %}https{% else %}http{% endif %}://{{dominio}}{{url}}" class="container-image-email-header" target = "_blank" rel="noopener">    
                 <img src="https://res.cloudinary.com/dpxek6oka/image/upload/v1645626671/Logo/Logo4_ez3iqd.png" alt="Logo SaleCold" class="container-image-email-header__img" loading="lazy">
             </a>
         </article>
@@ -87,7 +87,7 @@
             <p class="container-email-main__paragraph">
                 Te damos la bienvenida a SaleCold, aqui encontraras repuestos de refrigeracion al mejor precio y con descuentos imperdibles.
             </p>
-            <a href="{{dominio}}{{url}}" class="container-email-main__link" style="color:white;" target="_blank" rel="noopener">
+            <a href="{% if request.is_secure %}https{% else %}http{% endif %}://{{dominio}}{{url}}" class="container-email-main__link" style="color:white;" target="_blank" rel="noopener">
                 Empezar a comprar
             </a>
 

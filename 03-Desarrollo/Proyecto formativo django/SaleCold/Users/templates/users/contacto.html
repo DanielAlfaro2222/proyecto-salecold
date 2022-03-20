@@ -8,15 +8,16 @@
 {% endblock %}
 
 {% block content %}
-	{% include 'snippets/header.html' %}
+	<header>
+		{% include 'snippets/main_nav.html' %}
+	</header>
 
 	<main class="main-contact">
 		{% include 'snippets/mensajes.html' %}
 
 		<section class="section-contact">
-
-			<fieldset class="container-form-contact">
-				<legend class="container-form-contact__title">Contactenos</legend>
+			<article class="container-form-contact">
+				<h2 class="container-form-contact__title">Contactenos</h2>
 
 				<form action="{% url 'Users:contact' %}" method="POST" class="form-contact">
 
@@ -54,13 +55,7 @@
 
 					<button class="form-contact__btn">Enviar</button>
 				</form>
-			</fieldset>
-
-			<picture class="container-figure-contact">
-				<source media = "(min-width: 1000px)" srcset="https://res.cloudinary.com/dpxek6oka/image/upload/v1641338513/images/Contacto-desktop_tppxze.webp"  class ="container-figure-contact__img" loading = "lazy"/>
-
-				<img src="https://res.cloudinary.com/dpxek6oka/image/upload/v1641338513/images/Contacto-mobile_q95pit.webp" alt="Imagen de contacto" class ="container-figure-contact__img"  loading = "lazy">
-			</picture>
+			</article>
 		</section>
 
 		{% include 'snippets/aside.html' %}

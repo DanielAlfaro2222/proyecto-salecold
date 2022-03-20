@@ -8,27 +8,31 @@
 {% endblock %}
 
 {% block content %}
-    {% include 'snippets/header.html' %}
+    <header>
+        {% include 'snippets/main_nav.html' %}
+    </header>
 
+    {% include 'snippets/mensajes.html' %}
+    
     <main class="main-product">
 
         <section class="section-view-product">
             <article class="container-images-product">
                 <figure class="container-figure-product container-figure-product--position">
                     <img src="{{producto.image}}" alt="{{producto.name}}"
-                        class="container-figure-product__img container-figure-product__img--width" loading="lazy">
+                        class="container-figure-product__img container-figure-product__img--width" loading="lazy" decoding="async">
                 </figure>
                 <figure class="container-figure-product container-figure-product--bottom">
                     <img src="{{producto.image}}" alt="{{producto.name}}"
-                        class="container-figure-product__img" loading="lazy">
+                        class="container-figure-product__img" loading="lazy" decoding="async">
                 </figure>
                 <figure class="container-figure-product container-figure-product--bottom">
                     <img src="{{producto.image}}" alt="{{producto.name}}"
-                        class="container-figure-product__img" loading="lazy">
+                        class="container-figure-product__img" loading="lazy" decoding="async">
                 </figure>
                 <figure class="container-figure-product container-figure-product--bottom">
                     <img src="{{producto.image}}" alt="{{producto.name}}"
-                        class="container-figure-product__img" loading="lazy">
+                        class="container-figure-product__img" loading="lazy" decoding="async">
                 </figure>
             </article>
 
@@ -51,12 +55,14 @@
                 <form action="{% url 'Carts:add_product' %}" method="POST" class="container-form-product">
                     {% csrf_token %}
 
+                    <input type="hidden" name="url" value="{{request.build_absolute_uri}}">
+
                     <input type="hidden" name="product_id" value="{{producto.id_product}}">
 
                     <label class="container-count-order">
-                        <input type="button" title="Eliminar" value="-" id="remove" class="container-count-order__add" />
+                        <input type="button" title="Eliminar" value="-" id="remove_product" class="container-count-order__add" />
                         <input type="number" readonly value="1" id="quantity" name="quantity" class="container-count-order__quantity">
-                        <input type="button" title="Adicionar" value="+" id="add" class="container-count-order__remove" />
+                        <input type="button" title="Adicionar" value="+" id="add_product" class="container-count-order__remove" />
                     </label>
 
                     <button class="container-form-product__btn">
@@ -83,5 +89,4 @@
     </main>
 
     {% include 'snippets/footer.html' %}
-    <script src="{% static 'js/carrito.js' %}" defer></script>
 {% endblock %}

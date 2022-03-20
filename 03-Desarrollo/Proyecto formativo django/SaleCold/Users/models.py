@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.core.validators import MinLengthValidator
 
 class City(models.Model):
     id_city = models.AutoField("Id Ciudad", primary_key = True)
@@ -11,6 +12,10 @@ class City(models.Model):
 
     def __str__(self):
         return self.description
+
+    def length_zip_code(self):
+        """Funcion complementaria para test unitarios"""
+        return len(self.zip_code) <= 6
 
     class Meta:
         verbose_name = "Ciudad"

@@ -9,12 +9,12 @@ from django.conf import settings
 from django.template.loader import get_template
 from django.contrib.sites.shortcuts import get_current_site
 from django.shortcuts import reverse
-from Products.models import Product
 
 CAMPO_OBLIGATORIO = 'Este campo es obligatorio.'
+ERROR_CANTIDAD_CARACTERES = 'Este campo acepta minimo 4 caracteres y maximo 25 caracteres.'
 
 class RegisterForm(forms.Form):
-    GENERO = (
+    GENDER = (
         (1, 'Genero'),
         (2, 'Hombre'),
         (3, 'Mujer'),
@@ -103,7 +103,7 @@ class RegisterForm(forms.Form):
             'placeholder': 'Genero',
         }),
         empty_value = '1',
-        choices = GENERO,
+        choices = GENDER,
     )
 
     def clean_nombre(self):
@@ -112,7 +112,7 @@ class RegisterForm(forms.Form):
         if len(nombre) == 0:
             raise forms.ValidationError(CAMPO_OBLIGATORIO)
         elif len(nombre) < 4 or len(nombre) > 25:
-            raise forms.ValidationError('Este campo acepta minimo 4 caracteres y maximo 25 caracteres.')
+            raise forms.ValidationError(ERROR_CANTIDAD_CARACTERES)
 
         return nombre
 
@@ -122,7 +122,7 @@ class RegisterForm(forms.Form):
         if len(apellido) == 0:
             raise forms.ValidationError(CAMPO_OBLIGATORIO)
         elif len(apellido) < 4 or len(apellido) > 25:
-            raise forms.ValidationError('Este campo acepta minimo 4 caracteres y maximo 25 caracteres.')
+            raise forms.ValidationError(ERROR_CANTIDAD_CARACTERES)
 
         return apellido
 
@@ -319,7 +319,7 @@ class ContactForm(forms.Form):
         if len(nombre) == 0:
             raise forms.ValidationError(CAMPO_OBLIGATORIO)
         elif len(nombre) < 4 or len(nombre) > 25:
-            raise forms.ValidationError('Este campo acepta minimo 4 caracteres y maximo 25 caracteres.')
+            raise forms.ValidationError(ERROR_CANTIDAD_CARACTERES)
 
         return nombre
 
@@ -329,7 +329,7 @@ class ContactForm(forms.Form):
         if len(apellido) == 0:
             raise forms.ValidationError(CAMPO_OBLIGATORIO)
         elif len(apellido) < 4 or len(apellido) > 25:
-            raise forms.ValidationError('Este campo acepta minimo 4 caracteres y maximo 25 caracteres.')
+            raise forms.ValidationError(ERROR_CANTIDAD_CARACTERES)
 
         return apellido
 
@@ -470,7 +470,7 @@ class UpdateDataUserForm(forms.Form):
         if len(nombre) == 0:
             raise forms.ValidationError(CAMPO_OBLIGATORIO)
         elif len(nombre) < 4 or len(nombre) > 25:
-            raise forms.ValidationError('Este campo acepta minimo 4 caracteres y maximo 25 caracteres.')
+            raise forms.ValidationError(ERROR_CANTIDAD_CARACTERES)
 
         return nombre
 
@@ -480,7 +480,7 @@ class UpdateDataUserForm(forms.Form):
         if len(apellido) == 0:
             raise forms.ValidationError(CAMPO_OBLIGATORIO)
         elif len(apellido) < 4 or len(apellido) > 25:
-            raise forms.ValidationError('Este campo acepta minimo 4 caracteres y maximo 25 caracteres.')
+            raise forms.ValidationError(ERROR_CANTIDAD_CARACTERES)
 
         return apellido
 
@@ -605,6 +605,7 @@ class ChangePassword(forms.Form):
         widget = forms.PasswordInput(attrs = {
             'autofocus': 'true',
             'tab-index': 1,
+            'class': 'container-label-form-contraseña__input',
         })
     )
 
@@ -612,6 +613,7 @@ class ChangePassword(forms.Form):
         required = False,
         widget = forms.PasswordInput(attrs = {
             'tab-index': 2,
+            'class': 'container-label-form-contraseña__input',
         })
     )
 

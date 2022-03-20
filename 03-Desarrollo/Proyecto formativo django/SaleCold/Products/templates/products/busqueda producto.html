@@ -9,7 +9,11 @@
 {% endblock %}
 
 {% block content %}
-    {% include 'snippets/header.html' %}
+    <header>
+        {% include 'snippets/main_nav.html' %}
+    </header>
+
+    {% include 'snippets/mensajes.html' %}
 
     <main class="container-search-product">
         <h2 class="container-search-product__title">Busqueda de productos</h2>

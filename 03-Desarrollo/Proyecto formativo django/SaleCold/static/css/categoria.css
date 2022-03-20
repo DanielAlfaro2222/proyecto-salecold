@@ -1,5 +1,5 @@
 body {
-    padding-top: 3.5em;
+    padding-top: 3.2em;
 }
 .container-category {
     padding: 1.9em;
@@ -7,7 +7,8 @@ body {
 }
 .container-category__title {
     margin-top: 0;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
+    margin-bottom: 1.4em;
 }
 .article-product {
     margin-top: 1.4em;
@@ -21,8 +22,11 @@ body {
 .container-filter {
     border: none;
     padding: 0;
-    background-color: white;
     margin-bottom: 2em;
+    margin-top: 1.5em;
+}
+.container-filter__title {
+    font-size: 1.2rem;
 }
 .container-select-category {
     width: 100%;
@@ -41,39 +45,40 @@ body {
 .container-select-category--margin {
     margin-bottom: 0;
 }
-@media screen and (min-width: 1200px) {
-    body {
-        padding-top: 2.5em;
-    }
-    .container-category__title {
-        font-size: 1.7rem;
-    }
-    .container-category {
-        width: 95%;
-        margin-left: auto;
-        margin-right: auto;
-        padding: 0;
-        padding-top: 2.5em;
-    }
-    .form-filter-category {
-        display: flex;
-        justify-content: flex-end;
-    }
-    .container-select-category {
-        width: 230px;
-    }
-    .container-products-category {
-        display: flex;
-        flex-flow: row dense;
-        flex-wrap: wrap;
-        gap: 1.7em;
-        width: 100%;
-        margin-bottom: 2.5em;
-    }
-    .container-select-category--margin {
-        margin-top: 0;
-    }
-    .article-product {
-        margin: 0;
+
+.main-header__form {
+    width: 100%;
+}
+
+.container-result-search-product {
+    font-size: .9rem;
+    margin-top: 1em;
+}
+
+.container-list-filter-products {
+    list-style: none;
+    padding: 0;
+}
+
+.container-link-filter-products {
+    display: flex;
+    align-items: center;
+    color: black;
+    margin-bottom: .7em;
+}
+
+.container-link-filter-products__icon {
+    margin-right: .5em;
+    font-size: 1.2rem;
+}
+
+.container-link-filter-products--active {
+    color: blue;
+}
+
+@media screen and (min-width: 1000px) {
+    .main-header__form {
+        grid-row: 2;
+        grid-column: span 2;
     }
 }

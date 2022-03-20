@@ -8,15 +8,15 @@
 {% endblock %}
 
 {% block content %}
+	<header>
+		{% include 'snippets/main_nav.html' %}
+	</header>
 
-	{% include 'snippets/header.html' %}
+	{% include 'snippets/mensajes.html' %}
 
 	<main class="main-login">
-
-		{% include 'snippets/mensajes.html' %}
-		
-		<fieldset class="container-login">
-			<legend class="container-login__title">Iniciar sesion</legend>
+		<article class="container-login">
+			<h2 class="container-login__title">Iniciar sesion</h2>
 			<form method="POST" class="form-login">
 
 				{% csrf_token %}
@@ -42,7 +42,7 @@
 
 				<button class="form-login__btn">Iniciar sesion</button>
 			</form>
-		</fieldset>
+		</article>
 
 		{% include 'snippets/aside.html' %}
 	</main>

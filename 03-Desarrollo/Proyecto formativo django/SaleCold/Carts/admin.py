@@ -9,6 +9,6 @@ class CartAdmin(admin.ModelAdmin):
 
     fieldsets = (
         (None, {
-            'fields': ('user', 'product', 'subtotal', 'total')
+            'fields': ('user', 'subtotal', 'total')
         }),
     )

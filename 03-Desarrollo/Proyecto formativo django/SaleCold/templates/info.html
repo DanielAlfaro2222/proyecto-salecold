@@ -4,12 +4,13 @@
 
 {% block head %}
 	<link rel="stylesheet" href="{% static 'css/info.css' %}" />
-	<title>SaleCold</title>
+	<title>Informacion</title>
 {% endblock %}
 
 {% block content %}
-
-	{% include 'plantillas/header.html' %}
+	<header>
+		{% include 'snippets/main_nav.html' %}
+	</header>
 
 	<main class="main-info">
 		<section class="info-proyect">
@@ -24,24 +25,32 @@
 			<h2 class="info-proyect__subtitle">Integrantes</h2>
 
 			<ul class="container-list-members">
-				<li class="container-list-members__item">Andrea Del Carmen Lenes</li>
-				<li class="container-list-members__item">Kevin Daniel Alfaro Alfonso</li>
+				<li class="container-list-members__item container-list-members__item--icon">
+					Andrea Del Carmen Lenes
+				</li>
+				<li class="container-list-members__item">
+					Kevin Daniel Alfaro Alfonso
+				</li>
 			</ul>
 
-			<a href="#" target="_blank" class="user-manual">
-				<img src="https://res.cloudinary.com/dpxek6oka/image/upload/v1641338515/images/guide_afvhfz.webp" alt="Icono para descargar manual de usuario"
-					class="user-manual__icon" aria-hidden="true" loading="lazy">
-				Descargar manual del usuario
+			<a href="#" target="_blank" class="user-manual" rel="noopener">
+				<img src="https://res.cloudinary.com/dpxek6oka/image/upload/v1647219783/images/guide_afvhfz-1_a6o9f8.webp" alt="Icono para descargar manual de usuario"
+					class="user-manual__icon" aria-hidden="true" loading="lazy" decoding="async">
+				Descargar manual de usuario
 			</a>
 		</section>
 
-		<figure class="figure-proyect">
-			<img src="https://res.cloudinary.com/dpxek6oka/image/upload/v1641338513/images/integrantes_rirg6i.webp" alt="png de una persona programando"
-				class="figure-proyect__img" loading="lazy" />
-		</figure>
+		<picture class="container-picture-info">
+            <source srcset="https://res.cloudinary.com/dpxek6oka/image/upload/v1647218816/images/integrantes_desktop_ci6zet.webp" media="(min-width: 1000px)" loading='lazy' alt="Persona programando" decoding="async" class="container-picture-info__img">
 
-		{% include 'plantillas/aside.html' %}
+			<source srcset="https://res.cloudinary.com/dpxek6oka/image/upload/v1647218816/images/integrantes_tablet_ommchv.webp" media="(min-width: 600px)" loading='lazy' alt="Persona programando" decoding="async" class="container-picture-info__img">
+			
+
+			<img src="https://res.cloudinary.com/dpxek6oka/image/upload/v1647218816/images/integrantes_mobile_bqwx2c.webp" alt="Persona programando" loading="lazy" decoding="async" class="container-picture-info__img">
+		</picture>
+
+		{% include 'snippets/aside.html' %}
 	</main>
 
-	{% include 'plantillas/footer.html' %}
+	{% include 'snippets/footer.html' %}
 {% endblock %}

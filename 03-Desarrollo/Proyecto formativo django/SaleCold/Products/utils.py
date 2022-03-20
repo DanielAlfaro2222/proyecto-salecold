@@ -4,10 +4,10 @@ from .models import Product
 
 def random_products(product):
     productos = Product.objects.exclude(pk=product.id_product)
-    max = abs(Product.objects.all().count() - 7)
-    num = random.randint(1, max)
+    cantidad_productos = abs(Product.objects.all().count() - 7)
+    numero_aleatorio = random.randint(1, cantidad_productos)
 
-    return productos[num:num + 6]
+    return productos[numero_aleatorio:numero_aleatorio + 6]
 
 def order_products_in_category(categoria, parametro_orden):
     """

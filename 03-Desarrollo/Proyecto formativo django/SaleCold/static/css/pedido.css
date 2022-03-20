@@ -1,0 +1,11 @@
+body {
+    padding-top: 3em;
+}
+
+.main-order {
+    padding: 1em;
+}
+
+.main-order__title {
+    font-size: 1.2rem;
+}

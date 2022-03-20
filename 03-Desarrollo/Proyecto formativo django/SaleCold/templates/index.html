@@ -10,527 +10,90 @@
 
 {% block content %}
 	<header class="main-header">
-		<picture class="container-figure-header">
-			<source srcset="https://res.cloudinary.com/dpxek6oka/image/upload/v1641338514/images/header_faqlg9.webp" media="(min-width: 800px)" loading='lazy' class="container-figure-header__img" alt="Imagen header">
+        {% include 'snippets/main_nav.html' %}
 
-			<source srcset="https://res.cloudinary.com/dpxek6oka/image/upload/v1643932060/images/header_tablet_olfabv.webp" media="(min-width: 400px)" class="container-figure-header__img" loading="lazy" alt="Imagen header">
+        <picture class="container-figure-main-header" id="container-figure-main-header">
+            <source srcset="https://res.cloudinary.com/dpxek6oka/image/upload/v1641338514/images/header_faqlg9.webp" media="(min-width: 1000px)" loading='lazy' class="container-figure-main-header__img" alt="Imagen header" decoding="async">
 
-			<img src="https://res.cloudinary.com/dpxek6oka/image/upload/v1643930805/images/header_mobile_z4qh9m.webp" alt="Imagen header" class="container-figure-header__img" loading="lazy">
+			<source srcset="https://res.cloudinary.com/dpxek6oka/image/upload/v1645738628/images/header_tablet_fhi90m.webp" media="(min-width: 600px)" loading='lazy' class="container-figure-main-header__img" alt="Imagen header" decoding="async">
+			
+
+			<img src="https://res.cloudinary.com/dpxek6oka/image/upload/v1645738464/images/header_mobile_nsompn.webp" alt="Imagen header" class="container-figure-main-header__img" loading="lazy" decoding="async">
 		</picture>
 
-		<div class="container-info-header">
-			<h2 class="container-info-header__title">Servicio y tecnología</h2>
+        <div class="container-info-main-header">
+			<h2 class="container-info-main-header__title">Servicio y tecnología</h2>
 
-			{% include 'products/snippets/formularioBusquedaProducto.html' %}
+			<form action="{% url 'Products:search' %}" method="GET" class="main-header__form">
+                <div class="container-search-form">
+                    <input type="text" name="q" class="container-search-form__input" placeholder="Buscar..." value="{{busqueda}}"/>
+                    <button class="container-search-form__btn">
+                        <i class="fas fa-search" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </form>
 
-			<a href="{% url 'Users:contact' %}" class="container-info-header__btn">Conócenos</a>
+			<a href="{% url 'Users:contact' %}" class="container-info-main-header__btn">Conócenos</a>
 		</div>
+    </header>
 
-		<nav class="main-menu">
-			<i class="fas fa-bars fa-2x main-header__menu-icon" id="main-menu-icon" aria-hidden="true">
-				<nav class="main-header__menu-categories main-header__menu-categories--show" id="main-menu">
-					<ul class="List-categories">
-						{% for categoria in categorias %}
-							<li class="List-categories__item">
-								<a class="List-categories__link" href="{% url 'Products:category' categoria.slug %}">
-									{% if categoria.name == 'Ofertas' %}
-										<i class="fas fa-tag List-categories__icon" aria-hidden="true"></i>
-									{% elif categoria.name == 'Elementos de refrigeración' %}
-										<i class="fas fa-snowflake List-categories__icon" aria-hidden="true"></i>
-									{% elif categoria.name == 'Tuberías' %}
-										<img src="https://res.cloudinary.com/dpxek6oka/image/upload/v1641338514/images/pipe_ooila9.webp" alt="icono tuberia" class="List-categories__img-icon" loading="lazy" >
-									{% elif categoria.name == 'Compresores' %}
-										<img src="https://res.cloudinary.com/dpxek6oka/image/upload/v1641338514/images/compressor_viqnu5.webp" alt="icono compresor" class="List-categories__img-icon" loading="lazy">
-									{% elif categoria.name == 'Condensadoras' %}
-										<img src="https://res.cloudinary.com/dpxek6oka/image/upload/v1641338514/images/condensador_dlxh1f.webp" alt="icono condensador" class="List-categories__img-icon" loading="lazy">
-									{% elif categoria.name == 'Aire acondicionado' %}
-										<img src="https://res.cloudinary.com/dpxek6oka/image/upload/v1641338516/images/aire-acondicionado_md11uu.webp" alt="icono aire acondicionado" class="List-categories__img-icon" loading="lazy">
-									{% endif %}
-									{{categoria}}
-								</a>
-								<i class="fas fa-chevron-right List-categories__icon List-categories__icon--position" aria-hidden="true"></i>
-							</li>
-						{% endfor %}
-					</ul>
-				</nav>
-			</i>
-			<a href="{% url 'index' %}" class="main-header__home">
-				<img src="https://res.cloudinary.com/dpxek6oka/image/upload/v1645576166/Logo/Logo_nasqt2.webp" alt="Logo de la empresa" class="main-header__logo"
-					loading="lazy" />
-			</a>
-
-			<a href="{% url 'Carts:cart' %}" class="main-header__shop-link">
-				<i class="fas fa-shopping-cart fa-2x main-header__shop-icon" aria-hidden="true"></i>
-				<input type="number" readonly value="{{cantidad_productos_carrito}}" class="main-header__shop-cart" id="quantity-products">
-			</a>
-
-			{% if request.user.is_authenticated %}
-
-					<div class = "container-user-authenticate">
-						<p class="container-user-authenticate__paragraph">{{user.first_name.split | first}} {{user.last_name.split | first}}</p>
-
-						<i class="fas fa-angle-down fa-2x container-user-authenticate__icon" id="icon-menu-user-normal"
-						aria-hidden="true"></i>
-					</div>
-					
-					<nav class="menu-user-normal menu-user-normal--show" id="menu-user-normal">
-						<ul class="menu-container-user-normal">
-							<li class="menu-container-user-normal__item">
-								<a href="{% url 'Users:dashboard-user' %}" class="menu-container-user-normal__link">
-									<i class="fas fa-user-cog fa-2x menu-user-normal__option" aria-hidden="true"></i>
-									Configuracion
-								</a>
-							</li>
-							<li class="menu-container-user-normal__item">
-								<a href="{% url 'Users:logout' %}" class="menu-container-user-normal__link">
-									<i class="fas fa-sign-out-alt fa-2x menu-user-normal__option" aria-hidden="true"></i>
-									Cerrar sesion
-								</a>
-							</li>
-						</ul>
-					</nav>
-				{% else %}
-					<a href="{% url 'Users:login' %}" class="main-header__login">
-						Iniciar sesion
-					</a>
-			{% endif %}
-		</nav>
-
-	</header>
+	{% include 'snippets/mensajes.html' %}
 
 	<main class="main">
 
-		<section class="section-productos-ofertados">
+		<section class="section-productos-ofertados glider-contain">
 			<h2 class="section-productos-ofertados__title">
 				Ofertas de la semana
 			</h2>
 
-			<div class="container-products">
+			<div class="container-products glider">
 				{% for producto in productos %}
+				<section>
 					{% include 'products/snippets/plantillaProducto.html' %}
+				</section>
 				{% empty %}
 					<p>No hay productos relacionados :(</p>
 				{% endfor %}
 			</div>
+
+			<button aria-label="Previous" class="glider-prev">
+				<i class="fa-solid fa-angle-left" aria-hidden="true"></i>
+			</button>
+			<button aria-label="Next" class="glider-next">
+				<i class="fa-solid fa-angle-right" aria-hidden="true"></i>
+			</button>
 		</section>
 
-		<section class="section-productos-ofertados">
-			<h2 class="section-productos-ofertados__title">
-				Categoria 1
-			</h2>
+		{% for categoria in categorias %}
+			<section class="section-productos-ofertados glider-contain">
+					<h2 class="section-productos-ofertados__title">
+						{{categoria}}
+					</h2>
+					<div class="container-products glider">
+						{% for producto in categoria.products.all %}
+							{% if forloop.counter <= 10 %}
+								<section>
+									{% include 'products/snippets/plantillaProducto.html' %}
+								</section>
+							{% endif %}
+							{% empty %}
+								<p>No hay productos relacionados :(</p>
+						{% endfor %}
+					</div>
 
-			<div class="container-products">
-				<article class="article-product">
-					<a href="#">
-						<img src="https://res.cloudinary.com/dpxek6oka/image/upload/v1641338514/images/producto_trb4xj.webp" alt="Producto1"
-							class="article-product__image" loading="lazy" />
-					</a>
-					<h3 class="article-product__title">Nombre del producto</h3>
-					<p class="article-product__price">Precio</p>
-					<form action="#" method="POST" class="container-add-product">
-						<button class="add-product" disabled>
-							<i class="fas fa-shopping-cart container-add-product__icon" aria-hidden="true"></i> 
-							Agregar al carrito
-						</button>
-					</form>
-				</article>
-
-				<article class="article-product">
-					<a href="#">
-						<img src="https://res.cloudinary.com/dpxek6oka/image/upload/v1641338514/images/producto_trb4xj.webp" alt="Producto1"
-							class="article-product__image" loading="lazy" />
-					</a>
-					<h3 class="article-product__title">Nombre del producto</h3>
-					<p class="article-product__price">Precio</p>
-					<form action="#" method="POST" class="container-add-product">
-						<button class="add-product" disabled>
-							<i class="fas fa-shopping-cart container-add-product__icon" aria-hidden="true"></i> 
-							Agregar al carrito
-						</button>
-					</form>
-				</article>
-
-				<article class="article-product">
-					<a href="#">
-						<img src="https://res.cloudinary.com/dpxek6oka/image/upload/v1641338514/images/producto_trb4xj.webp" alt="Producto1"
-							class="article-product__image" loading="lazy" />
-					</a>
-					<h3 class="article-product__title">Nombre del producto</h3>
-					<p class="article-product__price">Precio</p>
-					<form action="#" method="POST" class="container-add-product">
-						<button class="add-product" disabled>
-							<i class="fas fa-shopping-cart container-add-product__icon" aria-hidden="true"></i> 
-							Agregar al carrito
-						</button>
-					</form>
-				</article>
-
-				<article class="article-product">
-					<a href="#">
-						<img src="https://res.cloudinary.com/dpxek6oka/image/upload/v1641338514/images/producto_trb4xj.webp" alt="Producto1"
-							class="article-product__image" loading="lazy" />
-					</a>
-					<h3 class="article-product__title">Nombre del producto</h3>
-					<p class="article-product__price">Precio</p>
-					<form action="#" method="POST" class="container-add-product">
-						<button class="add-product" disabled>
-							<i class="fas fa-shopping-cart container-add-product__icon" aria-hidden="true"></i> 
-							Agregar al carrito
-						</button>
-					</form>
-				</article>
-
-				<article class="article-product">
-					<a href="#">
-						<img src="https://res.cloudinary.com/dpxek6oka/image/upload/v1641338514/images/producto_trb4xj.webp" alt="Producto1"
-							class="article-product__image" loading="lazy" />
-					</a>
-					<h3 class="article-product__title">Nombre del producto</h3>
-					<p class="article-product__price">Precio</p>
-					<form action="#" method="POST" class="container-add-product">
-						<button class="add-product" disabled>
-							<i class="fas fa-shopping-cart container-add-product__icon" aria-hidden="true"></i> 
-							Agregar al carrito
-						</button>
-					</form>
-				</article>
-			</div>
-		</section>
-
-		<section class="section-productos-ofertados">
-			<h2 class="section-productos-ofertados__title">
-				Categoria 2
-			</h2>
-
-			<div class="container-products">
-				<article class="article-product">
-					<a href="#">
-						<img src="https://res.cloudinary.com/dpxek6oka/image/upload/v1641338514/images/producto_trb4xj.webp" alt="Producto1"
-							class="article-product__image" loading="lazy" />
-					</a>
-					<h3 class="article-product__title">Nombre del producto</h3>
-					<p class="article-product__price">Precio</p>
-					<form action="#" method="POST" class="container-add-product">
-						<button class="add-product" disabled>
-							<i class="fas fa-shopping-cart container-add-product__icon" aria-hidden="true"></i> 
-							Agregar al carrito
-						</button>
-					</form>
-				</article>
-
-				<article class="article-product">
-					<a href="#">
-						<img src="https://res.cloudinary.com/dpxek6oka/image/upload/v1641338514/images/producto_trb4xj.webp" alt="Producto1"
-							class="article-product__image" loading="lazy" />
-					</a>
-					<h3 class="article-product__title">Nombre del producto</h3>
-					<p class="article-product__price">Precio</p>
-					<form action="#" method="POST" class="container-add-product">
-						<button class="add-product" disabled>
-							<i class="fas fa-shopping-cart container-add-product__icon" aria-hidden="true"></i> 
-							Agregar al carrito
-						</button>
-					</form>
-				</article>
-
-				<article class="article-product">
-					<a href="#">
-						<img src="https://res.cloudinary.com/dpxek6oka/image/upload/v1641338514/images/producto_trb4xj.webp" alt="Producto1"
-							class="article-product__image" loading="lazy" />
-					</a>
-					<h3 class="article-product__title">Nombre del producto</h3>
-					<p class="article-product__price">Precio</p>
-					<form action="#" method="POST" class="container-add-product">
-						<button class="add-product" disabled>
-							<i class="fas fa-shopping-cart container-add-product__icon" aria-hidden="true"></i> 
-							Agregar al carrito
-						</button>
-					</form>
-				</article>
-
-				<article class="article-product">
-					<a href="#">
-						<img src="https://res.cloudinary.com/dpxek6oka/image/upload/v1641338514/images/producto_trb4xj.webp" alt="Producto1"
-							class="article-product__image" loading="lazy" />
-					</a>
-					<h3 class="article-product__title">Nombre del producto</h3>
-					<p class="article-product__price">Precio</p>
-					<form action="#" method="POST" class="container-add-product">
-						<button class="add-product" disabled>
-							<i class="fas fa-shopping-cart container-add-product__icon" aria-hidden="true"></i> 
-							Agregar al carrito
-						</button>
-					</form>
-				</article>
-
-				<article class="article-product">
-					<a href="#">
-						<img src="https://res.cloudinary.com/dpxek6oka/image/upload/v1641338514/images/producto_trb4xj.webp" alt="Producto1"
-							class="article-product__image" loading="lazy" />
-					</a>
-					<h3 class="article-product__title">Nombre del producto</h3>
-					<p class="article-product__price">Precio</p>
-					<form action="#" method="POST" class="container-add-product">
-						<button class="add-product" disabled>
-							<i class="fas fa-shopping-cart container-add-product__icon" aria-hidden="true"></i> 
-							Agregar al carrito
-						</button>
-					</form>
-				</article>
-			</div>
-		</section>
-
-		<section class="section-productos-ofertados">
-			<h2 class="section-productos-ofertados__title">
-				Categoria 3
-			</h2>
-
-			<div class="container-products">
-				<article class="article-product">
-					<a href="#">
-						<img src="https://res.cloudinary.com/dpxek6oka/image/upload/v1641338514/images/producto_trb4xj.webp" alt="Producto1"
-							class="article-product__image" loading="lazy" />
-					</a>
-					<h3 class="article-product__title">Nombre del producto</h3>
-					<p class="article-product__price">Precio</p>
-					<form action="#" method="POST" class="container-add-product">
-						<button class="add-product" disabled>
-							<i class="fas fa-shopping-cart container-add-product__icon" aria-hidden="true"></i> 
-							Agregar al carrito
-						</button>
-					</form>
-				</article>
-
-				<article class="article-product">
-					<a href="#">
-						<img src="https://res.cloudinary.com/dpxek6oka/image/upload/v1641338514/images/producto_trb4xj.webp" alt="Producto1"
-							class="article-product__image" loading="lazy" />
-					</a>
-					<h3 class="article-product__title">Nombre del producto</h3>
-					<p class="article-product__price">Precio</p>
-					<form action="#" method="POST" class="container-add-product">
-						<button class="add-product" disabled>
-							<i class="fas fa-shopping-cart container-add-product__icon" aria-hidden="true"></i> 
-							Agregar al carrito
-						</button>
-					</form>
-				</article>
-
-				<article class="article-product">
-					<a href="#">
-						<img src="https://res.cloudinary.com/dpxek6oka/image/upload/v1641338514/images/producto_trb4xj.webp" alt="Producto1"
-							class="article-product__image" loading="lazy" />
-					</a>
-					<h3 class="article-product__title">Nombre del producto</h3>
-					<p class="article-product__price">Precio</p>
-					<form action="#" method="POST" class="container-add-product">
-						<button class="add-product" disabled>
-							<i class="fas fa-shopping-cart container-add-product__icon" aria-hidden="true"></i> 
-							Agregar al carrito
-						</button>
-					</form>
-				</article>
-
-				<article class="article-product">
-					<a href="#">
-						<img src="https://res.cloudinary.com/dpxek6oka/image/upload/v1641338514/images/producto_trb4xj.webp" alt="Producto1"
-							class="article-product__image" loading="lazy" />
-					</a>
-					<h3 class="article-product__title">Nombre del producto</h3>
-					<p class="article-product__price">Precio</p>
-					<form action="#" method="POST" class="container-add-product">
-						<button class="add-product" disabled>
-							<i class="fas fa-shopping-cart container-add-product__icon" aria-hidden="true"></i> 
-							Agregar al carrito
-						</button>
-					</form>
-				</article>
-
-				<article class="article-product">
-					<a href="#">
-						<img src="https://res.cloudinary.com/dpxek6oka/image/upload/v1641338514/images/producto_trb4xj.webp" alt="Producto1"
-							class="article-product__image" loading="lazy" />
-					</a>
-					<h3 class="article-product__title">Nombre del producto</h3>
-					<p class="article-product__price">Precio</p>
-					<form action="#" method="POST" class="container-add-product">
-						<button class="add-product" disabled>
-							<i class="fas fa-shopping-cart container-add-product__icon" aria-hidden="true"></i> 
-							Agregar al carrito
-						</button>
-					</form>
-				</article>
-			</div>
-		</section>
-
-		<section class="section-productos-ofertados">
-			<h2 class="section-productos-ofertados__title">
-				Categoria 4
-			</h2>
-
-			<div class="container-products">
-				<article class="article-product">
-					<a href="#">
-						<img src="https://res.cloudinary.com/dpxek6oka/image/upload/v1641338514/images/producto_trb4xj.webp" alt="Producto1"
-							class="article-product__image" loading="lazy" />
-					</a>
-					<h3 class="article-product__title">Nombre del producto</h3>
-					<p class="article-product__price">Precio</p>
-					<form action="#" method="POST" class="container-add-product">
-						<button class="add-product" disabled>
-							<i class="fas fa-shopping-cart container-add-product__icon" aria-hidden="true"></i> 
-							Agregar al carrito
-						</button>
-					</form>
-				</article>
-
-				<article class="article-product">
-					<a href="#">
-						<img src="https://res.cloudinary.com/dpxek6oka/image/upload/v1641338514/images/producto_trb4xj.webp" alt="Producto1"
-							class="article-product__image" loading="lazy" />
-					</a>
-					<h3 class="article-product__title">Nombre del producto</h3>
-					<p class="article-product__price">Precio</p>
-					<form action="#" method="POST" class="container-add-product">
-						<button class="add-product" disabled>
-							<i class="fas fa-shopping-cart container-add-product__icon" aria-hidden="true"></i> 
-							Agregar al carrito
-						</button>
-					</form>
-				</article>
-
-				<article class="article-product">
-					<a href="#">
-						<img src="https://res.cloudinary.com/dpxek6oka/image/upload/v1641338514/images/producto_trb4xj.webp" alt="Producto1"
-							class="article-product__image" loading="lazy" />
-					</a>
-					<h3 class="article-product__title">Nombre del producto</h3>
-					<p class="article-product__price">Precio</p>
-					<form action="#" method="POST" class="container-add-product">
-						<button class="add-product" disabled>
-							<i class="fas fa-shopping-cart container-add-product__icon" aria-hidden="true"></i> 
-							Agregar al carrito
-						</button>
-					</form>
-				</article>
-
-				<article class="article-product">
-					<a href="#">
-						<img src="https://res.cloudinary.com/dpxek6oka/image/upload/v1641338514/images/producto_trb4xj.webp" alt="Producto1"
-							class="article-product__image" loading="lazy" />
-					</a>
-					<h3 class="article-product__title">Nombre del producto</h3>
-					<p class="article-product__price">Precio</p>
-					<form action="#" method="POST" class="container-add-product">
-						<button class="add-product" disabled>
-							<i class="fas fa-shopping-cart container-add-product__icon" aria-hidden="true"></i> 
-							Agregar al carrito
-						</button>
-					</form>
-				</article>
-
-				<article class="article-product">
-					<a href="#">
-						<img src="https://res.cloudinary.com/dpxek6oka/image/upload/v1641338514/images/producto_trb4xj.webp" alt="Producto1"
-							class="article-product__image" loading="lazy" />
-					</a>
-					<h3 class="article-product__title">Nombre del producto</h3>
-					<p class="article-product__price">Precio</p>
-					<form action="#" method="POST" class="container-add-product">
-						<button class="add-product" disabled>
-							<i class="fas fa-shopping-cart container-add-product__icon" aria-hidden="true"></i> 
-							Agregar al carrito
-						</button>
-					</form>
-				</article>
-			</div>
-		</section>
-
-		<section class="section-productos-ofertados">
-			<h2 class="section-productos-ofertados__title">
-				Categoria 5
-			</h2>
-
-			<div class="container-products">
-				<article class="article-product">
-					<a href="#">
-						<img src="https://res.cloudinary.com/dpxek6oka/image/upload/v1641338514/images/producto_trb4xj.webp" alt="Producto1"
-							class="article-product__image" loading="lazy" />
-					</a>
-					<h3 class="article-product__title">Nombre del producto</h3>
-					<p class="article-product__price">Precio</p>
-					<form action="#" method="POST" class="container-add-product">
-						<button class="add-product" disabled>
-							<i class="fas fa-shopping-cart container-add-product__icon" aria-hidden="true"></i> 
-							Agregar al carrito
-						</button>
-					</form>
-				</article>
-
-				<article class="article-product">
-					<a href="#">
-						<img src="https://res.cloudinary.com/dpxek6oka/image/upload/v1641338514/images/producto_trb4xj.webp" alt="Producto1"
-							class="article-product__image" loading="lazy" />
-					</a>
-					<h3 class="article-product__title">Nombre del producto</h3>
-					<p class="article-product__price">Precio</p>
-					<form action="#" method="POST" class="container-add-product">
-						<button class="add-product" disabled>
-							<i class="fas fa-shopping-cart container-add-product__icon" aria-hidden="true"></i> 
-							Agregar al carrito
-						</button>
-					</form>
-				</article>
-
-				<article class="article-product">
-					<a href="#">
-						<img src="https://res.cloudinary.com/dpxek6oka/image/upload/v1641338514/images/producto_trb4xj.webp" alt="Producto1"
-							class="article-product__image" loading="lazy" />
-					</a>
-					<h3 class="article-product__title">Nombre del producto</h3>
-					<p class="article-product__price">Precio</p>
-					<form action="#" method="POST" class="container-add-product">
-						<button class="add-product" disabled>
-							<i class="fas fa-shopping-cart container-add-product__icon" aria-hidden="true"></i> 
-							Agregar al carrito
-						</button>
-					</form>
-				</article>
-
-				<article class="article-product">
-					<a href="#">
-						<img src="https://res.cloudinary.com/dpxek6oka/image/upload/v1641338514/images/producto_trb4xj.webp" alt="Producto1"
-							class="article-product__image" loading="lazy" />
-					</a>
-					<h3 class="article-product__title">Nombre del producto</h3>
-					<p class="article-product__price">Precio</p>
-					<form action="#" method="POST" class="container-add-product">
-						<button class="add-product" disabled>
-							<i class="fas fa-shopping-cart container-add-product__icon" aria-hidden="true"></i> 
-							Agregar al carrito
-						</button>
-					</form>
-				</article>
-
-				<article class="article-product">
-					<a href="#">
-						<img src="https://res.cloudinary.com/dpxek6oka/image/upload/v1641338514/images/producto_trb4xj.webp" alt="Producto1"
-							class="article-product__image" loading="lazy" />
-					</a>
-					<h3 class="article-product__title">Nombre del producto</h3>
-					<p class="article-product__price">Precio</p>
-					<form action="#" method="POST" class="container-add-product">
-						<button class="add-product" disabled>
-							<i class="fas fa-shopping-cart container-add-product__icon" aria-hidden="true"></i> 
-							Agregar al carrito
-						</button>
-					</form>
-				</article>
-			</div>
-		</section>
+				<button aria-label="Previous" class="glider-prev">
+					<i class="fa-solid fa-angle-left" aria-hidden="true"></i>
+				</button>
+				<button aria-label="Next" class="glider-next">
+					<i class="fa-solid fa-angle-right" aria-hidden="true"></i>
+				</button>
+			</section>
+		{% endfor %}
 
 		{% include 'snippets/aside.html' %}
 	</main>
 
 	{% include 'snippets/footer.html' %}
+
+	<script src="https://cdn.jsdelivr.net/npm/glider-js@1.7.7/glider.min.js" defer></script>
 {% endblock %}

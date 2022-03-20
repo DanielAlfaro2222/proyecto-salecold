@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.contrib.auth import logout
 from django.contrib.auth import login 
 from django.shortcuts import redirect
+from django.shortcuts import reverse
 from django.contrib.auth.decorators import login_required
 from Users.models import UserModel
 from django.contrib import messages
@@ -16,11 +17,15 @@ from .forms import ChangePassword
 from django.contrib.sites.shortcuts import get_current_site
 from django.views.decorators.http import require_http_methods
 from django.views.decorators.http import require_GET
+from django.http import HttpResponseRedirect
 
 @require_http_methods(['GET', 'POST'])
 def login_view(request):
     if request.user.is_authenticated:
         return redirect('index')
+
+    if request.GET.get('next'):
+        messages.error(request, 'Error debe iniciar sesion primero')
 
     formulario = LoginForm(request.POST or None)
     
@@ -29,8 +34,11 @@ def login_view(request):
 
         if user:
             login(request, user)
-            if user.is_staff:
-                return redirect('Users:administrator')
+
+            if request.GET.get('next'):
+                return HttpResponseRedirect(request.GET.get('next'))
+            elif user.is_staff:
+                return HttpResponseRedirect('/admin/')
             else:
                 return redirect('index')
         else:
@@ -38,7 +46,7 @@ def login_view(request):
             
     return render(request, 'users/login.html', context = {'formulario': formulario})
 
-@require_http_methods(['GET', 'POST'])
+@require_GET
 @login_required
 def logout_view(request):
     logout(request)
@@ -97,19 +105,14 @@ def updateDataUser(request):
                 formulario.save(request.user)
                 messages.success(request, "Informacion actualizada exitosamente")
 
-    return render(request, 'users/actualizarDatosUsuario.html', context={
+    return render(request, 'users/dashboard_usuario/actualizarDatosUsuario.html', context={
         'formulario': formulario,
     })
 
 @require_GET
 @login_required
 def dashboardUser(request):
-    return render(request, 'users/dashboardUsuario.html', context={})
-
-@require_GET
-@login_required
-def administrator(request):
-    return render(request, 'users/administrador.html', context={} )
+    return render(request, 'users/dashboard_usuario/dashboardUsuario.html', context={})
 
 @require_http_methods(['GET', 'POST'])
 def contact(request):
@@ -131,11 +134,11 @@ def changePassword(request):
 
     if request.method == 'POST' and formulario.is_valid():
         usuario = User.objects.get(username = request.user.username)
-        usuario.set_password = request.POST.get('contrasena')   
+        usuario.set_password(request.POST.get('contrasena'))
         usuario.save()
 
         messages.success(request, 'La contraseña se ha cambiado con exito.')
 
-    return render(request, 'users/cambiarContrasena.html', context = {
+    return render(request, 'users/dashboard_usuario/cambiarContrasena.html', context = {
         'formulario': formulario,
     })

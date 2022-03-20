@@ -1,40 +1,40 @@
 {% load static %}
 {% load humanize %}
 
-<article class="article-product">
+<article class="container-template-product">
     {% if producto.discount != 0 %}
-        <p class="article-product__offert">{{producto.discount}}%</p>
+        <p class="container-template-product__discount">{{producto.discount}}%</p>
     {% endif %}
-    <a href="{% url 'Products:product' producto.slug %}">
+    <a href="{% url 'Products:product' producto.slug %}" class="container-image-template-product">
         <img src="{{producto.image}}" alt="{{producto.name}}"
-            class="article-product__image" loading="lazy" />
+        class="container-image-template-product__img" loading="lazy" decoding = "async" />
     </a>
-    <h3 class="article-product__title">{{producto.name}}</h3>
-    {% if producto.discount == 0 %}
-        <p class="article-product__price">$ {{ producto.unit_price|intcomma }}</p>
-    {% else %}
-        <p class="article-product__price">
+    <p class="container-template-product__title">{{producto.name}}</p>
+    <p class="container-price-template-product">
+        {% if producto.discount == 0 %}
             $ {{ producto.final_price|intcomma }}
-            <span class="article-product__discount">
+        {% else %}
+            $ {{ producto.final_price|intcomma }}
+            <span class="container-price-template-product__span">
                 $ {{ producto.unit_price|intcomma }}
             </span>
-        </p>
-    {% endif %}
-    <form method="POST" class="container-add-product" action = "{% url 'Carts:add_product' %}">
+        {% endif %}
+    </p>
+    
+    <form method="POST" class="container-form-template-product" action="{% url 'Carts:add_product' %}">
         {% csrf_token %}
 
+        <input type="hidden" name="url" value="{{request.build_absolute_uri}}">
+        
         <input type="hidden" name="product_id" value="{{producto.id_product}}">
 
-        {% if producto.stock == 0 %}
-            <button class="add-product" disabled>
-                <i class="fas fa-shopping-cart container-add-product__icon" aria-hidden="true"></i> 
-                No disponible
-            </button>
-        {% else %}
-            <button class="add-product" id="add-product">
-                <i class="fas fa-shopping-cart container-add-product__icon" aria-hidden="true"></i> 
-                Agregar al carrito
-            </button>
-        {% endif %}
+        <button class="container-btn-template-product" {% if producto.stock == 0 %}disabled{% endif %}>
+                <i class="fas fa-shopping-cart container-btn-template-product__icon" aria-hidden="true"></i> 
+                {% if producto.stock == 0 %}
+                    No disponible
+                {% else %}
+                    Agregar al carrito
+                {% endif %}
+        </button>
     </form>
 </article>

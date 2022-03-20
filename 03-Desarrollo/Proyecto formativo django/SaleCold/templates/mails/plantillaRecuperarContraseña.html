@@ -70,7 +70,7 @@
 {% block content %}
     <section class="container-email">
         <article class="container-email-header">
-            <a href="{{dominio}}{% url 'index' %}" class="container-image-email-header" target="_blank" rel="noopener">    
+            <a href="{% if request.is_secure %}https{% else %}http{% endif %}://{{dominio}}{% url 'index' %}" class="container-image-email-header" target="_blank" rel="noopener">    
                 <img src="https://res.cloudinary.com/dpxek6oka/image/upload/v1645626671/Logo/Logo4_ez3iqd.png" alt="Logo SaleCold" class="container-image-email-header__img" loading="lazy">
             </a>
         </article>
@@ -78,14 +78,14 @@
             <h2 class="container-email-main__title">Recuperar contraseña</h2>
             <p class="container-email-main__paragraph">
                 Hola {{usuario}}, para cambiar la contraseña de clic en el boton "Cambiar contraseña" o pegue la siguiente url en su navegador 
-                <a href="#" style="text-decoration: none;" target="_blank" rel="noopener">
-                    {{dominio}}{{url}}
+                <a href="{% if request.is_secure %}https{% else %}http{% endif %}://{{dominio}}{% url 'password_reset_confirm' uidb64=uuid token=token %}" style="text-decoration: none;" target="_blank" rel="noopener">
+                    {% if request.is_secure %}https{% else %}http{% endif %}://{{dominio}}{% url 'password_reset_confirm' uidb64=uuid token=token %}
                 </a>
             </p>
             <p class="container-email-main__paragraph">
                 Si no realizo la solicitud para recuperar la contraseña, por favor ignore este mensaje.
             </p>
-            <a href="#" class="container-email-main__link" style="color:white;" target="_blank" rel="noopener">
+            <a href="{% if request.is_secure %}https{% else %}http{% endif %}://{{dominio}}{% url 'password_reset_confirm' uidb64=uuid token=token %}" class="container-email-main__link" style="color:white;" target="_blank" rel="noopener">
                 Cambiar contraseña
             </a>
 

@@ -1,1 +1,46 @@
-body{padding-top:6em}.container-update-user{background-color:var(--color-formularios);color:#fff;border:none;padding:1.6em;font-size:.9rem}.container-update-user__title{font-size:1.3rem;margin-top:0;margin-bottom:1.3em}.container-label-form{display:block;margin-bottom:1.2em}.container-label-form__input,.container-select-update-user{width:100%;height:44px;background-color:#1a222c;border:none;outline:none;border-radius:1em;-webkit-border-radius:1em;-moz-border-radius:1em;-ms-border-radius:1em;-o-border-radius:1em;padding-left:1em;color:#fff;margin-top:1em}.container-form-uptade-user__btn{width:100%;height:38px;border-radius:1em;-webkit-border-radius:1em;-moz-border-radius:1em;-ms-border-radius:1em;-o-border-radius:1em;border:none;color:#fff;background-color:rgb(0,81,255);font-size:.9rem;font-weight:400;margin-top:.4em;cursor:pointer}@media screen and (min-width:768px){.container-update-user{width:60vw;padding:2.4em;margin-left:auto;margin-right:auto}}@media screen and (min-width:1000px){.container-update-user{width:54vw;padding:2.7em;font-size:1rem}.container-update-user__title{font-size:1.7rem}.container-label-form__input,.container-select-update-user{height:52px;padding-left:1.2em;margin-top:1.3em}.container-label-form{margin-bottom:1.4em}.container-form-uptade-user__btn{height:48px;font-size:1rem}}@media screen and (min-width:1200px){.container-update-user{width:40vw}.exito{width:40vw}}
+.container-form-uptade-user {
+    font-size: .9rem;
+}
+
+.container-main-dashboard-user__title {
+    font-size: 1.2rem;
+}
+
+.container-label-form__input, .container-select-update-user {
+    display: block;
+    width: 100%;
+    height: 40px;
+    outline: none;
+    border: none;
+    border-radius: .5em;
+    -webkit-border-radius: .5em;
+    -moz-border-radius: .5em;
+    -ms-border-radius: .5em;
+    -o-border-radius: .5em;
+    background-color: var(--bgcolor-input-form);
+    margin-top: 1em;
+    margin-bottom: 1em;
+    padding-left: .7em;
+}
+
+.container-form-uptade-user__btn {
+    width: 100%;
+    height: 40px;
+    text-align: center;
+    background: linear-gradient(to right, blue, rgb(11, 210, 236));
+    color: white;
+    border: none;
+    border-radius: .5em;
+    -webkit-border-radius: .5em;
+    -moz-border-radius: .5em;
+    -ms-border-radius: .5em;
+    -o-border-radius: .5em;
+    font-size: .9rem;
+    margin-top: 2em;
+    margin-bottom: 1em;
+    cursor: pointer;
+}
+
+.errorlist {
+    margin-bottom: 1.5em;
+}

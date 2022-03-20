@@ -4,11 +4,15 @@
 
 {% block head %}
     <link rel="stylesheet" href="{% static 'css/categoria.css' %}">
-    <title>SaleCold | {{categoria.name}}</title>
+    <title>{{categoria.name}}</title>
 {% endblock %}
 
 {% block content %}
-    {% include 'snippets/header.html' %}
+    <header>
+        {% include 'snippets/main_nav.html' %}
+    </header>
+
+    {% include 'snippets/mensajes.html' %}
 
     <main class="container-category">
         <h2 class="container-category__title">{{categoria.name}}</h2>
@@ -23,13 +27,13 @@
         </form>
 
         {% if request.GET.q %}
-            <p>
+            <p class="container-result-search-product">
                 {% if cantidad_productos == 1 %}
-                    Se encontro {{cantidad_productos}} resultado para: {{parametro_busqueda}}.
+                    Se encontro {{cantidad_productos}} resultado para: {{parametro_busqueda}}
                 {% elif cantidad_productos == 0 %}
-                    No se encontraron resultados para: {{parametro_busqueda}}.
+                    No se encontraron resultados para: {{parametro_busqueda}}
                 {% else %}
-                    Se encontraron {{cantidad_productos}} resultados para: {{parametro_busqueda}}.
+                    Se encontraron {{cantidad_productos}} resultados para: {{parametro_busqueda}}
                 {% endif %}
             </p>
         {% endif %}
