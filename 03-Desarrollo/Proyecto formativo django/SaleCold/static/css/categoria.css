@@ -76,9 +76,17 @@ body {
     color: blue;
 }
 
+@media screen and (min-width: 600px) {
+    .container-template-product {
+        margin: 0;
+    }
+    .container-filter__title {
+        margin-top: 0;
+    }
+}
+
 @media screen and (min-width: 1000px) {
     .main-header__form {
-        grid-row: 2;
-        grid-column: span 2;
+        width: 600px;
     }
 }

@@ -38,12 +38,14 @@
             </p>
         {% endif %}
 
-        {% include 'products/snippets/ordenarProductos.html' %}
+        <section class="container-order-and-products-category">
+            {% include 'products/snippets/ordenarProductos.html' %}
 
-        <section class="container-products-category">
-            {% for producto in productos %}
-                {% include 'products/snippets/plantillaProducto.html' %}
-            {% endfor %}
+            <section class="container-products-category">
+                {% for producto in productos %}
+                    {% include 'products/snippets/plantillaProducto.html' %}
+                {% endfor %}
+            </section>
         </section>
 
         {% include 'products/snippets/paginacionProductos.html' %}
