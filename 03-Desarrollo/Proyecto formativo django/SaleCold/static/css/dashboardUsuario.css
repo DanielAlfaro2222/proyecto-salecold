@@ -110,3 +110,19 @@
     font-size: 1rem;
     margin-right: .6em;
 }
+
+.container-main-dashboard-user__title {
+    font-size: 1.2rem;
+}
+
+@media screen and (min-width: 400px) {
+    .container-label-address-user__input, .container-label-address-user__select, .container-form-address-user__btn, .container-label-form__input, .container-select-update-user, .container-form-uptade-user__btn, .form-contraseña__btn, .container-label-form-contraseña__input {
+        max-width: 300px;
+    }
+    .container-main-dashboard-user {
+        padding: 1.4em;
+    }
+    .container-form-uptade-user {
+        margin-top: 1.2em;
+    }
+}

@@ -5,9 +5,9 @@ from .models import UnitOfMeasure
 
 @admin.register(Product) 
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ["id_product", "name", "unit_price", "final_price", "reference", "stock", "discount", "modified", "state"]
+    list_display = ["id_product", "name", "unit_price", "final_price", "reference", "inputs", "outputs", "stock", "discount", "modified", "state"]
     list_display_links = ["name"] 
-    list_editable = ["unit_price", "stock", "discount"] 
+    list_editable = ["unit_price","inputs", "outputs", "discount"] 
     search_fields = ["name", "reference"] 
     list_per_page = 15
 

@@ -81,10 +81,10 @@
 						{% endfor %}
 					</div>
 
-				<button aria-label="Previous" class="glider-prev">
+				<button aria-label="Previous" class="glider-prev glider-prev{{forloop.counter}}">
 					<i class="fa-solid fa-angle-left" aria-hidden="true"></i>
 				</button>
-				<button aria-label="Next" class="glider-next">
+				<button aria-label="Next" class="glider-next glider-next{{forloop.counter}}">
 					<i class="fa-solid fa-angle-right" aria-hidden="true"></i>
 				</button>
 			</section>
@@ -96,4 +96,5 @@
 	{% include 'snippets/footer.html' %}
 
 	<script src="https://cdn.jsdelivr.net/npm/glider-js@1.7.7/glider.min.js" defer></script>
+	<script src="{% static 'js/sliders.js' %}" defer></script>
 {% endblock %}

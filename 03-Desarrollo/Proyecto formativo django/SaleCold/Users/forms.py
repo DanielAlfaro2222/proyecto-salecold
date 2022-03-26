@@ -1,3 +1,5 @@
+from ast import Add
+from email.policy import default
 from django import forms
 from django.contrib.auth.models import User
 from Users.models import City
@@ -9,30 +11,29 @@ from django.conf import settings
 from django.template.loader import get_template
 from django.contrib.sites.shortcuts import get_current_site
 from django.shortcuts import reverse
+from Orders.models import Address
 
 CAMPO_OBLIGATORIO = 'Este campo es obligatorio.'
 ERROR_CANTIDAD_CARACTERES = 'Este campo acepta minimo 4 caracteres y maximo 25 caracteres.'
+GENDER = (
+    (1, 'Genero'),
+    (2, 'Hombre'),
+    (3, 'Mujer'),
+    (4, 'Prefiero no decirlo'),
+)
 
 class RegisterForm(forms.Form):
-    GENDER = (
-        (1, 'Genero'),
-        (2, 'Hombre'),
-        (3, 'Mujer'),
-    )
-
     nombre = forms.CharField(
         required = False,
         widget = forms.TextInput(attrs = {
-                    'autofocus': 'True',
-                    'tab-index': 1,
-                    'class': 'form-register__input',
-                    'placeholder': 'Nombre'
+                'autofocus': 'True',
+                'class': 'form-register__input',
+                'placeholder': 'Nombre'
         })
     )
     apellido = forms.CharField(
         required = False,
         widget = forms.TextInput(attrs = {
-            'tab-index': 2,
             'class': 'form-register__input',
             'placeholder': 'Apellido'
         })
@@ -40,7 +41,6 @@ class RegisterForm(forms.Form):
     numero_documento = forms.CharField(
         required = False,
         widget = forms.TextInput(attrs = {
-            'tab-index': 3,
             'placeholder': 'Numero de documento',
             'class': 'form-register__input'
         })
@@ -48,7 +48,6 @@ class RegisterForm(forms.Form):
     direccion = forms.CharField(
         required = False,
         widget = forms.TextInput(attrs = {
-            'tab-index': 4,
             'placeholder': 'Direccion de residencia',
             'class': 'form-register__input'
         })
@@ -56,7 +55,6 @@ class RegisterForm(forms.Form):
     telefono = forms.CharField(
         required = False,
         widget = forms.TextInput(attrs = {
-            'tab-index': 5,
             'placeholder': 'Numero telefonico',
             'class': 'form-register__input',
             'type': 'tel'
@@ -65,7 +63,6 @@ class RegisterForm(forms.Form):
     email = forms.EmailField(
         required = False,
         widget = forms.TextInput(attrs = {
-            'tab-index': 6,
             'placeholder': 'Correo',
             'class': 'form-register__input'
         })
@@ -73,7 +70,6 @@ class RegisterForm(forms.Form):
     contrasena = forms.CharField(
         required = False,
         widget = forms.PasswordInput(attrs = {
-            'tab-index': 7,
             'placeholder': 'Contraseña',
             'class': 'form-register__input'
         })
@@ -105,7 +101,14 @@ class RegisterForm(forms.Form):
         empty_value = '1',
         choices = GENDER,
     )
-
+    barrio = forms.CharField(
+        required = False,
+        widget = forms.TextInput(attrs = {
+            'class': 'form-register__input',
+            'placeholder': 'Barrio/Localidad',
+        })
+    )
+    
     def clean_nombre(self):
         nombre = self.cleaned_data.get('nombre')
 
@@ -139,8 +142,8 @@ class RegisterForm(forms.Form):
     def clean_direccion(self):
         direccion = self.cleaned_data.get('direccion')
 
-        if len(direccion) > 30:
-            raise forms.ValidationError('Este campo acepta maximo 30 caracteres.')
+        if len(direccion) > 70:
+            raise forms.ValidationError('Este campo acepta maximo 70 caracteres.')
         elif len(direccion) == 0:
             raise forms.ValidationError(CAMPO_OBLIGATORIO)
 
@@ -209,6 +212,16 @@ class RegisterForm(forms.Form):
         
         return genero
 
+    def clean_barrio(self):
+        barrio = self.cleaned_data.get('barrio')
+
+        if len(barrio) == 0:
+            raise forms.ValidationError(CAMPO_OBLIGATORIO)
+        elif len(barrio) > 50:
+            raise forms.ValidationError('Este campo acepta maximo 50 caracteres')
+
+        return barrio
+
     def save(self):
         user = User.objects.create_user(
             username = self.cleaned_data.get('email').strip(),
@@ -232,9 +245,19 @@ class RegisterForm(forms.Form):
             type_of_document = tipo_documento,
             number_document = self.cleaned_data.get('numero_documento').strip(),
             address = self.cleaned_data.get('direccion').strip(),
+            neighborhood = self.cleaned_data.get('barrio').strip(),
             phone_number = self.cleaned_data.get('telefono').strip(),
             city = ciudad,
             gender = self.cleaned_data.get('genero').strip()
+        )
+
+        # Crear la direccion de envio apenas el usuario se registra.
+        Address.objects.create(
+            user = user,
+            city = ciudad,
+            address = self.cleaned_data.get('direccion').strip(),
+            default = True,
+            neighborhood = self.cleaned_data.get('barrio').strip()
         )
 
         return user
@@ -245,7 +268,6 @@ class RegisterForm(forms.Form):
             'usuario': f"{self.cleaned_data.get('nombre').strip().split()[0]} {self.cleaned_data.get('apellido').strip().split()[0]}",
             'dominio': get_current_site(request).domain,
             'url': reverse('index'),
-            'productos': Product.objects.filter(state = True, discount__gt = 0, stock__gt = 0).order_by('-discount')[:4],
         }
         content = template.render(context)
 
@@ -401,7 +423,6 @@ class UpdateDataUserForm(forms.Form):
         widget = forms.TextInput(attrs = {
             'class': 'container-label-form__input',
             'autofocus': 'True',
-            'tab-index': 1
         })
     )
 
@@ -409,7 +430,6 @@ class UpdateDataUserForm(forms.Form):
         required = False,
         widget = forms.TextInput(attrs = {
             'class': 'container-label-form__input',
-            'tab-index': 2,
         })
     )
 
@@ -417,7 +437,6 @@ class UpdateDataUserForm(forms.Form):
         required = False,
         widget = forms.Select(attrs = {
             'class': 'container-select-update-user',
-            'tab-index': 3,
         }),
         queryset = TypeOfDocument.objects.all(),
     )
@@ -426,7 +445,6 @@ class UpdateDataUserForm(forms.Form):
         required = False,
         widget = forms.TextInput(attrs = {
             'class': 'container-label-form__input',
-            'tab-index': 4,
         })
     )
 
@@ -434,7 +452,6 @@ class UpdateDataUserForm(forms.Form):
         required = False,
         widget = forms.Select(attrs = {
             'class': 'container-select-update-user',
-            'tab-index': 5,
         }),
         queryset = City.objects.all(),
     )
@@ -443,7 +460,6 @@ class UpdateDataUserForm(forms.Form):
         required = False,
         widget = forms.TextInput(attrs = {
             'class': 'container-label-form__input',
-            'tab-index': 6,
         })
     )
 
@@ -451,7 +467,6 @@ class UpdateDataUserForm(forms.Form):
         required = False,
         widget = forms.TextInput(attrs = {
             'class': 'container-label-form__input',
-            'tab-index': 7,
         })
     )
 
@@ -459,9 +474,24 @@ class UpdateDataUserForm(forms.Form):
         required = False,
         widget = forms.TextInput(attrs = {
             'class': 'container-label-form__input',
-            'tab-index': 8,
             'type': 'tel'
         })
+    )
+
+    barrio = forms.CharField(
+        required = False,
+        widget = forms.TextInput(attrs = {
+            'class': 'container-label-form__input',
+        })
+    )
+
+    genero = forms.TypedChoiceField(
+        required = False,
+        widget = forms.Select(attrs = {
+            'class': 'container-select-update-user',
+        }),
+        empty_value = '1',
+        choices = GENDER,
     )
 
     def clean_nombre(self):
@@ -495,8 +525,8 @@ class UpdateDataUserForm(forms.Form):
     def clean_direccion(self):
         direccion = self.cleaned_data.get('direccion')
 
-        if len(direccion) > 30:
-            raise forms.ValidationError('Este campo acepta maximo 30 caracteres.')
+        if len(direccion) > 70:
+            raise forms.ValidationError('Este campo acepta maximo 70 caracteres.')
         elif len(direccion) == 0:
             raise forms.ValidationError(CAMPO_OBLIGATORIO)
 
@@ -536,6 +566,24 @@ class UpdateDataUserForm(forms.Form):
         
         return tipo_documento
 
+    def clean_barrio(self):
+        barrio = self.cleaned_data.get('barrio')
+
+        if len(barrio) == 0:
+            raise forms.ValidationError(CAMPO_OBLIGATORIO)
+        elif len(barrio) > 50:
+            raise forms.ValidationError('Este campo acepta maximo 50 caracteres')
+
+        return barrio
+
+    def clean_genero(self):
+        genero = self.cleaned_data.get('genero')
+
+        if genero == '1':
+            raise forms.ValidationError(CAMPO_OBLIGATORIO)
+        
+        return genero
+
     def save(self, user):
         informacion_adicional = UserModel.objects.get(user = user)
 
@@ -554,8 +602,20 @@ class UpdateDataUserForm(forms.Form):
         informacion_adicional.number_document = self.cleaned_data.get('numero_documento').strip()
         informacion_adicional.address = self.cleaned_data.get('direccion').strip()
         informacion_adicional.phone_number = self.cleaned_data.get('telefono').strip()
+        informacion_adicional.gender = self.cleaned_data.get('genero')
+        informacion_adicional.neighborhood = self.cleaned_data.get('barrio').strip()
 
         informacion_adicional.save()
+
+        direccion = Address.objects.get(user = user, default = True)
+        nueva_direccion = self.cleaned_data.get('direccion').strip()
+
+        # Verificar si la direccion actual del usuario es distinta a la nueva direccion, si es asi entonces se actualiza.
+        if direccion != nueva_direccion:
+            if Address.objects.filter(user = user, default = False, address = nueva_direccion).exists():
+                Address.objects.filter(user = user, default = False, address = nueva_direccion).delete()
+            direccion.address = self.cleaned_data.get('direccion').strip()
+            direccion.save()
 
 class LoginForm(forms.Form):
     correo = forms.EmailField(
@@ -645,3 +705,84 @@ class ChangePassword(forms.Form):
             self.add_error('contrasena2', CAMPO_OBLIGATORIO)
         elif cleaned_data.get('contrasena2') != cleaned_data.get('contrasena'):
             self.add_error('contrasena2', 'Las contraseñas deben coincidir.')
+
+class AddressForm(forms.Form):
+    ciudad = forms.ModelChoiceField(
+        required = False,
+        widget = forms.Select(attrs = {
+            'class': 'container-label-address-user__select',
+        }),
+        queryset = City.objects.all(),
+        empty_label = 'Ciudad'
+    )
+    direccion = forms.CharField(
+        required = False,
+        widget = forms.TextInput(attrs = {
+            'class': 'container-label-address-user__input',
+        })
+    )
+    barrio = forms.CharField(
+        required = False,
+        widget = forms.TextInput(attrs = {
+            'class': 'container-label-address-user__input',
+        })
+    )
+    defecto = forms.ChoiceField(
+        required = False,
+        widget = forms.Select(attrs = {
+            'class': 'container-label-address-user__select',
+        }),
+        choices = (
+            ('1', 'Seleccionar'),
+            ('2', 'Si'),
+            ('3', 'No'),
+        )
+    )
+
+    def clean_direccion(self):
+        direccion = self.cleaned_data.get('direccion')
+
+        if len(direccion) > 70:
+            raise forms.ValidationError('Este campo acepta maximo 70 caracteres.')
+        elif len(direccion) == 0:
+            raise forms.ValidationError(CAMPO_OBLIGATORIO)
+
+        return direccion
+
+    def clean_ciudad(self):
+        ciudad = self.cleaned_data.get('ciudad')
+
+        if ciudad == None:
+            raise forms.ValidationError(CAMPO_OBLIGATORIO)
+
+        return ciudad
+
+    def clean_barrio(self):
+        barrio = self.cleaned_data.get('barrio')
+
+        if len(barrio) == 0:
+            raise forms.ValidationError(CAMPO_OBLIGATORIO)
+        elif len(barrio) > 50:
+            raise forms.ValidationError('Este campo acepta maximo 50 caracteres')
+
+        return barrio
+
+    def clean_defecto(self):
+        defecto = self.cleaned_data.get('defecto')
+
+        if defecto == '1':
+            raise forms.ValidationError(CAMPO_OBLIGATORIO)
+
+        return defecto
+
+    def save(self, pk, user):
+        direccion = Address.objects.get(pk = pk, user = user)
+        direccion.city = City.objects.get(description = self.cleaned_data.get('ciudad'))
+        direccion.address = self.cleaned_data.get('direccion')
+        direccion.neighborhood = self.cleaned_data.get('barrio')
+        direccion.default = True if self.cleaned_data.get('defecto') == '2' else False
+        try:
+            direccion.save()
+            return True
+        except:
+            return False

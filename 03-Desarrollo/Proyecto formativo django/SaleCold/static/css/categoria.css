@@ -76,6 +76,10 @@ body {
     color: blue;
 }
 
+.container-template-product {
+    margin-bottom: 2em;
+}
+
 @media screen and (min-width: 600px) {
     .container-template-product {
         margin: 0;

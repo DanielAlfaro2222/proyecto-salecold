@@ -11,4 +11,10 @@ urlpatterns = [
     path('contact/', views.contact, name = "contact"),
     path('register/', views.register, name = "register"),
     path('change-password/', views.changePassword, name = 'change-password'),
+    path('addresses/', views.addresses_view, name = 'addresses'),
+    path('addresses/new/', views.create_address_view, name = 'new-address'),
+    path('addresses/delete/<int:id_address>/', views.delete_address, name = 'delete-address'),
+    path('addresses/edit/<int:id_address>/', views.edit_address, name = 'edit-address'),
+    path('addresses/config/', views.config_account_view, name = 'config-account'),
+    path('orders/', views.orders_view, name = 'orders'),
 ]

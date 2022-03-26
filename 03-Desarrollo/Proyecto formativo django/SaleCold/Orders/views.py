@@ -1,16 +1,197 @@
-from django.shortcuts import render
+from ast import Add
+from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
 from .utils import get_or_create_order
 from Carts.utils import get_or_create_cart
 from .utils import breadcrumb
+from .models import TypeOfDelivery
+from .models import PaymentType
+from .models import Address
+from django.contrib import messages
+from Users.forms import AddressForm
+from Users.models import City
+from Carts.utils import destroy_session_cart
+from .utils import destroy_session_order
+from Products.models import Product
+from .decorators import get_cart_and_order
 
 @login_required
-def order_view(request):
-    cart = get_or_create_cart(request)
-    order = get_or_create_order(request, cart)
+@get_cart_and_order
+def order_view(request, cart, order):
+    """
+    Vista encargada del resumen del pedido.
+    """
+
+    if not cart.has_products():
+        messages.error(request, 'Debes agregar primero productos al carrito de compras')
+        return redirect('Carts:cart')
 
     return render(request, 'orders/pedido.html', context = {
         'carrito': cart,
         'orden': order,
         'breadcrumb': breadcrumb(),
     })
+
+@login_required
+@get_cart_and_order
+def address_view(request, cart, order):
+    """
+    Vista encargada del metodo de envio del pedido.
+    """
+
+    if not cart.has_products():
+        messages.error(request, 'Debes agregar primero productos al carrito de compras')
+        return redirect('Carts:cart')
+    elif request.method == 'POST' and request.POST.get('metodo_entrega'):
+        if request.POST.get('metodo_entrega') == 'Entrega a domicilio':
+            order.shipping_total = 8000
+            order.address = Address.objects.get(user = request.user, address = request.POST.get('direccion'))
+        else:
+            order.shipping_total = 0
+            order.address = None
+
+        order.type_of_delivery = TypeOfDelivery.objects.get(description = request.POST.get('metodo_entrega'))
+        order.save()
+        return redirect('Orders:payment')
+
+    types_of_delivery = TypeOfDelivery.objects.filter(state = True)
+    addresses = Address.objects.filter(user = request.user)
+
+    return render(request, 'orders/direccion.html', context = {
+        'carrito': cart,
+        'orden': order,
+        'breadcrumb': breadcrumb(address=True),
+        'tipos_de_envio': types_of_delivery,
+        'direcciones': addresses,
+    })
+
+@login_required
+@get_cart_and_order
+def payment_view(request,cart, order):
+    """
+    Vista encargada del metodo de pago del pedido.
+    """
+
+    payment_methods = PaymentType.objects.filter(state = True)
+
+    if request.method == 'POST' and request.POST.get('metodo_pago'):
+        order.payment_type = PaymentType.objects.get(description = request.POST.get('metodo_pago'))
+        order.save()
+        return redirect('Orders:confirm')
+    elif not cart.has_products():
+        messages.error(request, 'Debes agregar primero productos al carrito de compras')
+        return redirect('Carts:cart')
+    elif order.type_of_delivery is None:
+        messages.error(request, 'Debes seleccionar un metodo de entrega primero')
+        return redirect('Orders:address')
+
+    return render(request, 'orders/pago.html', context = {
+        'carrito': cart,
+        'orden': order,
+        'breadcrumb': breadcrumb(address = True, payment = True),
+        'metodos_de_pago': payment_methods,
+    })
+
+@login_required
+@get_cart_and_order
+def confirm_order_view(request, cart, order):
+    """
+    Vista para confirmar el pedido.
+    """
+
+    if order.type_of_delivery.description == 'Entrega a domicilio' and order.address == None:
+        messages.error(request, 'Debes seleccionar una direccion de envio valida')
+        return redirect('Orders:address')
+    elif not cart.has_products():
+        messages.error(request, 'Debes agregar primero productos al carrito de compras')
+        return redirect('Carts:cart')
+    elif order.type_of_delivery is None:
+        messages.error(request, 'Debes seleccionar un metodo de entrega primero')
+        return redirect('Orders:address')
+    elif order.payment_type is None:
+        messages.error(request, 'Debes seleccionar un metodo de pago primero')
+        return redirect('Orders:payment')
+
+    return render(request, 'orders/confirmacion.html', context = {
+        'carrito': cart,
+        'orden': order,
+        'breadcrumb': breadcrumb(address = True, payment = True, confirm = True)
+    })
+
+@login_required
+def add_another_address(request):
+    """
+    Vista para agregar otra direccion en el pedido.
+    """
+    
+    form = AddressForm(request.POST or None)
+    antigua_direccion_principal = Address.objects.get(default = True, user = request.user)
+
+    if request.method == 'POST' and form.is_valid():
+        if Address.objects.filter(address = form.cleaned_data.get('direccion').strip(), user = request.user).exists():
+            messages.error(request, 'Error la direccion ya esta registrada')
+        else:
+            if form.cleaned_data.get('defecto') == '2':
+                antigua_direccion_principal.default = False
+                antigua_direccion_principal.save()
+            
+            try:
+                direccion = Address.objects.create(
+                    user = request.user,
+                    city = City.objects.get(description = form.cleaned_data.get('ciudad')),
+                    address = form.cleaned_data.get('direccion').strip(),
+                    default = True if form.cleaned_data.get('defecto') == '2' else False,
+                    neighborhood = form.cleaned_data.get('barrio').strip()
+                )
+
+                messages.success(request, 'Nueva direccion agregada con exito')
+                return redirect('Orders:address')
+            except:
+                messages.error(request, 'Error la direccion no se pudo agregar')
+
+    return render(request, 'orders/agregar_direccion.html', context = {
+        'formulario': form,
+    })
+
+@login_required
+@get_cart_and_order
+def cancel_order_view(request, cart, order):
+    """
+    Vista encargada de cancelar la orden.
+    """
+
+    if request.user.id != order.user_id:
+        return redirect('Carts:cart')
+
+    # Descontar del stock
+    #for item in cart.cartproducts_set.all():
+        #producto = Product.objects.get(pk = item.product_id)
+        
+    order.cancel()
+
+    destroy_session_cart(request)
+    destroy_session_order(request)
+    messages.success(request, 'Orden de compra cancelada exitosamente')
+    
+    return redirect('index')
+
+@login_required
+@get_cart_and_order
+def completed_order(request, cart, order):
+    """
+    Vista encargada de completar la orden.
+    """
+
+    if request.user.id != order.user_id:
+        return redirect('Carts:cart')
+    elif order.payment_type.description == 'Contra entrega':
+        order.state = order.PAYED
+        order.save()
+
+    order.completed()
+
+    destroy_session_cart(request)
+    destroy_session_order(request)
+    messages.success(request, 'Orden de compra completada exitosamente')
+
+    return redirect('index')

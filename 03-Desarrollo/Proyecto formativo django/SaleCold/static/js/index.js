@@ -13,6 +13,9 @@ const body = document.getElementById('body');
 const containerModal = document.getElementById('containerModal');
 const btnDashboardUser = document.getElementById('button-toggle-dashboard');
 const menuDashboardUser = document.getElementById('menu-dashboard-user');
+const containerOptionsAddress = document.getElementById('container-direcciones');
+const optionHomeDelivery = document.getElementById('entrega-domicilio');
+const optionStoreDelivery = document.getElementById('recoge-en-tienda')
 
 
 // Comprobar si la captura del elemento es null
@@ -81,36 +84,11 @@ if (btnDashboardUser) {
     });
 }
 
-// Sliders de productos index
-
-const options = { 
-    slidesToScroll: 1,
-    slidesToShow: 1,
-    draggable: true,
-    arrows: {
-        prev: '.glider-prev',
-        next: '.glider-next'
-    },
-    responsive: [
-        {
-            breakpoint: 1200,
-            settings: {
-                slidesToScroll: 1,
-                slidesToShow: 6,
-                itemWidth: 210,
-            }
-        },
-        {
-            breakpoint: 1800,
-            settings: {
-                slidesToScroll: 1,
-                slidesToShow: 7,
-                itemWidth: 210,
-            }
-        }
-    ]
-};
-
-const sliders = document.querySelectorAll(".glider");
-
-sliders.forEach(slider => new Glider(slider, options));
+// Mostrar direcciones de envio en la orden de compra
+function mostrarDirecciones(elemento) {
+    if (elemento.value == 'Entrega a domicilio') {
+        containerOptionsAddress.classList.add('container-select-address-home-delivery--show');
+    } else {
+        containerOptionsAddress.classList.remove('container-select-address-home-delivery--show');
+    }
+}

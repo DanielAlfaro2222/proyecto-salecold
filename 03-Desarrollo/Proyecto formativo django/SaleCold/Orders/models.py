@@ -1,17 +1,24 @@
 from django.db import models
 from Products.models import Product
 from django.contrib.auth.models import User
+from Users.models import City
 from enum import Enum
 from Carts.models import Cart
 from django.db.models.signals import pre_save
+from .common import OrderStatus
+from .common import choices
 import uuid
+
+STATE = 'Estado'
+DATE_CREATE = 'Fecha de creacion'
+DATE_MODIFIED = 'Fecha de modificacion'
 
 class TypeOfDelivery(models.Model):
     id_type_of_delivery = models.AutoField('Id tipo de entrega', primary_key = True)
     description = models.CharField('Descripcion', max_length=45)
-    create = models.DateTimeField('Fecha de creacion', auto_now_add = True)
-    modified = models.DateTimeField('Fecha de modificacion', auto_now = True)
-    state = models.BooleanField('Estado', default = True)
+    create = models.DateTimeField(DATE_CREATE, auto_now_add = True)
+    modified = models.DateTimeField(DATE_MODIFIED, auto_now = True)
+    state = models.BooleanField(STATE, default = True)
 
     def __str__(self):
         return self.description
@@ -25,9 +32,9 @@ class TypeOfDelivery(models.Model):
 class TypeAccountingDocument(models.Model):
     id_type_accounting_document = models.AutoField('Id tipo documento contable', primary_key = True)
     nature = models.CharField('Naturaleza', max_length=45)
-    create = models.DateTimeField('Fecha de creacion', auto_now_add = True)
-    modified = models.DateTimeField('Fecha de modificacion', auto_now = True)
-    state = models.BooleanField('Estado', default = True)
+    create = models.DateTimeField(DATE_CREATE, auto_now_add = True)
+    modified = models.DateTimeField(DATE_MODIFIED, auto_now = True)
+    state = models.BooleanField(STATE, default = True)
 
     def __str__(self):
         return self.nature
@@ -38,12 +45,12 @@ class TypeAccountingDocument(models.Model):
         db_table = 'type_accounting_document'
         ordering = ['id_type_accounting_document']
 
-class PaymentType (models.Model):
+class PaymentType(models.Model):
     id_payment_type = models.AutoField('Id tipo de pago', primary_key= True)
     description = models.CharField('Descripcion', max_length=45)
-    create = models.DateTimeField('Fecha de creacion', auto_now_add = True)
-    modified = models.DateTimeField('Fecha de modificacion', auto_now = True)
-    state = models.BooleanField('Estado', default = True)
+    create = models.DateTimeField(DATE_CREATE, auto_now_add = True)
+    modified = models.DateTimeField(DATE_MODIFIED, auto_now = True)
+    state = models.BooleanField(STATE, default = True)
 
     def __str__(self):
         return self.description
@@ -54,37 +61,39 @@ class PaymentType (models.Model):
         db_table = 'payment_type'
         ordering = ['id_payment_type']
 
-# class OrderState(Enum):
-#     CREATED = 'Creado'
-#     PAYED = 'Pagado'
-#     COMPLETED = 'Completado'
-#     CANCELED = 'Cancelado'
+class Address(models.Model):
+    id_address = models.AutoField('Id direccion', primary_key = True)
+    user = models.ForeignKey(User, verbose_name = 'Usuario', on_delete = models.CASCADE)
+    city = models.ForeignKey(City, verbose_name = 'Ciudad', on_delete = models.CASCADE)
+    address = models.CharField('Direccion', max_length = 70)
+    neighborhood = models.CharField("Barrio/Localidad", max_length = 50)
+    default = models.BooleanField('Direccion principal', default = False)
+    create = models.DateTimeField(DATE_CREATE, auto_now_add = True)
+    modified = models.DateTimeField(DATE_MODIFIED, auto_now = True)
+
+    def __str__(self):
+        return self.address
+
+    class Meta:
+        verbose_name = 'Direccion de envio'
+        verbose_name_plural = 'Direcciones de envio'
+        db_table = 'address'
+        ordering = ['id_address']
 
 class Order(models.Model):
-    CREATED = 'Creado'
-    PAYED = 'Pagado'
-    COMPLETED = 'Completado'
-    CANCELED = 'Cancelado'
-
-    STATE = [
-        (CREATED, 'Creado'),
-        (PAYED, 'Pagado'),
-        (COMPLETED, 'Completado'),
-        (CANCELED, 'Cancelado')
-    ]
-
     id_order = models.AutoField('Id orden', primary_key = True)
     order_date = models.DateTimeField(auto_now_add=True, verbose_name='Fecha pedido')
     type_of_delivery = models.ForeignKey(TypeOfDelivery, verbose_name='Tipo de entrega', on_delete = models.CASCADE, null = True)
-    type_accounting_document = models.ForeignKey(TypeAccountingDocument, verbose_name='Tipo documento contable', on_delete = models.CASCADE, null = True)
+    type_accounting_document = models.ForeignKey(TypeAccountingDocument, verbose_name='Tipo documento contable', on_delete = models.CASCADE, null = True, default = 1)
     payment_type = models.ForeignKey(PaymentType, verbose_name='Tipo de pago', on_delete = models.CASCADE, null = True)
     user = models.ForeignKey(User, verbose_name='Cliente', on_delete=models.CASCADE)
-    state = models.CharField('Estado', choices = STATE, default = 'Creado', max_length = 10)
+    state = models.CharField(STATE, choices = choices, default = OrderStatus.CREATED.value, max_length = 10)
     cart = models.ForeignKey(Cart, verbose_name = 'Carrito', on_delete = models.CASCADE)
     total = models.PositiveIntegerField('Total', default = 0)
-    shipping_total = models.PositiveIntegerField('Costo envio', default = 5000)
-    modified = models.DateTimeField('Fecha de modificacion', auto_now = True)
+    shipping_total = models.PositiveIntegerField('Costo envio', default = 0)
+    modified = models.DateTimeField(DATE_MODIFIED, auto_now = True)
     identifier = models.CharField('Identificador unico' , unique = True, max_length = 100)
+    address = models.ForeignKey(Address, verbose_name = 'Direccion', null = True, blank = True, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.identifier
@@ -95,6 +104,17 @@ class Order(models.Model):
     def update_total(self):
         self.total = self.get_total()
         self.save()
+
+    def cancel(self):
+        self.state = OrderStatus.CANCELED.value
+        self.save()
+
+    def completed(self):
+        self.state = OrderStatus.COMPLETED.value
+
+    def get_total_quantity_products(self):
+        total = [producto.quantity for producto in self.cart.cartproducts_set]
+        return sum(total)
 
     class Meta:
         verbose_name = 'Orden'
@@ -131,36 +151,3 @@ class AccountingDocument(models.Model):
         verbose_name_plural = 'Documentos contables'
         db_table = 'accounting_document'
         ordering = ['id_accounting_document']
-
-# class HeaderOrdered(models.Model):
-#     id_header_ordered = models.AutoField('Id cabecera pedido', primary_key = True)
-#     order_date = models.DateTimeField(auto_now_add=True, verbose_name='Fecha pedido')
-#     state = models.BooleanField('Pedido confirmado', default=False)
-#     payment_reference = models.CharField('Referencia de pago', max_length=45)
-    
-
-#     def __str__(self):
-#         return self.order_date
-
-#     class Meta:
-#         verbose_name = 'Cabecera pedido'
-#         verbose_name_plural = 'Cabecera pedidos'
-#         db_table = 'header_ordered'
-#         ordering = ['id_header_ordered']
-
-# class OrderDetail(models.Model):
-#     id_order_detail = models.AutoField('Id detalle pedido', primary_key=True)
-#     quantity = models.IntegerField('Cantidad')
-#     subtotal = models.IntegerField('Subtotal')
-#     total = models.IntegerField('Total')
-#     product = models.ForeignKey(Product, verbose_name='Producto', on_delete = models.CASCADE )
-#     header_ordered = models.OneToOneField(HeaderOrdered, verbose_name='Cabecera pedido', on_delete = models.CASCADE )
-
-#     def __str__(self):
-#         return self.total
-
-#     class Meta: 
-#         verbose_name = 'Detalle pedido'
-#         verbose_name_plural = 'Detalle pedidos'
-#         db_table = 'order_detail'
-#         ordering = ['id_order_detail']

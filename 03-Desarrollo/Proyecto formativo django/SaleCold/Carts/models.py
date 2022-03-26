@@ -4,6 +4,7 @@ from Products.models import Product
 from django.db.models.signals import pre_save
 from django.db.models.signals import m2m_changed
 from django.db.models.signals import post_save
+from Orders.common import OrderStatus
 import uuid
 
 class Cart(models.Model):
@@ -47,7 +48,10 @@ class Cart(models.Model):
     
     @property
     def order(self):
-        return self.order_set.first()
+        return self.order_set.filter(state = OrderStatus.CREATED.value).first()
+
+    def has_products(self):
+        return self.product.exists()
 
     class Meta:
         verbose_name = 'Carrito de compras'

@@ -5,7 +5,7 @@
         @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
 
         .container-email {
-            max-width: 600px;
+            max-width: 540px;
             margin-right: auto;
             margin-left: auto;
             background-color: white;
@@ -59,11 +59,13 @@
     <section class="container-email">
         <article class="container-email-header">
             <a href="{% if request.is_secure %}https{% else %}http{% endif %}://{{dominio}}{{url}}" target="_blank" class="container-image-email-header" rel="noopener">    
-                <img src="https://res.cloudinary.com/dpxek6oka/image/upload/v1645626671/Logo/Logo4_ez3iqd.png" alt="Logo SaleCold" class="container-image-email-header__img" loading="lazy">
+                <img src="https://res.cloudinary.com/dpxek6oka/image/upload/v1645626671/Logo/Logo4_ez3iqd.png" alt="Logo SaleCold" class="container-image-email-header__img" loading="lazy" decoding="async">
             </a>
         </article>
         <article class="container-email-main">
-            <h2 class="container-email-main__title">Nuevo mensaje de contacto</h2>
+            <h2 class="container-email-main__title" style="color: #256Edc;font-size: 1.3rem;">
+                Nuevo mensaje de contacto
+            </h2>
             <p class="container-email-main__paragraph">
                 <strong>Nombre: </strong>{{nombre}}.
             </p>

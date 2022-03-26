@@ -16,66 +16,82 @@
 
 		<label class="container-label-form">
 			Nombres
-				{{formulario.nombre}}
-				{% if formulario.nombre.errors %}
-					{{formulario.nombre.errors}}
-				{% endif %}
+			{{formulario.nombre}}
+			{% if formulario.nombre.errors %}
+				{{formulario.nombre.errors}}
+			{% endif %}
 		</label>
 
 		<label class="container-label-form">
-				Apellidos
-				{{formulario.apellido}}
-				{% if formulario.apellido.errors %}
-					{{formulario.apellido.errors}}
-				{% endif %}
+			Apellidos
+			{{formulario.apellido}}
+			{% if formulario.apellido.errors %}
+				{formulario.apellido.errors}}
+			{% endif %}
 		</label>
 
 		<label class="container-label-form">
-				Tipo de documento
-				{{formulario.tipo_documento}}
-				{% if formulario.tipo_documento.errors %}
-					{{formulario.tipo_documento.errors}}
-				{% endif %}
+			Tipo de documento
+			{{formulario.tipo_documento}}
+			{% if formulario.tipo_documento.errors %}
+				{{formulario.tipo_documento.errors}}
+			{% endif %}
 		</label>
 
 		<label class="container-label-form">
-				Numero de documento
-				{{formulario.numero_documento}}
-				{% if formulario.numero_documento.errors %}
-					{{formulario.numero_documento.errors}}
-				{% endif %}
+			Numero de documento
+			{{formulario.numero_documento}}
+			{% if formulario.numero_documento.errors %}
+				{{formulario.numero_documento.errors}}
+			{% endif %}
 		</label>
 
 		<label class="container-label-form">
-				Ciudad
-				{{formulario.ciudad}}
-				{% if formulario.ciudad.errors %}
-					{{formulario.ciudad.errors}}
-				{% endif %}
+			Genero
+			{{formulario.genero}}
+			{% if formulario.genero.errors %}
+				{{formulario.genero.errors}}
+			{% endif %}
 		</label>
 
 		<label class="container-label-form">
-				Direccion
-				{{formulario.direccion}}
-				{% if formulario.direccion.errors %}
-					{{formulario.direccion.errors}}
-				{% endif %}
+			Ciudad
+			{{formulario.ciudad}}
+			{% if formulario.ciudad.errors %}
+				{{formulario.ciudad.errors}}
+			{% endif %}
 		</label>
 
 		<label class="container-label-form">
-				Correo
-				{{formulario.correo}}
-				{% if formulario.correo.errors %}
-					{{formulario.correo.errors}}
-				{% endif %}
+			Direccion
+			{{formulario.direccion}}
+			{% if formulario.direccion.errors %}
+				{{formulario.direccion.errors}}
+			{% endif %}
 		</label>
 
 		<label class="container-label-form">
-				Numero telefonico
-				{{formulario.telefono}}
-				{% if formulario.telefono.errors %}
-					{{formulario.telefono.errors}}
-				{% endif %}
+			Barrio
+			{{formulario.barrio}}
+			{% if formulario.barrio.errors %}
+				{{formulario.barrio.errors}}
+			{% endif %}
+		</label>
+
+		<label class="container-label-form">
+			Correo
+			{{formulario.correo}}
+			{% if formulario.correo.errors %}
+				{{formulario.correo.errors}}
+			{% endif %}
+		</label>
+
+		<label class="container-label-form">
+			Numero telefonico
+			{{formulario.telefono}}
+			{% if formulario.telefono.errors %}
+				{{formulario.telefono.errors}}
+			{% endif %}
 		</label>
 
 		<button class="container-form-uptade-user__btn">

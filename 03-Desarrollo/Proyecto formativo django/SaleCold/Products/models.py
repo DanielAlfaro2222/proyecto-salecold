@@ -33,6 +33,8 @@ class Product(models.Model):
     unit_price = models.PositiveIntegerField("Precio unitario", default = 0)
     final_price = models.PositiveIntegerField("Precio final", default = 0)
     reference = models.CharField("Codigo", null=True, blank=True, max_length=10)
+    inputs = models.PositiveIntegerField('Entradas', default = 0)
+    outputs = models.PositiveIntegerField('Salidas', default = 0)
     stock = models.PositiveSmallIntegerField("Stock", null = True, blank = True, default = 0)
     discount = models.PositiveSmallIntegerField("Descuento", null = True, blank = True, default = 0, validators=[MinValueValidator(0), MaxValueValidator(100)])
     unit_of_measure = models.ForeignKey(UnitOfMeasure, verbose_name = "Unidad de medida", on_delete = models.CASCADE)
@@ -50,8 +52,11 @@ class Product(models.Model):
         db_table = "product"
         ordering = ['id_product']
 
-# Callback para agregar el slug unico a la instancia del producto
 def set_slug_product(sender, instance, *args, **kwargs):
+    """
+    Callback para agregar un slug unico a cada instancia del producto antes de guardarlo en la base de datos.
+    """
+
     if instance.name and not instance.slug:
         # Crea un slug con el nombre del producto
         slug = slugify(instance.name)
@@ -64,8 +69,11 @@ def set_slug_product(sender, instance, *args, **kwargs):
         
         instance.slug = slug
 
-# Callback para agregar el codigo de referencia unico para la instancia del producto
 def set_reference_product(sender, instance, *args, **kwargs):
+    """
+    Callback para agregar un codigo de referencia unico para cada instancia del producto antes de guardarlo en la base de datos.
+    """
+
     reference = str(uuid.uuid4())[:10]
 
     if not instance.reference:
@@ -75,8 +83,11 @@ def set_reference_product(sender, instance, *args, **kwargs):
 
         instance.reference = reference
 
-# Callback para calcular el precio final del producto
 def set_final_price_product(sender, instance, *args, **kwargs):
+    """
+    Callback para calcular el precio final del producto antes de guardar.
+    """
+
     unit_price = instance.unit_price
 
     if instance.discount == 0:
@@ -84,10 +95,21 @@ def set_final_price_product(sender, instance, *args, **kwargs):
     else:
         instance.final_price = round(abs(unit_price * (instance.discount / 100) - unit_price))
 
-# Conectar el callback con el modelo
-pre_save.connect(set_slug_product, sender=Product)
-pre_save.connect(set_reference_product, sender=Product)
-pre_save.connect(set_final_price_product, sender=Product)
+def set_stock_product(sender, instance, *args, **kwargs):
+    """
+    Callback para modificar el stock de los productos antes de guardarlos en la base de datos, el campo stock es calculado ya que es la diferencia entre los campos entradas y salidas.
+    """
+    
+    if instance.outputs > instance.inputs:
+        instance.stock = 0
+    else:
+        instance.stock = abs(instance.outputs - instance.inputs)
+
+# Conectar los callbacks con el modelo Product
+pre_save.connect(set_slug_product, sender = Product)
+pre_save.connect(set_reference_product, sender = Product)
+pre_save.connect(set_final_price_product, sender = Product)
+pre_save.connect(set_stock_product, sender = Product)
 
 class Category(models.Model):
     id_category = models.AutoField("Id categoria", primary_key = True)

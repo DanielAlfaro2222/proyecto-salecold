@@ -56,6 +56,11 @@
 					{{formulario.direccion.errors}}
                 {% endif %}
 
+				{{formulario.barrio}}
+				{% if formulario.barrio.errors %}
+					{{formulario.barrio.errors}}
+                {% endif %}
+
 				{{formulario.telefono}}
 				{% if formulario.telefono.errors %}
 					{{formulario.telefono.errors}}

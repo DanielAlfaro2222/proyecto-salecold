@@ -23,3 +23,5 @@ def get_or_create_cart(request):
     request.session['cart_id'] = cart.identifier
 
     return cart
+def destroy_session_cart(request):
+    request.session['cart_id'] = None

@@ -2,10 +2,6 @@
     font-size: .9rem;
 }
 
-.container-main-dashboard-user__title {
-    font-size: 1.2rem;
-}
-
 .container-label-form__input, .container-select-update-user {
     display: block;
     width: 100%;

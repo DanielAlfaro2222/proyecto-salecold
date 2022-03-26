@@ -18,7 +18,7 @@ from Products.models import Category
 @require_GET
 def index(request):
     categorias = Category.objects.all()
-    productos = Product.objects.filter(discount__gt = 0, stock__gt = 0).order_by('-discount')[:10]
+    productos = Product.objects.filter(discount__gt = 0, stock__gt = 0).order_by('-discount')[:14]
     return render( request, 'index.html', context={
         'productos': productos,
         'categorias': categorias,

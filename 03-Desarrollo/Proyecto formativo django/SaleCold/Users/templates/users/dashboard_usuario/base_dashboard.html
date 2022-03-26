@@ -24,7 +24,7 @@
 
     <header class="container-header-dashboard-user">
         <div class="container-toggle-menu-dashboard-user" id="container-button-toggle-dashboard">
-            <i class="fa-solid fa-bars container-toggle-menu-dashboard-user--icon" id="button-toggle-dashboard"></i>
+            <i class="fa-solid fa-bars container-toggle-menu-dashboard-user--icon" id="button-toggle-dashboard" aria-hidden="true"></i>
         </div>
     
         <nav class="container-menu-dashboard-user" id="menu-dashboard-user">
@@ -36,7 +36,7 @@
     
             <ul class="container-list-options-menu-dashboard-user">
                 <li class="container-element-list-options-menu-dashboard-user 
-                {% if request.path == '/users/update-data-user/' %}container-element-list-options-menu-dashboard-user--active
+                {% if request.path == '/users/update-data-user/' %} container-element-list-options-menu-dashboard-user--active
                 {% endif %}">
                     <a href="{% url 'Users:update-data-user' %}" class="container-link-element-list-options-menu-dashboard-user">
                         <i class="fa-solid fa-user-pen container-link-element-list-options-menu-dashboard-user--icon" aria-hidden="true"></i>
@@ -44,9 +44,18 @@
                     </a>
                 </li>
                 <li class="container-element-list-options-menu-dashboard-user">
-                    <a href="#" class="container-link-element-list-options-menu-dashboard-user">
+                    <a href="{% url 'Users:orders' %}" class="container-link-element-list-options-menu-dashboard-user">
                         <i class="fa-solid fa-cart-shopping container-link-element-list-options-menu-dashboard-user--icon" aria-hidden="true"></i>
-                        Mis compras
+                        Mis pedidos
+                    </a>
+                </li>
+                <li class="container-element-list-options-menu-dashboard-user
+                {% if request.path == '/users/addresses/' %}
+                container-element-list-options-menu-dashboard-user--active
+                {% endif %}">
+                    <a href="{% url 'Users:addresses' %}" class="container-link-element-list-options-menu-dashboard-user">
+                        <i class="fa-solid fa-location-dot container-link-element-list-options-menu-dashboard-user--icon" aria-hidden="true"></i>
+                        Mis direcciones
                     </a>
                 </li>
                 <li class="container-element-list-options-menu-dashboard-user 
@@ -58,8 +67,11 @@
                         Cambiar contraseña
                     </a>
                 </li>
-                <li class="container-element-list-options-menu-dashboard-user">
-                    <a href="#" class="container-link-element-list-options-menu-dashboard-user">
+                <li class="container-element-list-options-menu-dashboard-user
+                {% if request.path == '/users/addresses/config/' %}
+                    container-element-list-options-menu-dashboard-user--active
+                {% endif %}">
+                    <a href="{% url 'Users:config-account' %}" class="container-link-element-list-options-menu-dashboard-user">
                         <i class="fa-solid fa-gear container-link-element-list-options-menu-dashboard-user--icon" aria-hidden="true"></i>
                         Configuracion de la cuenta
                     </a>

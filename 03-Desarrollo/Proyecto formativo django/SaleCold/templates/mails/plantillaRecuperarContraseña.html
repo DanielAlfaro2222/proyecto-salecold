@@ -5,7 +5,7 @@
         @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
 
         .container-email {
-            max-width: 600px;
+            max-width: 540px;
             margin-right: auto;
             margin-left: auto;
             background-color: white;
@@ -32,7 +32,7 @@
         }
         .container-email-main__link {
             display: block;
-            width: 150px;
+            width: 165px;
             background-color: blue;
             height: 40px;
             line-height: 40px;
@@ -75,7 +75,7 @@
             </a>
         </article>
         <article class="container-email-main">
-            <h2 class="container-email-main__title">Recuperar contraseña</h2>
+            <h2 class="container-email-main__title" style="color: #256Edc;font-size: 1.3rem;">Recuperar contraseña</h2>
             <p class="container-email-main__paragraph">
                 Hola {{usuario}}, para cambiar la contraseña de clic en el boton "Cambiar contraseña" o pegue la siguiente url en su navegador 
                 <a href="{% if request.is_secure %}https{% else %}http{% endif %}://{{dominio}}{% url 'password_reset_confirm' uidb64=uuid token=token %}" style="text-decoration: none;" target="_blank" rel="noopener">
@@ -85,6 +85,16 @@
             <p class="container-email-main__paragraph">
                 Si no realizo la solicitud para recuperar la contraseña, por favor ignore este mensaje.
             </p>
+            <h3 style="color: #256Edc;">Consejos de seguridad</h3>
+            <ul style="padding: 0;">
+                <li>No compartas nunca tu contraseña con otras personas.</li>
+                <li>
+                    Crea contraseñas difíciles de adivinar y nunca utilices información personal. Asegúrate de incluir mayúsculas, minúsculas, números y símbolos.
+                </li>
+                <li>
+                    Utiliza contraseñas diferentes para cada cuenta que tengas en internet.
+                </li>
+            </ul>
             <a href="{% if request.is_secure %}https{% else %}http{% endif %}://{{dominio}}{% url 'password_reset_confirm' uidb64=uuid token=token %}" class="container-email-main__link" style="color:white;" target="_blank" rel="noopener">
                 Cambiar contraseña
             </a>

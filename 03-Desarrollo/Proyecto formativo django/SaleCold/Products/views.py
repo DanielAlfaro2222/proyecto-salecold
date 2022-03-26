@@ -12,6 +12,10 @@ from django.views.decorators.http import require_GET
 from django.shortcuts import get_object_or_404
 
 class ProductDetailView(DetailView):
+    """
+    Vista encargada del detalle del pedido.
+    """
+    
     model = Product
     template_name = 'products/producto.html'
 
@@ -26,6 +30,10 @@ class ProductDetailView(DetailView):
 
 @require_GET
 def category_detail(request, slug):
+    """
+    Vista encargada del detalle de la categoria.
+    """
+    
     categoria = get_object_or_404(Category, slug = slug)
     productos = categoria.products.all()
     parametro_busqueda = ''
@@ -64,6 +72,10 @@ def category_detail(request, slug):
 
 @require_GET
 def search_in_all_product(request):
+    """
+    Vista encargada de la busqueda de productos.
+    """
+
     contexto = {}
     if request.GET.get('q') or request.GET.get('ordenar'):
         busqueda = request.GET.get('q')
