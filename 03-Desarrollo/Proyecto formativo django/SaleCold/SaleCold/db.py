@@ -25,9 +25,9 @@ MYSQL = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'SaleCold',
-        'USER': 'root',
-        'PASSWORD': config('PASSWORD_MYSQL'),
-        'HOST': 'localhost',
+        'USER': config('USER_AZURE_MYSQL'),
+        'PASSWORD': config('PASSWORD_AZURE_MYSQL'),
+        'HOST': config('HOST_AZURE_MYSQL'),
         'PORT': '3306'
     }
 }

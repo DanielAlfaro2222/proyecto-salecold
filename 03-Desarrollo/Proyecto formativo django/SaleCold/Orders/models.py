@@ -5,9 +5,11 @@ from Users.models import City
 from enum import Enum
 from Carts.models import Cart
 from django.db.models.signals import pre_save
+from django.db.models.signals import post_save
 from .common import OrderStatus
 from .common import choices
 import uuid
+from .common import send_bill_order
 
 STATE = 'Estado'
 DATE_CREATE = 'Fecha de creacion'
@@ -178,20 +180,40 @@ def set_total_order(sender, instance, *args, **kwargs):
 
 pre_save.connect(set_total_order, sender = Order)
 
-def send_bill_order(sender, instance, *args, **kwargs):
+def callback_send_bill(sender, instance, *args, **kwargs):
     """
-    Callback para realizar el llamado a la 
+    Callback para realizar el llamado a la funcion que se encargara de enviar la factura una vez el administrador haya confirmado el pago.
     """
-    pass
-    #if instance.state == ''
+
+    if instance.state == OrderStatus.PAYED.value and instance.send_bill == False:
+        accounting_document = AccountingDocument.objects.create(order = instance)
+        send_bill_order(instance, accounting_document)
+
+post_save.connect(callback_send_bill, sender = Order)
 
 class AccountingDocument(models.Model):
     id_accounting_document = models.AutoField('Id documento contable', primary_key = True)
-    number_accounting_document = models.CharField('Numero documento contable', max_length = 10)
-    order = models.ForeignKey(Order, on_delete = models.CASCADE, verbose_name = 'Orden')
+    number_accounting_document = models.CharField('Numero documento contable', max_length = 10, unique = True)
+    order = models.OneToOneField(Order, on_delete = models.CASCADE, verbose_name = 'Orden')
+    accounting_document_date = models.DateTimeField(auto_now_add=True, verbose_name='Fecha documento contable')
 
     class Meta:
         verbose_name = 'Documento contable'
         verbose_name_plural = 'Documentos contables'
         db_table = 'accounting_document'
         ordering = ['id_accounting_document']
+
+def set_number_accounting_document(sender, instance, *args, **kwargs):
+    """
+    Callback para generar un numero unico de factura.
+    """
+
+    if not instance.number_accounting_document:
+        number = str(int(uuid.uuid4()))[:10]
+
+        while AccountingDocument.objects.filter(number_accounting_document=number).exists():
+            number = str(int(uuid.uuid4()))[:10]
+
+        instance.number_accounting_document = number
+
+pre_save.connect(set_number_accounting_document, sender = AccountingDocument)

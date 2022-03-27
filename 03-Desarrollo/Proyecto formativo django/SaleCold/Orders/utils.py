@@ -28,11 +28,5 @@ def destroy_session_order(request):
     """
     Funcion de ayuda para eliminar la orden de la sesion.
     """
-
+    
     request.session['order_id'] = None
-
-def send_bill_order(request, order):
-    """
-    Funcion de ayuda para enviar un correo con la factura despues de que se haya confirmado el pago del pedido.
-    """
-    pass

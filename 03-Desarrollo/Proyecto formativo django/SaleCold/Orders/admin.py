@@ -7,7 +7,16 @@ from .models import Order
 from .models import AccountingDocument
 from .models import Address
 
-admin.site.register(AccountingDocument)
+@admin.register(AccountingDocument)
+class AccountingDocumentAdmin(admin.ModelAdmin):
+    list_display = ['id_accounting_document', 'number_accounting_document', 'accounting_document_date', 'order']
+    list_per_page = 12
+
+    fieldsets = (
+        (None, {
+            'fields': ('order',)
+        }),
+    )
 
 @admin.register(Address)
 class AddressAdmin(admin.ModelAdmin):

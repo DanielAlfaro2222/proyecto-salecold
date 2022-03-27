@@ -1,3 +1,5 @@
+{% load humanize %}
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -100,7 +102,9 @@
         </div>
         <div class="container-numero-factura">
             <p class="container-numero-factura__paragraph">Factura electronica de venta</p>
-            <p class="container-numero-factura__paragraph">No. 12345678910</p>
+            <p class="container-numero-factura__paragraph">
+                No. {{number_accounting_document}}
+            </p>
         </div>
     </header>
 
@@ -114,37 +118,53 @@
                     <td style="padding-left: .8em; padding-right: 1.3em;">
                         {{nombre}}
                     </td>
-                    <td style=" background-color: #5f95e7; color: white; height: 30px;line-height: 30px;padding-left: .7em;width: 130px;">Tipo documento</td>
-                    <td style="padding-left: .8em; padding-right: 1.3em;">Cedula de ciudadania</td>
+                    <td style=" background-color: #5f95e7; color: white; height: 30px;line-height: 30px;padding-left: .7em;width: 130px;">
+                        Tipo documento
+                    </td>
+                    <td style="padding-left: .8em; padding-right: 1.3em;">
+                        {{tipo_documento}}
+                    </td>
                 </tr>
                 <tr>
-                    <td style=" background-color: #5f95e7; color: white; height: 30px;line-height: 30px;padding-left: .7em;">Numero documento</td>
-                    <td style="padding-left: .8em; padding-right: 1.3em;">1231324235</td>
-                    <td style=" background-color: #5f95e7; color: white; height: 30px;line-height: 30px;padding-left: .7em;">Correo</td>
-                    <td style="padding-left: .8em; padding-right: 1.3em;">daniel@gmail.com</td>
+                    <td style=" background-color: #5f95e7; color: white; height: 30px;line-height: 30px;padding-left: .7em;">
+                        Numero documento
+                    </td>
+                    <td style="padding-left: .8em; padding-right: 1.3em;">
+                        {{numero_documento}}
+                    </td>
+                    <td style=" background-color: #5f95e7; color: white; height: 30px;line-height: 30px;padding-left: .7em;">
+                        Correo
+                    </td>
+                    <td style="padding-left: .8em; padding-right: 1.3em;">
+                        {{correo}}
+                    </td>
                 </tr>
                 <tr>
                     <td style=" background-color: #5f95e7; color: white; height: 30px;line-height: 30px;padding-left: .7em;">
                         Telefono
                     </td>
-                    <td style="padding-left: .8em; padding-right: 1.3em;">1231324235</td>
+                    <td style="padding-left: .8em; padding-right: 1.3em;">
+                        {{telefono}}
+                    </td>
                     <td style=" background-color: #5f95e7; color: white; height: 30px;line-height: 30px;padding-left: .7em;">
                         Direccion
                     </td>
-                    <td style="padding-left: .8em; padding-right: 1.3em;">Calle 30 # 24 32, Bogotá D.C</td>
+                    <td style="padding-left: .8em; padding-right: 1.3em;">
+                        {{direccion}}
+                    </td>
                 </tr>
             </table>
         </article>
 
         <article style="margin-top: 1.5em;margin-bottom: 1em;">
             <p style="display: inline;margin-right: 1.1em;">
-                <strong>Fecha de emisión: </strong> {{fecha|date:'d/m/Y'}}
+                <strong>Fecha de compra: </strong> {{fecha|date:'d/m/Y'}}
             </p>
         </article>
 
         <table class="container-table-detail-products">
             <thead>
-                <tr style=" background-color: #5f95e7; color: white; height: 30px;">
+                <tr style=" background-color: #5f95e7; color: white; height: 27px;border-collapse: collapse;">
                     <th style="width: 35px;">#</th>
                     <th >Producto</th>
                     <th style="width: 100px;">Cantidad</th>
@@ -153,34 +173,43 @@
                 </tr>
             </thead>
             <tbody>
-                {% for producto in productos %}
-                    <tr>
-                        <td >{{forloop.counter}}</td>
-                        <td >{{producto}}</td>
-                        <td >{{producto.stock}}</td>
-                        <td >$ {{producto.price}}</td>
-                        <td>$ {% widthratio producto.stock 1 producto.price %}</td>
-                    </tr>
+                {% for object in carrito.cartproducts_set.all %}
+                    {% with producto=object.product %}
+                        <tr>
+                            <td >{{forloop.counter}}</td>
+                            <td >{{producto}}</td>
+                            <td >{{object.quantity}}</td>
+                            <td >$ {{producto.final_price|intcomma}}</td>
+                            {% widthratio object.quantity 1 object.product.final_price as total %}
+                            <td>$ {{total|intcomma}}</td>
+                        </tr>
+                    {% endwith %}
                 {% endfor %}
             </tbody>
         </table>
 
-        <table class="container-table-total">
+        <table class="container-table-total" style="border-collapse: collapse;">
             <tr>
                 <td class="container-item-table-total">Costo envio</td>
-                <td class="container-item-table-total-value">$ 8.000</td>
+                <td class="container-item-table-total-value">$ {{orden.shipping_total|intcomma}}</td>
             </tr>
             <tr>
                 <td class="container-item-table-total">IVA 19%</td>
-                <td class="container-item-table-total-value">$ 100.000</td>
+                <td class="container-item-table-total-value">
+                    $ {{carrito.total_iva|intcomma }}
+                </td>
             </tr>
             <tr>
                 <td class="container-item-table-total">Subtotal</td>
-                <td class="container-item-table-total-value">$ 100.000</td>
+                <td class="container-item-table-total-value">
+                    $ {{ carrito.subtotal|intcomma }}
+                </td>
             </tr>
             <tr>
                 <td class="container-item-table-total">Total</td>
-                <td class="container-item-table-total-value">$ 100.000</td>
+                <td class="container-item-table-total-value">
+                    $ {{orden.total|intcomma}}
+                </td>
             </tr>
         </table>
     </main>

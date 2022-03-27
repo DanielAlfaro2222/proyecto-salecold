@@ -1,4 +1,5 @@
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect
+from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from .utils import get_or_create_order
 from Carts.utils import get_or_create_cart
@@ -25,6 +26,8 @@ from django.template.loader import get_template
 from django.contrib.sites.shortcuts import get_current_site
 from django.shortcuts import reverse
 from django.core.mail import EmailMultiAlternatives
+from .models import AccountingDocument
+from Users.models import UserModel
 
 @login_required
 @get_cart_and_order
@@ -237,11 +240,26 @@ def completed_order(request, cart, order):
 
     return redirect('index')
 
-def download_bill(request):
+def download_bill(request, number):
     """
     Vista encargada de generar la factura y descargarla.
     """
-    context = {}
+
+    accounting_document = AccountingDocument.objects.get(number_accounting_document = number)
+    user_information = UserModel.objects.get(user = accounting_document.order.user)
+
+    context = {
+        'number_accounting_document': accounting_document.number_accounting_document,
+        'nombre': f'{accounting_document.order.user.first_name.split()[0]} {accounting_document.order.user.last_name.split()[0]}',
+        'tipo_documento': user_information.type_of_document,
+        'numero_documento': user_information.number_document,
+        'correo': accounting_document.order.user.username,
+        'telefono': user_information.phone_number,
+        'direccion': f'{user_information.address}, {user_information.city}',
+        'fecha': accounting_document.accounting_document_date,
+        'carrito': accounting_document.order.cart,
+        'orden': accounting_document.order,
+    }
 
     html = render_to_string("orders/factura.html", context)
 
