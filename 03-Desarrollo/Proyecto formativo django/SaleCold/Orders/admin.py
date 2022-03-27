@@ -19,7 +19,7 @@ class AddressAdmin(admin.ModelAdmin):
 
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ['identifier', 'order_date', 'state', 'user', 'total', 'address']
+    list_display = ['identifier', 'order_date', 'state', 'user', 'total', 'address', 'send_bill']
 
     fieldsets = (
         (None, {

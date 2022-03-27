@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            font-size: .9rem;
+            padding: 1rem;
+        }
+
+        .container-header {
+            display: flex;
+            padding: .7em;
+            font-size: .8em;
+        }
+
+        .container-logo {
+            width: 33%;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        .container-logo__img {
+            width: 100px;
+        }
+
+        .container-info-empresa {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .container-info-empresa__paragraph, .container-numero-factura__paragraph {
+            margin-top: 0;
+            margin-bottom: .3em;
+        }
+
+        .container-numero-factura {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin-left: 9.3em;
+            outline: 1px solid black;
+            text-align: center;
+            padding-left: 1em;
+            padding-right: 1em;
+        }
+        @page {
+            size: A4;
+            margin: 30px;
+        }
+        .container-table-total {
+            float: right;
+            border-collapse: collapse;
+            margin-top: 1.4em;
+        }
+        .container-info-client {
+            margin-top: 1.4em;
+        }
+        .container-item-table-total {
+            background-color: #5f95e7;
+            color: white;
+            width: 94px;
+            text-align: center;
+            height: 35px;
+            line-height: 35px;
+        }
+        .container-item-table-total-value {
+            padding-left: .7em;
+        }
+        .container-table-detail-products {
+            width: 100%;
+            text-align: center;
+            border-collapse: collapse;
+            margin-top: 1.4em;
+            margin-bottom: 1.4em;
+        }
+    </style>
+</head>
+<body>
+    <header class="container-header">
+        <div class="container-logo">
+            <img src="https://res.cloudinary.com/dpxek6oka/image/upload/v1645576166/Logo/Logo_nasqt2.webp" alt="Logo SaleCold" class="container-logo__img">
+        </div>
+        <div class="container-info-empresa">
+            <p class="container-info-empresa__paragraph">Calle 45C # 4-10C-75, Barranquilla</p>
+            <p class="container-info-empresa__paragraph">Tel: 333333</p>
+            <p class="container-info-empresa__paragraph">salecold.noreply@gmail.com</p>
+        </div>
+        <div class="container-numero-factura">
+            <p class="container-numero-factura__paragraph">Factura electronica de venta</p>
+            <p class="container-numero-factura__paragraph">No. 12345678910</p>
+        </div>
+    </header>
+
+    <main>
+        <article class="container-info-client">
+            <table style="border-collapse: collapse;">
+                <tr>
+                    <td style=" background-color: #5f95e7; color: white; height: 30px;line-height: 30px;padding-left: .7em; width: 150px;">
+                        Nombre
+                    </td>
+                    <td style="padding-left: .8em; padding-right: 1.3em;">
+                        {{nombre}}
+                    </td>
+                    <td style=" background-color: #5f95e7; color: white; height: 30px;line-height: 30px;padding-left: .7em;width: 130px;">Tipo documento</td>
+                    <td style="padding-left: .8em; padding-right: 1.3em;">Cedula de ciudadania</td>
+                </tr>
+                <tr>
+                    <td style=" background-color: #5f95e7; color: white; height: 30px;line-height: 30px;padding-left: .7em;">Numero documento</td>
+                    <td style="padding-left: .8em; padding-right: 1.3em;">1231324235</td>
+                    <td style=" background-color: #5f95e7; color: white; height: 30px;line-height: 30px;padding-left: .7em;">Correo</td>
+                    <td style="padding-left: .8em; padding-right: 1.3em;">daniel@gmail.com</td>
+                </tr>
+                <tr>
+                    <td style=" background-color: #5f95e7; color: white; height: 30px;line-height: 30px;padding-left: .7em;">
+                        Telefono
+                    </td>
+                    <td style="padding-left: .8em; padding-right: 1.3em;">1231324235</td>
+                    <td style=" background-color: #5f95e7; color: white; height: 30px;line-height: 30px;padding-left: .7em;">
+                        Direccion
+                    </td>
+                    <td style="padding-left: .8em; padding-right: 1.3em;">Calle 30 # 24 32, Bogotá D.C</td>
+                </tr>
+            </table>
+        </article>
+
+        <article style="margin-top: 1.5em;margin-bottom: 1em;">
+            <p style="display: inline;margin-right: 1.1em;">
+                <strong>Fecha de emisión: </strong> {{fecha|date:'d/m/Y'}}
+            </p>
+        </article>
+
+        <table class="container-table-detail-products">
+            <thead>
+                <tr style=" background-color: #5f95e7; color: white; height: 30px;">
+                    <th style="width: 35px;">#</th>
+                    <th >Producto</th>
+                    <th style="width: 100px;">Cantidad</th>
+                    <th>Precio</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for producto in productos %}
+                    <tr>
+                        <td >{{forloop.counter}}</td>
+                        <td >{{producto}}</td>
+                        <td >{{producto.stock}}</td>
+                        <td >$ {{producto.price}}</td>
+                        <td>$ {% widthratio producto.stock 1 producto.price %}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <table class="container-table-total">
+            <tr>
+                <td class="container-item-table-total">Costo envio</td>
+                <td class="container-item-table-total-value">$ 8.000</td>
+            </tr>
+            <tr>
+                <td class="container-item-table-total">IVA 19%</td>
+                <td class="container-item-table-total-value">$ 100.000</td>
+            </tr>
+            <tr>
+                <td class="container-item-table-total">Subtotal</td>
+                <td class="container-item-table-total-value">$ 100.000</td>
+            </tr>
+            <tr>
+                <td class="container-item-table-total">Total</td>
+                <td class="container-item-table-total-value">$ 100.000</td>
+            </tr>
+        </table>
+    </main>
+</body>
+</html>

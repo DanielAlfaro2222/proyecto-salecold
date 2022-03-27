@@ -1,4 +1,3 @@
-from ast import Add
 from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
 from .utils import get_or_create_order
@@ -14,6 +13,18 @@ from Carts.utils import destroy_session_cart
 from .utils import destroy_session_order
 from Products.models import Product
 from .decorators import get_cart_and_order
+from weasyprint import HTML
+from weasyprint.text.fonts import FontConfiguration
+from django.http import HttpResponse
+from django.template.loader import render_to_string
+from django.utils import timezone
+from .common import OrderStatus
+import threading 
+from django.conf import settings
+from django.template.loader import get_template
+from django.contrib.sites.shortcuts import get_current_site
+from django.shortcuts import reverse
+from django.core.mail import EmailMultiAlternatives
 
 @login_required
 @get_cart_and_order
@@ -162,10 +173,6 @@ def cancel_order_view(request, cart, order):
 
     if request.user.id != order.user_id:
         return redirect('Carts:cart')
-
-    # Descontar del stock
-    #for item in cart.cartproducts_set.all():
-        #producto = Product.objects.get(pk = item.product_id)
         
     order.cancel()
 
@@ -184,9 +191,43 @@ def completed_order(request, cart, order):
 
     if request.user.id != order.user_id:
         return redirect('Carts:cart')
-    elif order.payment_type.description == 'Contra entrega':
-        order.state = order.PAYED
-        order.save()
+
+    """
+    1). Se descuenta el stock de los productos.
+    2). Se genera el pedido.
+    3). Se envia el correo confirmando el pedido.
+    4). La orden queda en estado completado.
+    5). Se espera el pago, si el pago es realizado, entonces se procede a enviar la factura al correo y se genera la instancia del documento contable.
+    """
+
+    template = get_template('mails/plantillaConfirmacionPedido.html')
+    context = {
+        'usuario': f"{order.user.first_name.split()[0]} {order.user.last_name.split()[0]}",
+        'dominio': get_current_site(request).domain,
+        'url': reverse('index'),
+        'orden': order,
+        'tipo_envio': order.type_of_delivery.description,
+        'tipo_pago': order.payment_type.description,
+    }
+    content = template.render(context)
+
+    email = EmailMultiAlternatives(
+        subject = f'🛒 Recibimos tu pedido {order.identifier}',
+        body = '',
+        from_email = settings.EMAIL_HOST_USER,
+        to = [order.user.username]
+    )
+
+    email.attach_alternative(content, 'text/html')
+
+    thread = threading.Thread(target = email.send(fail_silently = False))
+    thread.start()
+
+    # Descontar stock de los productos
+    for item in cart.cartproducts_set.all():
+        product = Product.objects.get(pk = item.product.id_product)
+        product.outputs += item.quantity
+        product.save()
 
     order.completed()
 
@@ -195,3 +236,20 @@ def completed_order(request, cart, order):
     messages.success(request, 'Orden de compra completada exitosamente')
 
     return redirect('index')
+
+def download_bill(request):
+    """
+    Vista encargada de generar la factura y descargarla.
+    """
+    context = {}
+
+    html = render_to_string("orders/factura.html", context)
+
+    response = HttpResponse(content_type="application/pdf")
+
+    response["Content-Disposition"] = "inline; factura.pdf"
+
+    font_config = FontConfiguration()
+    HTML(string=html).write_pdf(response, font_config=font_config)
+
+    return response

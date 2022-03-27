@@ -2,6 +2,10 @@ from .models import Order
 from django.urls import reverse
 
 def get_or_create_order(request, cart):
+    """
+    Funcion de ayuda para obtener o crear una instancia de la orden y almacenarlo en la session.
+    """
+
     order = cart.order
 
     if order is None and request.user.is_authenticated:
@@ -21,4 +25,14 @@ def breadcrumb(products = True, address = False, payment = False, confirm = Fals
     ]
 
 def destroy_session_order(request):
+    """
+    Funcion de ayuda para eliminar la orden de la sesion.
+    """
+
     request.session['order_id'] = None
+
+def send_bill_order(request, order):
+    """
+    Funcion de ayuda para enviar un correo con la factura despues de que se haya confirmado el pago del pedido.
+    """
+    pass

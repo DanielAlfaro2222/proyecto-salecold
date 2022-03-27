@@ -94,25 +94,55 @@ class Order(models.Model):
     modified = models.DateTimeField(DATE_MODIFIED, auto_now = True)
     identifier = models.CharField('Identificador unico' , unique = True, max_length = 100)
     address = models.ForeignKey(Address, verbose_name = 'Direccion', null = True, blank = True, on_delete=models.CASCADE)
+    send_bill = models.BooleanField('Factura enviada', default = False)
 
     def __str__(self):
         return self.identifier
 
     def get_total(self):
+        """
+        Funcion para obtener el total de la orden.
+        """
+
         return self.cart.total + self.shipping_total
 
     def update_total(self):
+        """
+        Funcion para actualizar el total de la orden.
+        """
+
         self.total = self.get_total()
         self.save()
 
     def cancel(self):
+        """
+        Funcion para cambiar el estado de la orden a cancelado.
+        """
+
         self.state = OrderStatus.CANCELED.value
         self.save()
 
     def completed(self):
+        """
+        Funcion para cambiar el estado de la orden a completado.
+        """
+
         self.state = OrderStatus.COMPLETED.value
+        self.save()
+
+    def payed(self):
+        """
+        Funcion para cambiar el estado de la orden a pagado.
+        """
+
+        self.state = OrderStatus.PAYED.value
+        self.save()
 
     def get_total_quantity_products(self):
+        """
+        Funcion para obtener la cantidad total de productos asociados a la orden.
+        """
+
         total = [producto.quantity for producto in self.cart.cartproducts_set]
         return sum(total)
 
@@ -123,7 +153,10 @@ class Order(models.Model):
         ordering = ['id_order']
 
 def set_identifier_order(sender, instance, *args, **kwargs):
-    """Funcion callback para agregar un identificador unico a cada instancia de order"""
+    """
+    Funcion callback para agregar un identificador unico a cada instancia de order
+    """
+
     if not instance.identifier:
         identifier = str(uuid.uuid4())
 
@@ -137,9 +170,20 @@ def set_identifier_order(sender, instance, *args, **kwargs):
 pre_save.connect(set_identifier_order, sender = Order)
 
 def set_total_order(sender, instance, *args, **kwargs):
+    """
+    Callback para cambiar el valor del total de la orden antes de guardar una instancia en la base de datos.
+    """
+
     instance.total = instance.get_total()
 
 pre_save.connect(set_total_order, sender = Order)
+
+def send_bill_order(sender, instance, *args, **kwargs):
+    """
+    Callback para realizar el llamado a la 
+    """
+    pass
+    #if instance.state == ''
 
 class AccountingDocument(models.Model):
     id_accounting_document = models.AutoField('Id documento contable', primary_key = True)

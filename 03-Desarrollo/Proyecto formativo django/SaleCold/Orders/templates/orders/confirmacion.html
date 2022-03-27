@@ -97,7 +97,7 @@
             <p class="container-paragraph-total-resume-order container-paragraph-total-resume-order--border">
                 <strong>Total:</strong> $ {{ orden.get_total|intcomma }}
             </p> 
-            <a href="#" class="container-total-resume-order__btn">
+            <a href="{% url 'Orders:complete-order' %}" class="container-total-resume-order__btn">
                 Confirmar orden de compra
             </a>
             <a href="{% url 'Orders:cancel-order' %}" class="container-total-resume-order__btn container-total-resume-order__btn--color">
