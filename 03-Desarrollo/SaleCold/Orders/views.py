@@ -158,6 +158,13 @@ def add_another_address(request):
                     neighborhood = form.cleaned_data.get('barrio').strip()
                 )
 
+                if direccion.default:
+                    user_information = UserModel.objects.get(user = request.user)
+                    user_information.address = form.cleaned_data.get('direccion').strip()
+                    user_information.neighborhood = form.cleaned_data.get('barrio').strip()
+                    user_information.city = City.objects.get(description = form.cleaned_data.get('ciudad'))
+                    user_information.save()
+
                 messages.success(request, 'Nueva direccion agregada con exito')
                 return redirect('Orders:address')
             except:

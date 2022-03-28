@@ -22,6 +22,10 @@ from django.http import HttpResponseRedirect
 from Orders.models import Address
 from .forms import AddressForm
 from .models import City
+from Orders.common import OrderStatus
+from Orders.models import AccountingDocument
+from Orders.models import Order
+from Products.models import Product
 
 @require_http_methods(['GET', 'POST'])
 def login_view(request):
@@ -220,6 +224,13 @@ def create_address_view(request):
                     neighborhood = form.cleaned_data.get('barrio').strip()
                 )
 
+                if direccion.default:
+                    user_information = UserModel.objects.get(user = request.user)
+                    user_information.address = form.cleaned_data.get('direccion').strip()
+                    user_information.neighborhood = form.cleaned_data.get('barrio').strip()
+                    user_information.city = City.objects.get(description = form.cleaned_data.get('ciudad'))
+                    user_information.save()
+
                 messages.success(request, 'Nueva direccion agregada con exito')
                 return redirect('Users:addresses')
             except:
@@ -281,8 +292,15 @@ def edit_address(request, id_address):
                     direccion_por_defecto = Address.objects.get(default = True, user = request.user)
                     direccion_por_defecto.default = False
                     direccion_por_defecto.save()
-                    
-                form.save(direccion_actual.id_address, request.user)
+
+                resultado = form.save(direccion_actual.id_address, request.user)
+                if resultado.default:  
+                    user_information = UserModel.objects.get(user = request.user)
+                    user_information.address = form.cleaned_data.get('direccion').strip()
+                    user_information.neighborhood = form.cleaned_data.get('barrio').strip()
+                    user_information.city = City.objects.get(description = form.cleaned_data.get('ciudad'))
+                    user_information.save()
+                
                 messages.success(request, 'Direccion actualizada con exito')
                 return redirect('Users:addresses')
 
@@ -296,7 +314,56 @@ def config_account_view(request):
 
 @login_required
 def orders_view(request):
-    orders = UserModel.objects.get(user = request.user).get_orders_completed()
+    orders = UserModel.objects.get(user = request.user).get_orders_completed_and_canceled()
+
     return render(request, 'users/dashboard_usuario/pedidosUsuario.html', context = {
         'pedidos': orders,
     })
+
+@login_required
+def purchases_view(request):
+    orders_payed = UserModel.objects.get(user = request.user).get_orders_payed().order_by('-id_order')
+    purchases = [AccountingDocument.objects.get(order = item) for item in orders_payed]
+
+    return render(request, 'users/dashboard_usuario/comprasUsuario.html', context = {
+        'compras': purchases,
+    })
+
+@login_required
+def detail_order_view(request, identifier):
+    order = Order.objects.get(identifier = identifier)
+
+    return render(request, 'users/dashboard_usuario/detallePedido.html', context = {
+        'orden': order,
+    })
+
+@login_required
+def detail_purchase_view(request, number):
+    purchase = AccountingDocument.objects.get(number_accounting_document = number)
+
+    return render(request, 'users/dashboard_usuario/detalleCompra.html', context = {
+        'compra': purchase,
+    })
+
+@login_required
+def cancel_order(request, identifier):
+    """
+    Vista encargada de realizar la cancelacion de la orden.
+    """
+
+    order = Order.objects.get(identifier = identifier)
+
+    if request.user.id != order.user_id:
+        return redirect('index')
+
+    # Devolver los productos al stock
+    for item in order.cart.cartproducts_set.all():
+        product = Product.objects.get(pk = item.product.id_product)
+        product.outputs -= item.quantity
+        product.save()
+
+    order.cancel()
+
+    messages.success(request, 'Orden de compra cancelada con exito')
+
+    return redirect('Users:orders')

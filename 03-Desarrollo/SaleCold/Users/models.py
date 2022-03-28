@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from Orders.common import OrderStatus
+from django.db.models import Q
 
 class City(models.Model):
     id_city = models.AutoField("Id Ciudad", primary_key = True)
@@ -58,6 +59,12 @@ class UserModel(models.Model):
 
     def get_orders_completed(self):
         return self.user.order_set.filter(state = OrderStatus.COMPLETED.value).order_by('-id_order')
+
+    def get_orders_completed_and_canceled(self):
+        return self.user.order_set.filter(Q(state = OrderStatus.COMPLETED.value) | Q(state = OrderStatus.CANCELED.value)).order_by('-id_order')
+
+    def get_orders_payed(self):
+        return self.user.order_set.filter(state = OrderStatus.PAYED.value).order_by('-id_order')
 
     class Meta:
         verbose_name = "Informacion adicional usuario"

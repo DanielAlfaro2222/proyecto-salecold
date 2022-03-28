@@ -17,4 +17,8 @@ urlpatterns = [
     path('addresses/edit/<int:id_address>/', views.edit_address, name = 'edit-address'),
     path('addresses/config/', views.config_account_view, name = 'config-account'),
     path('orders/', views.orders_view, name = 'orders'),
+    path('purchases/', views.purchases_view, name = 'purchases'),
+    path('detail-order/<str:identifier>', views.detail_order_view, name = 'detail-order'),
+    path('detail-purchase/<str:number>', views.detail_purchase_view, name = 'detail-purchase'),
+    path('cancel-order/<str:identifier>', views.cancel_order, name = 'cancel-order'),
 ]

@@ -43,10 +43,22 @@
                         Actualizar datos personales
                     </a>
                 </li>
-                <li class="container-element-list-options-menu-dashboard-user">
+                <li class="container-element-list-options-menu-dashboard-user
+                {% if request.path == '/users/orders/' %}
+                    container-element-list-options-menu-dashboard-user--active
+                {% endif %}">
                     <a href="{% url 'Users:orders' %}" class="container-link-element-list-options-menu-dashboard-user">
-                        <i class="fa-solid fa-cart-shopping container-link-element-list-options-menu-dashboard-user--icon" aria-hidden="true"></i>
+                        <i class="fa-solid fa-truck-fast container-link-element-list-options-menu-dashboard-user--icon" aria-hidden="true"></i>
                         Mis pedidos
+                    </a>
+                </li>
+                <li class="container-element-list-options-menu-dashboard-user
+                {% if request.path == '/users/purchases/' %}
+                    container-element-list-options-menu-dashboard-user--active
+                {% endif %}">
+                    <a href="{% url 'Users:purchases' %}" class="container-link-element-list-options-menu-dashboard-user">
+                        <i class="fa-solid fa-cart-shopping container-link-element-list-options-menu-dashboard-user--icon" aria-hidden="true"></i>
+                        Mis compras
                     </a>
                 </li>
                 <li class="container-element-list-options-menu-dashboard-user

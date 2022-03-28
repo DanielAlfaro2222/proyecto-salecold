@@ -145,7 +145,7 @@ class Order(models.Model):
         Funcion para obtener la cantidad total de productos asociados a la orden.
         """
 
-        total = [producto.quantity for producto in self.cart.cartproducts_set]
+        total = [producto.quantity for producto in self.cart.cartproducts_set.all()]
         return sum(total)
 
     class Meta:

@@ -415,7 +415,6 @@ class ContactForm(forms.Form):
 
         email.send(fail_silently = False)
         
-
 class UpdateDataUserForm(forms.Form):
     nombre = forms.CharField(
         required = False,
@@ -782,6 +781,6 @@ class AddressForm(forms.Form):
         direccion.default = True if self.cleaned_data.get('defecto') == '2' else False
         try:
             direccion.save()
-            return True
+            return direccion
         except:
             return False
