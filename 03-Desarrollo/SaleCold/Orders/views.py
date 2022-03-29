@@ -1,8 +1,6 @@
 from django.shortcuts import redirect
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
-from .utils import get_or_create_order
-from Carts.utils import get_or_create_cart
 from .utils import breadcrumb
 from .models import TypeOfDelivery
 from .models import PaymentType
@@ -14,6 +12,13 @@ from Carts.utils import destroy_session_cart
 from .utils import destroy_session_order
 from Products.models import Product
 from .decorators import get_cart_and_order
+
+# Configuracion para windows
+#import os
+
+#os.add_dll_directory(r"C:\Program Files\GTK3-Runtime Win64\bin")
+
+
 from weasyprint import HTML
 from weasyprint.text.fonts import FontConfiguration
 from django.http import HttpResponse

@@ -179,6 +179,7 @@ def changePassword(request):
         usuario.save()
 
         messages.success(request, 'La contraseña se ha cambiado con exito.')
+        return redirect('Users:login')
 
     return render(request, 'users/dashboard_usuario/cambiarContrasena.html', context = {
         'formulario': formulario,
